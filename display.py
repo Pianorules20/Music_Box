@@ -1,0 +1,38 @@
+#splashScreen.py
+import pygame
+import pygame.locals
+import display_interface as di
+
+'''class Event():
+    
+    xIncrement = int(20)
+
+    def pulse():
+        print(f'xAxis equals {Event.xIncrement}')
+        mySongs.Recordings.meter += Event.xIncrement'''
+
+class Window():
+    def __init__(self) -> None:
+        pass    
+    print('Window initialized')
+    width = 2000
+    height = 1200
+    note = pygame.Surface((width/2, height/2))
+    position = width, height
+    frame = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+    background = frame.fill((180,180,40),(0,0, width, height))
+    screen = pygame.Surface((0,0), pygame.RESIZABLE)
+    
+    def updateScreen():
+        update = di.Interface.screenGate(di.Interface.current)
+        update = update
+        #print('updateScreen initialized')
+        #layer3.center = (objects.Buttons.xAxis, objects.Buttons.yAxis)
+        #pygame.draw.rect(Window.frame, (200,200,200), pygame.Rect(30,30,60,60))
+        #pygame.Surface((Window.width/20, Window.height/20))
+        #Window.width, Window.height
+        '''for eachObject in objects.myNotes:
+            eachObject._blit_()'''
+        pygame.display.flip()
+        
+            
