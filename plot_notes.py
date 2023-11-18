@@ -1,25 +1,46 @@
 #plot_notes.py
-import mySong as my, objects as ob, plot_meter as pm, generate_notes_interface as gni
+import mySong as my, objects as ob, plot_meter as pm, generate_notes_interface as gni, gatekeeper
 import plot_notes_interface as pni
 
-class Pl(): #'Pl' stands for 'Plot'
+'''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
+class P(): #'Pl' stands for 'Plot'
 
     def plot_notes(): 
 
-        for eachSection in my.Transcription.transcript: #a list inside of a list
-
-            thisSection = eachSection #this is a list for depopulation 
-            
-            while len(thisSection) > 0:
+        if pni.Count.populate == True:
                 
-                for eachNote in thisSection: 
-                    xPos = gni.Note.returnXPos(eachNote)
-                    if pm.M.meter == xPos:
-                        pni.Inc.currentPlot.append(eachNote)
-                        thisSection.pop(eachNote)
-                    else:
-                        pass
-                pni.Inc.createIncrement()
+                print('populating plot_notes_interface')
+                pni.Count.populate()
+
+        else:
+                if pni.Count.noteCounter > 0:
+
+                    for eachNote in pni.Count.thisSection: 
+
+                        xPos = gni.Note.returnXPos(eachNote)
+
+                        if pm.M.meter == xPos:
+
+                            pni.Inc.currentPlot.append(eachNote)
+                        
+                            pni.Count.thisSection.pop(eachNote)
+                        else:
+                            pass
+                    
+                    pni.Inc.createIncrement()
+                    pni.Count.noteCounter -=1
+                    gatekeeper.Gate.passGate('plot_notes')
+                
+
+                else:
+                        try: 
+                             pni.Count.sectionCounter +=1
+                        except:
+                            pni.Count.populate != pni.Count.populate
+                            gatekeeper.Gate.passGate('playback')
+
+
+
             
             
 
