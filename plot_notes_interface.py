@@ -9,44 +9,53 @@ class Count(): #'C' stands for 'counter'
     currentSection = int(0) 
     noteCounter = int(0)
     populate = True
-    thisSection = []
+    thisSection = []    
 
-    def populate():
+def populate():
 
-        Count.copy = my.Trn.transcript #this is a list inside of a list
-
-        Count.sectionInteger = len(Count.copy)
         
-        Count.thisSection = Count.copy[0] #this is a list for depopulation 
-        
-        Count.counter = len(Count.thisSection)
+    Count.copy = my.Trn.transcript #this is a list inside of a list - it is the total song
+    #print(f' {len(Count.copy)} in pni.Count.populate()')  #breadcrumb
 
-        Count.populate != Count.populate
+    if len(Count.copy) > 0:
+        Count.thisSection = Count.copy[0] #separating the sections/lists in the copy
+    else:
+        Count.thisSection = Count.copy #this is the final section for depopulation
 
-    def advance():
-        if Count.currentSection < Count.sectionCounter:
-            Count.currentSection += 1
-        else:
-            gatekeeper.Gate.current = 'playback'
+    print(f' in pni.populate mySong.Trn.transcript {len(my.Trn.transcript)}')  #breadcrumb
+    print('why is mySong transcribed incorrectly?')
+    Count.sectionInteger = len(Count.copy)
+    
+    Count.counter = len(Count.thisSection)
+    print(f'in pni.populate...Count.counter {Count.counter}')
 
-    def reset():
+    Count.populate = False
 
-        Count.sectionCounter = int(0)
+def advance():
+    if Count.currentSection < Count.sectionCounter:
+        Count.currentSection += 1
+    else:
+        gatekeeper.Gate.current = 'playback'
 
-        Count.currentSection = int(0)
+def reset():
 
-        Count.noteCounter - int(0)
+    Count.sectionCounter = int(0)
 
-        Count.populate = True
+    Count.currentSection = int(0)
+
+    Count.noteCounter - int(0)
+
+    Count.populate = True
 
 class Inc(): # stands for 'Increment'
-    
+    print('in pni class Inc') #breadcrumb
     sounds = []
     currentPlot = []
     for eachNote in currentPlot:
         sounds.append(gni.returnSound(eachNote))
 
 def createIncrement():
+    print('in pni createIncrement')  #breadcrumb
     inc = Inc()
     if len(Inc.sounds) > 0: 
         print('sound plot created')

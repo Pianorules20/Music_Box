@@ -9,35 +9,38 @@ class P(): #'Pl' stands for 'Plot'
 
         if pni.Count.populate == True:
                 
-                print('populating plot_notes_interface')
-                pni.Count.populate()
+                print('pni.Count.populate = True')
+                pni.populate()
 
         else:
-                if pni.Count.noteCounter > 0:
 
-                    for eachNote in pni.Count.thisSection: 
+            if pni.Count.noteCounter > 0:
 
-                        xPos = gni.Note.returnXPos(eachNote)
+                print(f'pni.Count.noteCounter = {len(pni.Count.noteCounter)} ')
+                for eachNote in pni.Count.thisSection: 
 
-                        if pm.M.meter == xPos:
+                    xPos = gni.Note.returnXPos(eachNote)
 
-                            pni.Inc.currentPlot.append(eachNote)
-                        
-                            pni.Count.thisSection.pop(eachNote)
-                        else:
-                            pass
+                    if pm.M.meter == xPos:
+
+                        pni.Inc.currentPlot.append(eachNote)
                     
-                    pni.Inc.createIncrement()
-                    pni.Count.noteCounter -=1
-                    gatekeeper.Gate.passGate('plot_notes')
+                        pni.Count.thisSection.pop(eachNote)
+                    else:
+                        pass
+                
+                pni.Inc.createIncrement()
+                pni.Count.noteCounter -=1
+                gatekeeper.Gate.passGate('plot_notes')
                 
 
-                else:
-                        try: 
-                             pni.Count.sectionCounter +=1
-                        except:
-                            pni.Count.populate != pni.Count.populate
-                            gatekeeper.Gate.passGate('playback')
+            else:
+                print('error in plot_notes? what happened to Count.note Counter?')
+                try: 
+                        pni.Count.sectionCounter +=1
+                except:
+                    pni.Count.populate != pni.Count.populate
+                    gatekeeper.Gate.passGate('playback')
 
 
 

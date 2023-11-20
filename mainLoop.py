@@ -33,7 +33,10 @@ class mainLoop():
     _on = True
     while _on:
         
-        clock.tick(t.Time.current)
+        #debug only: 
+        print(gatekeeper.Gate.current)
+        
+        clock.tick(t.Timer.current)
         _pressed = pygame.key.get_pressed()
         
         for event in pygame.event.get():

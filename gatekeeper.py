@@ -18,6 +18,7 @@ class Gate():
         print(f' in gatekeeper...{Gate.current}')
 
     def  passGate(gate):
+        
         match gate:
             case 'generate_notes':
         
@@ -33,10 +34,10 @@ class Gate():
                 branches.Branch.playback()
            
             case 'post_production':
-                Gate.current = '_post_production'
+                Gate.current = 'post_production'
                 branches.Branch.post_production()
            
             case 'pause':
                 Gate.current = 'pause'
                 branches.Branch.pause()
-        return gate
+        #return gate

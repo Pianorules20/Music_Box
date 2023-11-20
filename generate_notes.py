@@ -1,16 +1,17 @@
 #step2 contains Generator (randomizer)
 
-import random, settings, mySong, instance, generate_notes_interface, playbackMeter
+import random, settings, mySong, instance, generate_notes_interface, gatekeeper
 
 class Generator(): #generate() contains the randomizer. it connects to step3 the note object creator
 
     def generate():
         currentNote = instance.tonic #initializes currentNote
-        currentDuration = settings.Preferences.quarterNote #initializes currentDuration
+        currentDuration = settings.Op.quarterNote #initializes currentDuration
 
-        polyOrder = settings.Preferences.instruments[0]
+        polyOrder = settings.Op.instruments[0]
         
-        while instance.notesRemaining > 0: #Note the use of the while loop to complete this section
+        if instance.notesRemaining > 0: #Note the use of the while loop to complete this section
+            print(f'notes remaining this instance: {instance.notesRemaining}')
             randomizer = random.random()
            
             #early randomizer is based on the generated motive
@@ -55,5 +56,7 @@ class Generator(): #generate() contains the randomizer. it connects to step3 the
                 rando = random.choice(instance.beats)   
                 currentDuration = rando           
                 generate_notes_interface.createNote(currentNote, currentDuration)
-        print(f'notes remaining this section: {instance.notesRemaining}')
-        mySong.Transcription.finished = True
+            gatekeeper.Gate.passGate('generate_notes')
+        else:
+            #mySong.Trn.finished = True
+            gatekeeper.Gate.passGate('plot_notes')
