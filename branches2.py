@@ -5,6 +5,8 @@ import populate_settings, gatekeeper
 
 def randomShortForm():
     print('random short form')  #breadcrumb
+    for eachVoice in instance.instruments:
+        print(f'checking length of each voice...{len(eachVoice)}')
     if my.Trn.finished == True:
         checkTranscript = []
         for eachSection in my.Trn.transcript:
@@ -16,6 +18,8 @@ def randomShortForm():
                 checkTranscript.append(Octave)
                 checkTranscript.append(spacer)
         print(' ')
+        print('in branches2 my.Trn.finished = True?')
+        print(f'my.Trn.finished = {my.Trn.finished}')
         print('my recording')
         print(*checkTranscript, sep = '')
         print(' ')
@@ -27,18 +31,23 @@ def randomShortForm():
         #mySong.Trn.initializer()'''
 
     else:
+
         for eachVoice in instance.instruments:
-            if len(eachVoice) > 0:
-                generate_notes.Generator.generate() #this is a while loop and is self-contained
-                populate_settings.Populate.createRemainingNotes
-                my.Trn.meter  = 0
-            
-            else:
-                pass
-        my.Trn.transcript.append(my.Trn.currentSection) #pay careful attention as this is now a list \
-        #inside of a list
-        #printer._print_PDF()
-        my.Trn.finished = True
+            for eachList in eachVoice:
+                if len(eachVoice) > 0:
+                    generate_notes.Generator.generate()
+                
+                else:
+                    # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
+                    my.Trn.meter  = 0
+                    instance.notesRemaining = settings.Op.notesRemaining # is this correct???
+                    # i was missing my operator parentheses but i since rewrote this previous line
+        
+            my.Trn.transcript.append(my.Trn.currentSection) #pay careful attention as this is now a list \
+            #inside of a list
+            #printer._print_PDF()
+            my.Trn.finished = True  #are you the culprit that turned my boolean to True too early???
+            print(f'checking transcription length {len(my.Trn.transcript)}')
                 
 def longFormNew():
     print('long form new')   #breadcrumb

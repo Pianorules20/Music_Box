@@ -1,0 +1,14 @@
+debug_log.txt
+
+    11-21-2023 5:29AM  I missed my parentheses in line 36 of 'branches2'.  Was this causing mySong.Trn.finished to 
+revert to 'True'?  It needs to be False until the recording is finished.
+In the 'else' section of 'branches2...random short form()' i found a misplaced 'create_remaining_notes()'
+that I called too early.  Could this explain the divergence in the total note counts between instance and transcript? 
+I also found a line that changed mySong.Trn.transcript to True.  Is it too early???
+In 'branches2' i found when checking the length of my 'eachVoice' that they were empty lists!  Was this causing my 
+boolean 'finished' to change to True???  
+I can't seem to get python to recognize my 'tones for 1st instrument' when checking length of voice....
+I tried a nested forLoop but it claims it's a 'tone object' and won't budge.  the empty lists of 
+instruments 2-5 work just fine but of course they don't count as a numerical length but rather as empty lists.
+Okay...now it counts....why???  does python prefer formatted strings?  or does python prefer that i counted
+it at the beginning of the function rather than during the 'else' statement????
