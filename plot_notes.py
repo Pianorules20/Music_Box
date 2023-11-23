@@ -3,49 +3,52 @@ import mySong as my, objects as ob, plot_meter as pm, generate_notes_interface a
 import plot_notes_interface as pni
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
-class P(): #'Pl' stands for 'Plot'
+'''class P():
+     pass #'Pl' stands for 'Plot'''
 
-    def plot_notes(): 
+def plot_notes(): 
 
-        if pni.Count.populate == True:
+    if pni.I.populateMe == True:
+            
+            print(f'pni.I.populateMe = {pni.I.populateMe}')
+            pni.populate()
+
+    else:
+
+        if pni.I.noteCounter > 0:
+
+            #print(f'pni.I.noteCounter = {pni.I.noteCounter} ')
+            for eachNote in pni.I.thisSection: 
+
+                xPos = gni.Note.returnXPos(eachNote)
+
+                if pm.M.meter == xPos:
+
+                    pni.I.currentPlot.append(eachNote)
                 
-                print('pni.Count.populate = True')
-                pni.populate()
+                    pni.I.noteCounter -= 1
+               
+                else:
+                    
+                    pass
+            
+            pni.populateSounds()
+            
+            pni.createIncrement(pni.I.currentSounds)
+            
+            pni.resetPlot()
+
+            #gatekeeper.Gate.current = 'plot_notes'
+            
 
         else:
+            print('error in plot_notes? what happened to Count.note Counter?')
+            try: 
+                    pni.I.sectionCounter +=1
+            except:
+                pni.I.populateMe != pni.I.populateMe
+                gatekeeper.Gate.passGate('playback')
 
-            if pni.Count.noteCounter > 0:
-
-                print(f'pni.Count.noteCounter = {len(pni.Count.noteCounter)} ')
-                for eachNote in pni.Count.thisSection: 
-
-                    xPos = gni.Note.returnXPos(eachNote)
-
-                    if pm.M.meter == xPos:
-
-                        pni.Inc.currentPlot.append(eachNote)
-                    
-                        pni.Count.thisSection.pop(eachNote)
-                    else:
-                        pass
-                
-                pni.Inc.createIncrement()
-                pni.Count.noteCounter -=1
-                gatekeeper.Gate.passGate('plot_notes')
-                
-
-            else:
-                print('error in plot_notes? what happened to Count.note Counter?')
-                try: 
-                        pni.Count.sectionCounter +=1
-                except:
-                    pni.Count.populate != pni.Count.populate
-                    gatekeeper.Gate.passGate('playback')
-
-
-
-            
-            
 
         
 '''class Note(pygame.sprite.Sprite):

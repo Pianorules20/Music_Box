@@ -1,6 +1,6 @@
 #play.py 
-import mySong, generate_notes_interface, playbackMeter, settings, pygame, gatekeeper, timer as t
-import plot_notes_interface as pni
+import mySong, generate_notes_interface, playback_meter as pm, settings, pygame, gatekeeper, timer as t
+import plot_notes_interface as pni, tones as T, gatekeeper as g
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()
@@ -10,12 +10,23 @@ class Player():
 
     recording = []
 
-    def play():
-
+def play(): #i will play and pop each plot incrementally from the recording
+    
+    if len(Player.recording) > 0:
+       
+        print('playing notes')
+    
         t.Timer.current = t.Timer.slow
-        
-        for eachPlot in Player.recording:
 
-                pni.P.play(eachPlot)
-        
+        for eachIncrement in Player.recording:
+
+            for eachTone in eachIncrement.sounds:
+
+                T.Tone.play(eachTone)
+                print(f'playing {eachTone}')
+
+    else:
+
+        g.Gate.current = 'post_production'
+
         #TROUBLESHOOT NOTES I AM ONLY GETTING ONE NOTE AT A TIME WHY IS THAT?

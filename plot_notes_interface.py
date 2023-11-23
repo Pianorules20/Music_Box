@@ -1,64 +1,80 @@
 # plot_notes_interface.py
-import playback as play, generate_notes_interface as gni, mySong as my, gatekeeper
+import playback as play, generate_notes_interface as gni, mySong as my, gatekeeper, tones as t
 
 
-class Count(): #'C' stands for 'counter'
+class I(): #'I' stands for 'Interface'
 
-    copy = []
+    transcriptCopy = []
     sectionInteger = int(0)
     currentSection = int(0) 
     noteCounter = int(0)
-    populate = True
+    populateMe = True
     thisSection = []    
-
-def populate():
-
-        
-    Count.copy = my.Trn.transcript #this is a list inside of a list - it is the total song
-    #print(f' {len(Count.copy)} in pni.Count.populate()')  #breadcrumb
-
-    if len(Count.copy) > 0:
-        Count.thisSection = Count.copy[0] #separating the sections/lists in the copy
-    else:
-        Count.thisSection = Count.copy #this is the final section for depopulation
-
-    print(f' in pni.populate mySong.Trn.transcript {len(my.Trn.transcript)}')  #breadcrumb
-    print('why is mySong transcribed incorrectly?')
-    Count.sectionInteger = len(Count.copy)
+    currentPlot = [] #this is the fundamental unit that will be tracked
+    currentSounds = [] 
+    '''for eachNote in currentPlot:
+        sounds.append(gni.returnSound(eachNote))'''
     
-    Count.counter = len(Count.thisSection)
-    print(f'in pni.populate...Count.counter {Count.counter}')
+class Increment(): # stands for 'Increment'
 
-    Count.populate = False
+    #print('in pni class Inc') #breadcrumb 
+    def __init__(self, sounds):
 
-def advance():
-    if Count.currentSection < Count.sectionCounter:
-        Count.currentSection += 1
-    else:
-        gatekeeper.Gate.current = 'playback'
+        self.sounds = sounds
 
-def reset():
 
-    Count.sectionCounter = int(0)
-
-    Count.currentSection = int(0)
-
-    Count.noteCounter - int(0)
-
-    Count.populate = True
-
-class Inc(): # stands for 'Increment'
-    print('in pni class Inc') #breadcrumb
-    sounds = []
-    currentPlot = []
-    for eachNote in currentPlot:
-        sounds.append(gni.returnSound(eachNote))
-
-def createIncrement():
+def createIncrement(sounds):
+    
     print('in pni createIncrement')  #breadcrumb
-    inc = Inc()
-    if len(Inc.sounds) > 0: 
+    myPlot = Increment(sounds = sounds)
+    if len(myPlot.sounds) > 0: 
         print('sound plot created')
     else:
         print('empty plot created')
-    play.Player.recording.append(inc)
+    play.Player.recording.append(myPlot)
+
+def populate():
+        
+    I.transcriptCopy = my.Trn.transcript #this is a list inside of a list - it is the total song
+    #print(f' {len(Count.copy)} in pni.Count.populate()')  #breadcrumb
+
+    if len(I.transcriptCopy) > 0:  #counting the sections in the transcript
+        I.thisSection = I.transcriptCopy[0] #separating the sections/lists in the copy
+    else:
+        I.thisSection = I.transcriptCopy #this is the final section for depopulation
+
+    print(f' in pni.populate transcript copy {len(I.transcriptCopy)}')
+    print(I.transcriptCopy)  #breadcrumb
+    print('why is mySong transcribed incorrectly?')
+    I.sectionInteger = len(I.thisSection)
+    I.noteCounter = len(I.thisSection)
+    print(f'in pni.populate...I.counter {I.noteCounter}')
+    I.populateMe = False
+
+def advance():
+    if I.currentSection < I.sectionCounter:
+        I.currentSection += 1
+    else:
+        gatekeeper.Gate.current = 'playback'
+
+def resetSection():
+    print('reset Section')
+    I.sectionCounter = int(0)
+
+    I.currentSection = int(0)
+
+    I.noteCounter - int(0)
+
+    I.populateMe = True
+
+def resetPlot():
+    print('reset plot')
+    I.currentPlot = []
+    I.sounds = []
+
+
+def populateSounds():
+
+    for eachNote in I.currentPlot:
+        sound = t.Tone.returnSound(eachNote)
+        I.currentSounds.append(sound)
