@@ -1,5 +1,5 @@
 #plot_notes.py
-import mySong as my, objects as ob, plot_meter as pm, generate_notes_interface as gni, gatekeeper
+import mySong as my, objects as ob, plot_meter as pm, gni as gni, gatekeeper
 import plot_notes_interface as pni
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
@@ -11,43 +11,47 @@ def plot_notes():
     if pni.I.populateMe == True:
             
             print(f'pni.I.populateMe = {pni.I.populateMe}')
-            pni.populate()
+            pni.populateNotes()
 
     else:
+    
+        # referencing pm.M.meter
 
-        if pni.I.noteCounter > 0:
+        for eachNote in pni.I.thisSection: 
 
-            #print(f'pni.I.noteCounter = {pni.I.noteCounter} ')
-            for eachNote in pni.I.thisSection: 
+            xPos = gni.Note.returnXPos(eachNote)
 
-                xPos = gni.Note.returnXPos(eachNote)
+            if pm.M.meter == xPos:
 
-                if pm.M.meter == xPos:
+                pni.I.currentPlot.append(eachNote)  # pay attention!!!  This is what the playback will use
+            
+                try:
+                        
+                    pni.I.currentCounter -= 1
 
-                    pni.I.currentPlot.append(eachNote)
-                
-                    pni.I.noteCounter -= 1
-               
-                else:
+                except:
                     
-                    pass
-            
-            pni.populateSounds()
-            
-            pni.createIncrement(pni.I.currentSounds)
-            
-            pni.resetPlot()
 
-            #gatekeeper.Gate.current = 'plot_notes'
-            
+                    pni.advance()
 
-        else:
-            print('error in plot_notes? what happened to Count.note Counter?')
-            try: 
-                    pni.I.sectionCounter +=1
-            except:
-                pni.I.populateMe != pni.I.populateMe
-                gatekeeper.Gate.passGate('playback')
+            else:
+                
+                pass
+        
+        pni.createPlot(notesExternal = pni.I.currentPlot)
+        
+        pni.resetPlot()
+
+        #gatekeeper.Gate.current = 'plot_notes'
+                
+
+    '''else:
+        print('error in plot_notes? what happened to Count.note Counter?')
+        try: 
+                pni.I.sectionCounter +=1
+        except:
+            pni.I.populateMe != pni.I.populateMe
+            gatekeeper.Gate.current = 'playback'''
 
 
         
