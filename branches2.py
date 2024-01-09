@@ -1,10 +1,10 @@
 #Step1.py
 
-import settings, random, mySong as my, playback, instance, generate_notes, generate_notes_interface as gni 
-import populate_settings, gatekeeper
+import settings, random, mySong as my, playback, instance, generate_notes, gni as gni 
+import populate_settings, gatekeeper, debug as db
 
 def randomShortForm():
-    print('random short form')  #breadcrumb
+    print('in branches2...random short form')  #breadcrumb
     for eachVoice in instance.instruments:
         print(f'checking length of each voice...{len(eachVoice)}')
     if my.Trn.finished == True:
@@ -21,36 +21,41 @@ def randomShortForm():
         print('in branches2 my.Trn.finished = True?')
         print(f'my.Trn.finished = {my.Trn.finished}')
         print('my recording')
-        print(*checkTranscript, sep = '')
+        localTrace = print(*checkTranscript, sep = '')
+        localTrace = str(localTrace)
+        db.tracer3 = localTrace
         print(' ')
         gatekeeper.Gate.current = 'plot_notes'
-        '''The following three lines likely need to be deleted as they no longer fit with my 
-        'gatekeeper' paradigm
-        #mySong.Trn.transcriptReset
-        #mySong.Trn.instanceReset
-        #mySong.Trn.initializer()'''
-
+    
     else:
 
-        for eachVoice in instance.instruments:
-            for eachList in eachVoice:
-                if len(eachVoice) > 0:
-                    generate_notes.Generator.generate()
+        for eachVoice in instance.instruments:   
+            if len(eachVoice) > 0 :  #only runs if the user has a assigned notes to a particular polyphony
+
+                save_place = instance.notesRemaining
+
+                while instance.notesRemaining > 0 :
+                    
                 
-                else:
-                    # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
-                    my.Trn.meter  = 0
-                    instance.notesRemaining = settings.Op.notesRemaining # is this correct???
-                    # i was missing my operator parentheses but i since rewrote this previous line
+                    generate_notes.generate()
+                    
+            
+            else:
+                # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
+                instance.notesRemaining = save_place
+                my.Trn.meter  = 0
+                #   my.resetSection()
+                #instance.notesRemaining = settings.Op.notesRemaining # is this correct???
+                # i was missing my operator parentheses but i since rewrote this previous line
         
-            my.Trn.transcript.append(my.Trn.currentSection) #pay careful attention as this is now a list \
+        my.Trn.transcript.append(my.Trn.currentSection) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()
-            my.Trn.finished = True  #are you the culprit that turned my boolean to True too early???
-            print(f'checking transcription length {len(my.Trn.transcript)}')
-                
+    my.Trn.finished = True  #are you the culprit that turned my boolean to True too early???
+    #print(f'in branches2...random short form...checking transcription length {len(my.Trn.transcript)}')
+    #print(f'my transcript...{my.Trn.transcript}')
 def longFormNew():
-    print('long form new')   #breadcrumb
+    #print('long form new')   #breadcrumb
     if len(my.Trn.generatedStructure) == 0: # this indicates a blank structure 
         my.Trn.createStructure()    # this creates an integer length for the new structure
     else:
@@ -101,13 +106,6 @@ def longFormNew():
                         case 'E':
                             for eachNote in my.Trn.currentSection:
                                 my.Trn.sectionE.append(my.Trn.currentSection[eachNote])
-
-    '''for x in mySong.Trn.generatedStructure:
-        if x in mySong.Trn.sectionNames:    
-            mySong.Trn.sectionNames.append(x)
-        else:
-            pass
-        newStructure -= 1'''
 
 def userConstructed(): 
     print('user constructed')  #breadcrumb 

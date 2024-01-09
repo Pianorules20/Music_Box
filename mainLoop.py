@@ -2,7 +2,7 @@
 
 import pygame
 import sys
-import objects, display, initializer, introMusic, gatekeeper, timer as t
+import objects, display, initializer, introMusic, gatekeeper, timer as t, mySong as my, debug as db
 
 # The term 'motive' is more/less equivalent to 'hook' in the melody of a song.  It is a small piece of pitch and rhythm.
 #clock = pygame.time.Clock()
@@ -15,7 +15,7 @@ objects.Buttons.populate() #this shows the opening screen
 print(objects.Buttons.descriptions)
 display.Window.updateScreen()
 pygame.display.update()
-introMusic.Intro.play()
+introMusic.play()
 
 #introSound.Intro.loadSounds() #this plays the intro sounds
  #this is necessary so that the motive is populated for the objects in make.Note.play()
@@ -30,8 +30,9 @@ class mainLoop():
         #pygame and pygame.locals controls
     clock  = pygame.time.Clock()
    
-    _on = True
-    while _on:
+    on = True
+    
+    while on:
         
         #debug only: 
         print(gatekeeper.Gate.current)
@@ -48,20 +49,28 @@ class mainLoop():
                 print('window maximized')
 
             if _pressed[pygame.K_SPACE]:
+                print('Spacebar Pressed')
                 print('continue')
                 gatekeeper.Gate.current = gatekeeper.Gate.saved_place
             
             elif _pressed[pygame.K_t]:
                 gatekeeper.Gate.testGate()
            
-            elif _pressed[pygame.K_ESCAPE]:
+            elif _pressed[pygame.K_ESCAPE]: 
                 print("Stop playing")
-                gatekeeper.Gate.saved_place = gatekeeper.Gate.current
+                if gatekeeper.Gate.current == 'pause':
+                    pass
+                else:
+                    gatekeeper.Gate.saved_place = gatekeeper.Gate.current
                 gatekeeper.Gate.current = 'pause'
         
+        db.tracer1 = gatekeeper.Gate.current
+        db.tracer2 = str(f'currentsection = {my.Trn.currentSection}')
+        db.tracer3 = str(f'transcript = {my.Trn.transcript}')
+        db.tracer4 = str(f'last trace in ...{db.tracer4}')
+
         pygame.event.pump()
         display.Window.updateScreen()
-        
         gatekeeper.Gate.passGate(gatekeeper.Gate.current)
 
 pygame.quit()

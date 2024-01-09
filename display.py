@@ -15,16 +15,15 @@ class Window():
     def __init__(self) -> None:
         pass    
     print('Window initialized')
-    width = 2000
-    height = 1200
-    note = pygame.Surface((width/2, height/2))
-    position = width, height
-    frame = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-    background = frame.fill((180,180,40),(0,0, width, height))
+
+    surf = pygame.Surface((di.I.width/2, di.I.height/2))
+    position = di.I.width, di.I.height
+    frame = pygame.display.set_mode((di.I.width, di.I.height), pygame.RESIZABLE)
+    background = frame.fill((180,180,40),(0,0, di.I.width, di.I.height))
     screen = pygame.Surface((0,0), pygame.RESIZABLE)
     
     def updateScreen():
-        update = di.Interface.screenGate(di.Interface.current)
+        update = di.I.screenGate(di.I.current)
         update = update
         #print('updateScreen initialized')
         #layer3.center = (objects.Buttons.xAxis, objects.Buttons.yAxis)

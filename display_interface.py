@@ -1,19 +1,22 @@
 #display_interface.py
-import screens, playbackMeter
+import screens as s, playback_meter as pm
 
-class Interface():
+class I(): #'I' stands for 'Interface'
 
+    width = 2000
+    height = 1200
     current = 'menu'
-    currentViewMax = playbackMeter.Meter.meter + 1900
-    currentViewMin = playbackMeter.Meter.meter
+    currentViewMin = pm.Meter.meter
+    currentViewMax = pm.Meter.meter + 1900
 
     def screenGate(screen):
         
         match screen:     
             case 'menu':
-                branch = screens.Screens.menu()
+                s.Screens.menu()
             case 'player':
-                branch = screens.Screens.player()
+                s.Screens.player()
             case 'options':
-                branch = screens.Screens.options()    
-        return branch
+                s.Screens.options()   
+            case 'credits':
+                s.Screens.credits()
