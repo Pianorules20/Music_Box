@@ -1,12 +1,12 @@
 #Step1.py
 
-import settings, random, mySong as my, playback, instance, generate_notes, gni as gni 
+import settings, random, mySong as my, playback, instance, generate_notes, gni as gni, debug as db
 import populate_settings, gatekeeper, debug as db
 
 def randomShortForm():
-    print('in branches2...random short form')  #breadcrumb
+    db.Data.debug_log.append('in branches2...random short form')  #breadcrumb
     for eachVoice in instance.instruments:
-        print(f'checking length of each voice...{len(eachVoice)}')
+        db.Data.debug_log.append(f'checking length of each voice...{len(eachVoice)}')
     if my.Trn.finished == True:
         checkTranscript = []
         for eachSection in my.Trn.transcript:
@@ -17,15 +17,14 @@ def randomShortForm():
                 checkTranscript.append(Name)
                 checkTranscript.append(Octave)
                 checkTranscript.append(spacer)
-        print(' ')
-        print('in branches2 my.Trn.finished = True?')
-        print(f'my.Trn.finished = {my.Trn.finished}')
-        print('my recording')
+        db.Data.debug_log.append('in branches2 my.Trn.finished = True?')
+        db.Data.debug_log.append(f'my.Trn.finished = {my.Trn.finished}')
+        db.Data.debug_log.append('my recording')
         localTrace = print(*checkTranscript, sep = '')
         localTrace = str(localTrace)
-        db.tracer3 = localTrace
-        print(' ')
-        gatekeeper.Gate.current = 'plot_notes'
+        db.Data.debug_log.append(localTrace)
+        gatekeeper.Data.current = 'plot_notes'
+        db.Data.debug_log.append('finished branches2 randomShortForm() Gate = "plot_notes" ')
     
     else:
 

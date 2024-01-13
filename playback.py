@@ -1,6 +1,6 @@
 #play.py 
-import mySong, generate_notes_interface, playback_meter as pm, settings, pygame, gatekeeper, timer as t
-import plot_notes_interface as pni, tones as T, gatekeeper as g
+import playback_meter as pm, settings, pygame, gatekeeper as g, timer as t, tones as T
+'''import pni as pni, tones as T, gatekeeper as g'''
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()

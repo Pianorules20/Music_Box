@@ -16,14 +16,16 @@ class Window():
         pass    
     print('Window initialized')
 
-    surf = pygame.Surface((di.I.width/2, di.I.height/2))
-    position = di.I.width, di.I.height
-    frame = pygame.display.set_mode((di.I.width, di.I.height), pygame.RESIZABLE)
-    background = frame.fill((180,180,40),(0,0, di.I.width, di.I.height))
+    surf = pygame.Surface((di.Data.width/2, di.Data.height/2))
+    position = di.Data.width, di.Data.height
+    frame = pygame.display.set_mode((di.Data.width, di.Data.height), pygame.RESIZABLE)
+    background = frame.fill((180,180,40),(0,0, di.Data.width, di.Data.height))
     screen = pygame.Surface((0,0), pygame.RESIZABLE)
+    width = di.Data.width
+    height = di.Data.height
     
     def updateScreen():
-        update = di.I.screenGate(di.I.current)
+        update = di.screenGate(di.Data.current)
         update = update
         #print('updateScreen initialized')
         #layer3.center = (objects.Buttons.xAxis, objects.Buttons.yAxis)
