@@ -16,14 +16,15 @@ def play(): #i will play and pop each plot incrementally from the recording
        
         print('playing notes')
     
-        t.Timer.current = t.Timer.slow
+        t.Data.current = t.Data.slow
 
         for eachIncrement in Player.recording:
 
-            for eachTone in eachIncrement.sounds:
+            eachIncrement.playNotes()
+            #for eachTone in eachIncrement:
 
-                T.Tone.play(eachTone)
-                print(f'playing {eachTone}')
+            '''T.Tone.play(eachTone)
+                print(f'playing {eachTone}')'''
 
     else:
 

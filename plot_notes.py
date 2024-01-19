@@ -1,6 +1,6 @@
 #plot_notes.py
-import mySong as my, objects as ob, plot_meter as pm, gni as gni, gatekeeper
-import plot_notes_interface as pni
+import mySong as my, objects as ob, plot_meter as pm, gni
+import pni, debug as db
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
 '''class P():
@@ -8,39 +8,39 @@ import plot_notes_interface as pni
 
 def plot_notes(): 
 
-    if pni.I.populateMe == True:
+    if pni.Data.populate_me == True:
             
-            print(f'pni.I.populateMe = {pni.I.populateMe}')
+            db.Data.debug_log.append(f'pni.populate_me = {pni.Data.populate_me}')
             pni.populateNotes()
 
     else:
+        pass
     
         # referencing pm.M.meter
 
-        for eachNote in pni.I.thisSection: 
+    for eachNote in pni.Data.this_section: 
 
-            xPos = gni.Note.returnXPos(eachNote)
+        xPos = gni.Note.returnXPos(eachNote)
 
-            if pm.M.meter == xPos:
+        if pm.M.meter == xPos:
 
-                pni.I.currentPlot.append(eachNote)  # pay attention!!!  This is what the playback will use
-            
-                try:
-                        
-                    pni.I.currentCounter -= 1
-
-                except:
+            pni.Data.current_plot.append(eachNote)  # pay attention!!!  This is what the playback will use
+        
+            try:
                     
+                pni.Data.section_counter -= 1
 
-                    pni.advance()
-
-            else:
+            except:
                 
-                pass
-        
-        pni.createPlot(notesExternal = pni.I.currentPlot)
-        
-        pni.resetPlot()
+                pni.advance()
+
+        else:
+            
+            pass
+    
+    pni.createPlot(notesExternal = pni.Data.current_plot)
+    
+    pni.resetPlot()
 
         #gatekeeper.Gate.current = 'plot_notes'
                 

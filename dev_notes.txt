@@ -3,3 +3,8 @@ is 'notes_internal' equivocating to 'notes_external'?
 everything wrong seems to be in 'pni' 'plot_notes_interface'
 
 everything seems to be revolving around the 'populate notes' and 'current_plot' in pni
+
+try creating a pygame surface which can blit over the current screen in the text handler???
+or try associating the text_handler function with a 'temporary y_axis' value for each word??? it will need 
+a counter variable and possibly a list to associate with the different to append the different pages 
+when it hits the bottom edge of the given surface area.

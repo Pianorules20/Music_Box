@@ -2,7 +2,7 @@
 
 import pygame, settings as s
 
-class Timer():
+class Data():
 
     fast = 300
     slow = s.Op.metronome/s.Op.metronomeModifier
