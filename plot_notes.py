@@ -1,11 +1,11 @@
 #plot_notes.py
 import mySong as my, objects as ob, plot_meter as pm, gni
-import pni, debug as db
+import pni, debug as db, playback as pb
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
 '''class P():
      pass #'Pl' stands for 'Plot'''
-
+'''
 def plot_notes(): 
 
     if pni.Data.populate_me == True:
@@ -25,7 +25,6 @@ def plot_notes():
         if pm.M.meter == xPos:
 
             pni.Data.current_plot.append(eachNote)  # pay attention!!!  This is what the playback will use
-        
             try:
                     
                 pni.Data.section_counter -= 1
@@ -43,9 +42,7 @@ def plot_notes():
     pni.resetPlot()
 
         #gatekeeper.Gate.current = 'plot_notes'
-                
-
-    '''else:
+    else:
         print('error in plot_notes? what happened to Count.note Counter?')
         try: 
                 pni.I.sectionCounter +=1

@@ -1,12 +1,12 @@
 # plot_notes_interface.py
-import playback as play, gni as gni, mySong as my, gatekeeper, tones as t, debug as db
+import playback as pb, gni as gni, mySong as my, gatekeeper, tones as t, debug as db
 
-
+'''
 class Data():   
     populate_me = True
     current_plot = [] #this is the fundamental unit that will be tracked
     this_section = [] 
-    transcript_copy = my.Trn.transcript
+    transcript_copy = []
     
     section_local_counter = int(0)
     section_counter_list = []
@@ -14,13 +14,13 @@ class Data():
     section_integer = int(0)
     current_sounds = [] 
 
-    notesInternal = []
+    notesInternal = []'''
 
 '''for eachNote in currentPlot:
     sounds.append(gni.returnSound(eachNote))'''
     
-def populateNotes():
-    '''dev notes pay attention to pni.Data.this_section - deprecated reference!!!'''
+'''def populateNotes():
+    dev notes pay attention to pni.Data.this_section - deprecated reference!!!
     Data.transcript_copy = my.Trn.transcript
 
     for eachSection in my.Trn.transcript:  #this references a list of lists
@@ -31,22 +31,22 @@ def populateNotes():
             Data.this_section = Data.transcript_copy[0]
             db.Data.debug_log.append('in pni.populateNotes()')
              
-    Data.populateMe = False
+    Data.populateMe = False'''
 #this is a list inside of a list - it is the total song
         #print(f' in pni.populate transcript copy {len(I.transcriptCopy)}')
         #print(f' in pni.populate...I.transcriptCopy {I.transcriptCopy}')  #breadcrumb
         #print('why is mySong transcribed incorrectly?')
 
-class Plot(): # stands for 'Increment'
+'''class Plot(): # stands for 'Increment'
 
     #print('in pni class Inc') #breadcrumb 
 
     def __init__(self, notesInternal):
 
         self.notesInternal = notesInternal
-        Data.notesInternal = self.notesInternal
+        Data.notesInternal = self.notesInternal'''
         
-    def playNotes(self):
+'''def playNotes(self):
 
         #for eachNote in self.notesInternal:
         for eachNote in Data.notesInternal:
@@ -57,17 +57,31 @@ class Plot(): # stands for 'Increment'
 
             db.Data.debug_log.append('playing sound in pni.Plot.playNotes()')
 
+def resetPlot(): 
+    Data.current_plot = []
+    Data.current_sounds = []
+    db.Data.debug_log.append('resetPlot() in pni')
+
+def populateSounds():
+
+    for eachNote in Data.current_plot:
+        sound = gni.Note.returnSound(eachNote)
+        Data.current_sounds.append(sound)
+        pb.Data.recording.append(Data.current_sounds)
+        db.Data.debug_log.append('append sound in pni.populateSounds()')
+        resetPlot()
+        
 def createPlot(notesExternal):
     
-    db.Data.debug_log.append('in pni createIncrement')  #breadcrumb
+    db.Data.debug_log.append('in pni createPlot')  #breadcrumb
     myPlot = Plot(notesInternal = notesExternal)
     if len(myPlot.notesInternal) > 0: 
         db.Data.debug_log.append('sound plot created')
     else:
         db.Data.debug_log.append('empty plot created in pni.createPlot()')
-    play.Player.recording.append(myPlot)
-    #count -1???
-
+    Data.current_plot.append(myPlot)
+    populateSounds()
+     
 def resetSection():
     db.Data.debug_log.append('reset Section')
     Data.section_integer = int(0)
@@ -83,16 +97,4 @@ def advance():
     except:   
         resetSection()
         db.Data.debug_log.append('pni line 72...switch to playback after section advance out of range')
-        gatekeeper.Data.current = 'playback'
-
-def resetPlot():
-    db.Data.debug_log.append('resetPlot() in pni')
-    Data.current_plot = []
-    Data.current_sounds = []
-
-def populateSounds():
-
-    for eachNote in Data.current_plot:
-        sound = t.Tone.returnSound(eachNote)
-        Data.current_sounds.append(sound)
-        db.Data.debug_log.append('append sound in pni.populateSounds()')
+        gatekeeper.Data.current = 'playback' '''

@@ -1,0 +1,24 @@
+look out for plot_notes line 21 'this section' make sure that it is 'this section' that is being plotted?
+is 'notes_internal' equivocating to 'notes_external'?
+everything wrong seems to be in 'pni' 'plot_notes_interface'
+
+everything seems to be revolving around the 'populate notes' and 'current_plot' in pni
+
+try creating a pygame surface which can blit over the current screen in the text handler???
+or try associating the text_handler function with a 'temporary y_axis' value for each word??? it will need 
+a counter variable and possibly a list to associate with the different to append the different pages 
+when it hits the bottom edge of the given surface area.
+
+1-19-24 it seems i am now stuck at the populate_sounds aspect of pni line 68 and the playback aspect of playback
+line 25-ish.  i seem to have confused my plot object with my note object with my tone object...
+
+1-19-24 1423hrs i have decided to abandon the former code and simply, because the Note object has unto itself
+enough data to produce my result, i will simply turn my notes into a Spritesheet and will blit them as they
+roll into view.  This will be my first use of Spritesheet officially.
+for the sounds, if the Note.x == playback_meter.Data.x, it will return sound and then find channel 
+then play sound.
+
+1-19-24 1439hrs so it seems i will need to use a pygame.Rect() based upon my x and my y values of my 
+most extreme note objects, then i will create a pygame.Surface.convert() based up upon that pygame rectangle.
+i will then be able to quickly blit all my Notes and run the playback_meter.Data.meter through the advance()
+function and then will be able to blit the portion of the 2nd surface onto the display.Window.frame 
