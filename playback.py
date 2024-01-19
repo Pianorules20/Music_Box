@@ -1,25 +1,23 @@
 #play.py 
-import playback_meter as pm, settings, pygame, gatekeeper as g, timer as t, tones as T
+import playback_meter as pm, gatekeeper as g, timer as t, tones as T
 '''import pni as pni, tones as T, gatekeeper as g'''
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()
 #print(f'metronome: {settings.Preferences.metronome}')
 
-class Player():
+class Data():
 
     recording = []
 
 def play(): #i will play and pop each plot incrementally from the recording
     
-    if len(Player.recording) > 0:
+    if len(Data.recording) > 0:
        
         print('playing notes')
-    
-        t.Data.current = t.Data.slow
 
-        for eachPlot in Player.recording:
-
+        for eachPlot in Data.recording:
+            t.Data.current = t.Data.slow
             eachPlot.playNotes()
             #for eachTone in eachIncrement:
 
