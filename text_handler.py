@@ -8,14 +8,31 @@ class Data():
     yAxis = 650
     offset = 0
     #right_edge = 0
+    color_counter = int(0)
+    current_color = ss.Data.text
+    multi_colors = ss.Data.color_list
+    scroll_pages = False
+
+'''def advance():
+    
+    Data.multi_colors.append(Data.multi_colors[0])
+    Data.multi_colors.pop(0)'''
 
 def reset_text():
     Data.start = 20
     Data.xAxis = 20
     Data.yAxis = 650
     Data.offset = 0
+    Data.color_counter = int(0)
+    Data.current_color = ss.Data.text
+    #di.Data.scroll_pages = False
 
-def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font):
+def scroll_page():
+    Data.scroll_pages = True
+    '''for each in lm.y_values:
+        each += 900'''
+
+def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, multiple):
     Data.text = myText
     Data.word = Data.text.split(' ')
     Data.start = xAxis
@@ -26,16 +43,18 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font):
         Data.xAxis += Data.offset
         textA = eachWord
         textB = font
-        textC = textB.render(textA, True, ss.Data.text, ss.Data.rbg)
+        textC = textB.render(textA, True, Data.current_color, ss.Data.rbg)
         Data.offset = textC.get_width()
         if Data.xAxis > rightEdge:
             Data.xAxis = Data.start
             Data.yAxis += 50
-            if Data.yAxis > bottomEdge:
-                Data.xAxis = xAxis
-                Data.yAxis = yAxis
-            else:
-                pass
+        else:
+            pass
+        if Data.yAxis > bottomEdge:
+            if multiple == 'yes':
+                Data.scroll_pages = True
+            Data.xAxis = Data.start
+            Data.current_color = Data.multi_colors[2]
         else:
             pass
         textD = textC.get_rect()    

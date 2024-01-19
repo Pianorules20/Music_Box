@@ -1,6 +1,6 @@
 #display_interface.py
 import screen_saver as s, playback_meter as pm, menu_screen as ms, playback_screen as ps
-import options_screen as o, credits_screen as cs, debug as db
+import options_screen as o, credits_screen as cs, debug as db, debug_log as dl
 
 #'I' stands for 'Interface'
 class Data():
@@ -11,7 +11,6 @@ class Data():
     override = 'menu'
     currentViewMin = pm.Meter.meter
     currentViewMax = pm.Meter.meter + 1900
-
 
 def current(screen):
     match Data.current:
@@ -25,6 +24,8 @@ def current(screen):
             cs.credits_screen()
         case 'debug':
             db.debug_screen()
+        case 'debug log':
+            dl.debug_log_screen()
 
 def override(screen):
     match Data.override:
@@ -38,6 +39,8 @@ def override(screen):
             cs.credits_screen()
         case 'debug':
             db.debug_screen()
+        case 'debug log':
+            dl.debug_log_screen()
  
 
 def screenGate(screen):
@@ -47,6 +50,3 @@ def screenGate(screen):
         override(screen)
     else:
         current(screen)
-        
-
-   

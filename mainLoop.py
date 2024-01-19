@@ -2,8 +2,9 @@
 
 import pygame
 import sys
-import objects, display, initializer, introMusic, gatekeeper, timer as t, mySong as my, debug as db
+import objects, display, initializer, introMusic, gatekeeper, timer as t, debug as db, fonts as f
 import display_interface as di, screen_saver as ss, layout_menu_style as lm, layout_playback_style as lp
+import text_handler as th
 
 # The term 'motive' is more/less equivalent to 'hook' in the melody of a song.  It is a small piece of pitch and rhythm.
 #clock = pygame.time.Clock()
@@ -11,8 +12,8 @@ from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
 pygame.mixer.set_num_channels(50)
-lm.initialize()
-lp.initialize()
+lm.Data()
+lp.Data()
 initializer.Initializer()
 objects.Buttons.populate() #this shows the opening screen
 print(objects.Buttons.descriptions)
@@ -96,7 +97,39 @@ class mainLoop():
                         db.Data.debug_trace = False
                 else:
                     pass
-           
+            
+            elif _pressed[pygame.K_l]:
+                if _pressed[pygame.K_g]:
+                    db.Data.debug_log.append('debug log accessed')
+                    if di.Data.universal_override == False:
+                        di.Data.universal_override = True
+                        di.Data.override = 'debug log'
+                    else:
+                        di.Data.universal_override = False
+                        di.Data.current = 'debug'
+
+            elif _pressed[pygame.K_s]:
+                if th.Data.scroll_pages == True:
+                    db.Data.debug_log.append('scroll page')
+                    th.scroll_page()
+                else:
+                    pass
+            
+            elif _pressed[pygame.K_q]:
+                if display.Window.quitting == False:
+                    display.Window.quitting = True
+                else:
+                    display.Window.quitting = False
+            
+            
+            if _pressed[pygame.K_RETURN]:
+                    if display.Window.quitting == True:
+                        pygame.quit()
+                        sys.exit
+                    else:
+                        pass
+            
+
             elif _pressed[pygame.K_ESCAPE]: 
                 db.Data.debug_log.append("Stop playing")
                 if gatekeeper.Data.current == 'pause':
@@ -104,7 +137,7 @@ class mainLoop():
                 else:
                     gatekeeper.Data.saved_place = gatekeeper.Data.current
                 gatekeeper.Data.current = 'pause'
-
+        
         ss.advance()
         pygame.event.pump()
         display.Window.updateScreen()

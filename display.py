@@ -15,15 +15,16 @@ class Window():
     def __init__(self) -> None:
         pass    
     print('Window initialized')
-
-    surf = pygame.Surface((di.Data.width/2, di.Data.height/2))
-    position = di.Data.width, di.Data.height
-    frame = pygame.display.set_mode((di.Data.width, di.Data.height), pygame.RESIZABLE)
+    width = di.Data.width
+    height = di.Data.height
+    surf = pygame.Surface((di.Data.width/2  , di.Data.height/2))
+    frame = pygame.display.set_mode((width, height), pygame.RESIZABLE)
     background = frame.fill((180,180,40),(0,0, di.Data.width, di.Data.height))
     screen = pygame.Surface((0,0), pygame.RESIZABLE)
     width = di.Data.width
     height = di.Data.height
-    
+    quitting = False
+
     def updateScreen():
         update = di.screenGate(di.Data.current)
         update = update
@@ -34,6 +35,4 @@ class Window():
         #Window.width, Window.height
         '''for eachObject in objects.myNotes:
             eachObject._blit_()'''
-        pygame.display.flip()
-        
-            
+        pygame.display.flip()        

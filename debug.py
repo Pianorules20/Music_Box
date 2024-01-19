@@ -59,28 +59,35 @@ def debug_screen():
     Data.trace_B = f.Data.scripted
     Data.trace_C = Data.trace_B.render(Data.trace_A, True, ss.Data.text, ss.Data.rbg)
     Data.trace_D = Data.trace_C.get_rect()
-    Data.trace_D.bottomleft = (10, 150)
+    Data.trace_D.bottomleft = (10, 200)
     Data.trace_E = Data.debug_log[-1]
     Data.trace_F = f.Data.subtitle
     Data.trace_G = Data.trace_F.render(Data.trace_E, True, ss.Data.text, ss.Data.rbg)
     Data.trace_H = Data.trace_G.get_rect()
-    Data.trace_H.bottomleft = (50, 190)
+    Data.trace_H.bottomleft = (50, 225)
     d.Window.frame.blit(Data.trace_C, Data.trace_D)
     if Data.debug_trace == True:    
         d.Window.frame.blit(Data.trace_G, Data.trace_H)
     else:
         pass
 
+    Data.log_A = "Press 'L' + 'G'for Debug Log"
+    Data.log_B = f.Data.scripted
+    Data.log_C = Data.log_B.render(Data.log_A, True, ss.Data.text, ss.Data.rbg)
+    Data.log_D = Data.log_C.get_rect()
+    Data.log_D.bottomleft = (10, 150)
+    d.Window.frame.blit(Data.log_C, Data.log_D)
+
     d.Window.gate_A = 'Gate'
     d.Window.gate_B = f.Data.scripted
     d.Window.gate_C = d.Window.gate_B.render(d.Window.gate_A, True, ss.Data.text, ss.Data.rbg)
     d.Window.gate_D = d.Window.gate_C.get_rect()
-    d.Window.gate_D.bottomleft = (10, 260)
+    d.Window.gate_D.bottomleft = (10, 310)
     d.Window.tracer1a = g.Data.current
     d.Window.tracer1b = f.Data.subtitle
     d.Window.tracer1c = d.Window.tracer1b.render(d.Window.tracer1a, True, ss.Data.text, ss.Data.rbg)
     d.Window.tracer1d = d.Window.tracer1c.get_rect()
-    d.Window.tracer1d.bottomleft = (50, 300)
+    d.Window.tracer1d.bottomleft = (50, 350)
     d.Window.frame.blit(d.Window.gate_C, d.Window.gate_D)
     d.Window.frame.blit(d.Window.tracer1c, d.Window.tracer1d)
 
@@ -88,37 +95,21 @@ def debug_screen():
     d.Window.C_S_B = f.Data.scripted
     d.Window.C_S_C = d.Window.C_S_B.render(d.Window.C_S_A, True, ss.Data.text, ss.Data.rbg)
     d.Window.C_S_D = d.Window.C_S_C.get_rect()
-    d.Window.C_S_D.bottomleft = (1000, 350)
+    d.Window.C_S_D.bottomleft = (1000, 400)
     d.Window.tracer2a = str(f'currentsection = {my.Trn.currentSection}')
     d.Window.tracer2b = f.Data.subtitle
     d.Window.tracer2c = d.Window.tracer2b.render(d.Window.tracer2a, True, ss.Data.text, ss.Data.rbg)
-    d.Window.tracer2d = d.Window.tracer2c.get_rect()
-    #d.Window.tracer2d.bottomright = di.Data.right_col_4
+    #d.Window.tracer2d = d.Window.tracer2c.get_rect()
     d.Window.frame.blit(d.Window.C_S_C, d.Window.C_S_D)
     th.reset_text()
-    th.handle_strings(d.Window.tracer2a, 1000, 400, 1000, 1990, 900, f.Data.subtitle)
-    #d.Window.frame.blit(d.Window.tracer2c, d.Window.tracer2d)
-   
-
-    '''d.Window.Trn_A = 'transcript notes'
-    d.Window.Trn_B = f.Data.scripted
-    d.Window.Trn_C = d.Window.Trn_B.render(d.Window.Trn_A, True, ss.Data.text, ss.Data.rbg)
-    d.Window.Trn_D = d.Window.Trn_C.get_rect()
-    d.Window.Trn_D.bottomright = di.Data.right_col_3
-    d.Window.tracer3a = str(f'transcript = {my.Trn.transcript}')
-    d.Window.tracer3b = f.Data.subtitle
-    d.Window.tracer3c = d.Window.tracer3b.render(d.Window.tracer3a, True, ss.Data.text, ss.Data.rbg)
-    d.Window.tracer3d = d.Window.tracer3c.get_rect()
-    d.Window.tracer3d.bottomright = di.Data.right_col_5
-    d.Window.frame.blit(d.Window.Trn_C, d.Window.Trn_D)
-    d.Window.frame.blit(d.Window.tracer3c, d.Window.tracer3d)'''
+    th.handle_strings(d.Window.tracer2a, 1000, 450, 1000, 1990, 900, f.Data.subtitle, multiple = 'yes')
 
     d.Window.Plt_A = 'plotted notes'
     d.Window.Plt_B = f.Data.scripted
     d.Window.Plt_C = d.Window.Plt_B.render(d.Window.Plt_A, True, ss.Data.text, ss.Data.rbg)
     d.Window.Plt_D = d.Window.Plt_C.get_rect()
     d.Window.Plt_D.bottomleft = (10, 550)
-    d.Window.Plt_E = str(f'pni this section {pni.Data.this_section}')
+    d.Window.Plt_E = str(f'pni this section {pni.Data.current_plot}')
     d.Window.Plt_F = f.Data.subtitle
     d.Window.Plt_G = d.Window.Plt_F.render(d.Window.Plt_E, True, ss.Data.text, ss.Data.rbg)
     d.Window.Plt_H = d.Window.Plt_G.get_rect()
@@ -130,10 +121,10 @@ def debug_screen():
     colors_B = f.Data.subtitle
     colors_C = colors_B.render(colors_A, True, ss.Data.text, ss.Data.rbg)
     colors_D = colors_C.get_rect()
-    colors_D.bottomleft = (10, 450)
+    colors_D.bottomleft = (50, 450)
     d.Window.frame.blit(colors_C, colors_D)
 
-    d.Window.debug_A = "Press 'D' + 'B' + 'G' to toggle debug screen"
+    d.Window.debug_A = "Press  'D' + 'B' + 'G'  to toggle debug screen"
     d.Window.debug_B = f.Data.scripted
     d.Window.debug_C = d.Window.debug_B.render(d.Window.debug_A, True, ss.Data.text, ss.Data.rbg)
     d.Window.debug_D = d.Window.debug_C.get_rect()
@@ -141,7 +132,28 @@ def debug_screen():
     d.Window.frame.blit(d.Window.debug_C, d.Window.debug_D)
 
     '''add a notification for the section counter'''
-    d.Window.counter_A = 'section counter'
-    d.Window.counter_E = str(pni.Data.section_counter)
+    Data.section_counter_A = 'section counter'      
+    Data.section_counter_B = f.Data.scripted
+    Data.section_counter_C = Data.section_counter_B.render(Data.section_counter_A, True, ss.Data.text, ss.Data.rbg)
+    Data.section_counter_D = Data.section_counter_C.get_rect()
+    Data.section_counter_D.bottomleft = (440, 550)
+    d.Window.frame.blit(Data.section_counter_C, Data.section_counter_D)
+    Data.local_counter_A = str(pni.Data.section_local_counter)
+    Data.local_counter_B = f.Data.subtitle
+    Data.local_counter_C = Data.local_counter_B.render(Data.local_counter_A, True, ss.Data.text, ss.Data.rbg)
+    Data.local_counter_D = Data.section_counter_C.get_rect()
+    Data.section_counter_D.bottomleft = (440, 600)
+    d.Window.frame.blit(Data.local_counter_C, Data.local_counter_D)
 
-    #d.Window.frame.blit(d.Window.splash_C, d.Window.splash_D)
+    Data.transcript_copy_A = 'Transcript Copy'
+    Data.transcript_copy_B = f.Data.scripted
+    Data.transcript_copy_C = Data.transcript_copy_B.render(Data.transcript_copy_A, True, ss.Data.text, ss.Data.rbg)
+    Data.transcript_copy_D = Data.transcript_copy_C.get_rect()
+    Data.transcript_copy_D.bottomleft = (10, 700)
+    d.Window.frame.blit(Data.transcript_copy_C, Data.transcript_copy_D)
+    Data.transcript_copy_E = str(pni.Data.transcript_copy)
+    Data.transcript_copy_F = f.Data.subtitle
+    Data.transcript_copy_G = Data.transcript_copy_F.render(Data.transcript_copy_E, True, ss.Data.text, ss.Data.rbg)
+    th.reset_text()
+    th.handle_strings(Data.transcript_copy_E, 10, 750, 10, 875, 990, f.Data.subtitle, multiple = 'yes')
+

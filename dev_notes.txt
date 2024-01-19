@@ -1,0 +1,5 @@
+look out for plot_notes line 21 'this section' make sure that it is 'this section' that is being plotted?
+is 'notes_internal' equivocating to 'notes_external'?
+everything wrong seems to be in 'pni' 'plot_notes_interface'
+
+everything seems to be revolving around the 'populate notes' and 'current_plot' in pni
