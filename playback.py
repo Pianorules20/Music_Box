@@ -18,9 +18,9 @@ def play(): #i will play and pop each plot incrementally from the recording
     
         t.Data.current = t.Data.slow
 
-        for eachIncrement in Player.recording:
+        for eachPlot in Player.recording:
 
-            eachIncrement.playNotes()
+            eachPlot.playNotes()
             #for eachTone in eachIncrement:
 
             '''T.Tone.play(eachTone)

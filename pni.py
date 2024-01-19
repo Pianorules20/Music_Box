@@ -14,6 +14,8 @@ class Data():
     section_integer = int(0)
     current_sounds = [] 
 
+    notesInternal = []
+
 '''for eachNote in currentPlot:
     sounds.append(gni.returnSound(eachNote))'''
     
@@ -42,11 +44,13 @@ class Plot(): # stands for 'Increment'
     def __init__(self, notesInternal):
 
         self.notesInternal = notesInternal
+        Data.notesInternal = self.notesInternal
         
     def playNotes(self):
 
-        for eachNote in self.notesInternal:
-
+        #for eachNote in self.notesInternal:
+        for eachNote in Data.notesInternal:
+           
             sound = gni.Note.returnSound(eachNote)
 
             gni.Note.play(sound)
