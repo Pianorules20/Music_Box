@@ -1,38 +1,40 @@
 #instance.py
-import settings as s
+import settings as s  #'Op' stands for 'options'
 
-sectionWritten = False
+class Data():
 
-tonesFor1stInstrument = s.Op.tonesFor1stInstrument
-tonesFor2ndInstrument = s.Op.tonesFor2ndInstrument
-tonesFor3rdInstrument = s.Op.tonesFor3rdInstrument
-tonesFor4thInstrument = s.Op.tonesFor4thInstrument
-tonesFor5thInstrument = s.Op.tonesFor5thInstrument
-instruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
-               tonesFor4thInstrument, tonesFor5thInstrument]
+    sectionWritten = False
 
-voices = int(0) #does not reset with instance reset
+    tonesFor1stInstrument = s.Op.tonesFor1stInstrument
+    tonesFor2ndInstrument = s.Op.tonesFor2ndInstrument
+    tonesFor3rdInstrument = s.Op.tonesFor3rdInstrument
+    tonesFor4thInstrument = s.Op.tonesFor4thInstrument
+    tonesFor5thInstrument = s.Op.tonesFor5thInstrument
+    instruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
+                tonesFor4thInstrument, tonesFor5thInstrument]
 
-motive = s.Op.motiveTones
-motiveInteger = len(s.Op.motiveTones)
-motiveRhythm = s.Op.motiveRhythm
+    voices = int(0) #does not reset with instance reset
 
-tonic = s.Op.tonesFor1stInstrument[0]
-indexed = int(2)
+    motive = s.Op.motiveTones
+    motiveInteger = len(s.Op.motiveTones)
+    motiveRhythm = s.Op.motiveRhythm
 
-beats = s.Op.beats
+    tonic = s.Op.tonesFor1stInstrument[0]
+    indexed = int(2)
 
-metronome = int(1)
+    beats = s.Op.beats
 
-harmony1 = s.Op.harmony1
-harmony2 = s.Op.harmony2
-harmony3 = s.Op.harmony3
-harmony4 = s.Op.harmony4
-harmonies = [harmony1, harmony2, harmony3, harmony4]
+    metronome = int(1)
 
-cadenzaOver = s.Op.cadenzaOver
-cadenzaUnder = s.Op.cadenzaUnder
-cadenzaDurationOver = s.Op.cadenzaDurationOver
-cadenzaDurationUnder = s.Op.cadenzaDurationUnder
+    harmony1 = s.Op.harmony1
+    harmony2 = s.Op.harmony2
+    harmony3 = s.Op.harmony3
+    harmony4 = s.Op.harmony4
+    harmonies = [harmony1, harmony2, harmony3, harmony4]
 
-notesRemaining = int(1)
+    cadenzaOver = s.Op.cadenzaOver
+    cadenzaUnder = s.Op.cadenzaUnder
+    cadenzaDurationOver = s.Op.cadenzaDurationOver
+    cadenzaDurationUnder = s.Op.cadenzaDurationUnder
+
+    notesRemaining = int(1)

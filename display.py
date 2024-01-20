@@ -11,18 +11,16 @@ import display_interface as di
         print(f'xAxis equals {Event.xIncrement}')
         mySongs.Recordings.meter += Event.xIncrement'''
 
-class Window():
+class Data():
     def __init__(self) -> None:
         pass    
     print('Window initialized')
-    width = di.Data.width
-    height = di.Data.height
-    surf = pygame.Surface((di.Data.width/2  , di.Data.height/2))
+    width = 2000
+    height = 1000
+    #surf = pygame.Surface((di.Data.width/2  , di.Data.height/2))
     frame = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-    background = frame.fill((180,180,40),(0,0, di.Data.width, di.Data.height))
-    screen = pygame.Surface((0,0), pygame.RESIZABLE)
-    width = di.Data.width
-    height = di.Data.height
+    background = frame.fill((180,180,40),(0,0, width, height))
+    #screen = pygame.Surface((0,0), pygame.RESIZABLE)
     quitting = False
 
     def updateScreen():
