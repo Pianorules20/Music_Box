@@ -30,7 +30,7 @@ class Initializer():
         ps.createMotiveRhythm()
     else:
         i.Data.motiveRhythm = s.Data.motiveRhythm
-    print(f'in initializer: length of motive rhythm:{len(i.motiveRhythm)} ')
+    print(f'in initializer: length of motive rhythm:{len(i.Data.motiveRhythm)} ')
     print(' ')
 
     if s.Data.cadenza == 'Standard':

@@ -1,5 +1,5 @@
 # plot_meter.py
-import settings as s
+import settings as s, debug as db
 
 class M():
     
@@ -7,6 +7,7 @@ class M():
 
     def advance():
         M.meter += s.Preferences.metronome
+        db.Data.debug_log.append('advancing meter = {M.meter}')
 
     def reset():
         M.meter = int(0)

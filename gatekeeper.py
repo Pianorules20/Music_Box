@@ -14,7 +14,7 @@ class Data():
     
     saved_place = 'generate_notes'
 
-    current_function = b.Branch.pause()
+    current_function = b.pause()
 
 def testGate():
     print(f' in gatekeeper...{Data.current}')
@@ -25,20 +25,20 @@ def  passGate(gate):
         case 'generate_notes':
     
             Data.current = 'generate_notes'
-            b.Branch.generator_branches()
+            b.generator_branches()
             
         case 'plot_notes':
             Data.current = 'plot_notes'
-            b.Branch.plot_notes()
+            b.plot_notes()
         
         case 'playback':
             Data.current = 'playback'
-            b.Branch.playback()
-        
+            b.playback()
+         
         case 'post_production':
             Data.current = 'post_production'
-            b.Branch.post_production()
+            b.post_production()
         
         case 'pause':
             Data.current = 'pause'
-            b.Branch.pause()
+            b.pause()

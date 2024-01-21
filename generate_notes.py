@@ -1,62 +1,65 @@
 #step2 contains Generator (randomizer)
 
-import random, settings, mySong, instance, generate_notes_interface, gatekeeper
+import random, settings, instance as i, gni, debug as db
 
-class Generator(): #generate() contains the randomizer. it connects to step3 the note object creator
+class Generator():
+    
+    pass #generate() contains the randomizer. it connects to step3 the note object creator
 
-    def generate():
-        currentNote = instance.tonic #initializes currentNote
-        currentDuration = settings.Op.quarterNote #initializes currentDuration
+def generate():
+    currentNote = i.tonic #initializes currentNote
+    currentDuration = settings.Op.quarterNote #initializes currentDuration
 
-        polyOrder = settings.Op.instruments[0]
+    polyOrder = settings.Op.instruments[0]
+    
+    if i.notesRemaining > 0: #Note the use of the while loop to complete this section
+        db.Data.debug_log.append(f' in g_n notes remaining this i: {i.notesRemaining}')
+        randomizer = random.random()
         
-        if instance.notesRemaining > 0: #Note the use of the while loop to complete this section
-            print(f'notes remaining this instance: {instance.notesRemaining}')
-            randomizer = random.random()
-           
-            #early randomizer is based on the generated motive
-            if randomizer  <= 0.3:
-                print(' \n in early randomizer - the motive')
-                print(len(instance.motive))
-                print(len(instance.motiveRhythm))        
-                for eachIndex in range(len(instance.motive)):
-                    currentNote = instance.motive[eachIndex]
-                    currentDuration = instance.motiveRhythm[eachIndex]
-                    generate_notes_interface.createNote(currentNote, currentDuration)
-                # print(f'{Name}{Octave}')
-            #early middle randomizer is based on the generated harmonies
-            elif randomizer <= 0.7: #None type errors found here
-                print(f' \n in early middle randomizer instance.harmonies')
-                rando = random.choice(instance.harmonies)
-                currentNote = rando
-                currentDuration = random.choice(instance.beats)
-                generate_notes_interface.createNote(currentNote, currentDuration)
-            # middle randomizer is based on the cadenza notes in music theory they are 2 and 7
-            elif randomizer <=0.8:
-                print(' \n in middle randomizer - cadenzas notes')
-                overUnder = random.random()
-                if overUnder <= 0.5:
-                    currentNote = instance.cadenzaUnder
-                    currentDuration = instance.cadenzaDurationUnder
-                elif overUnder <=1:
-                    currentNote = instance.cadenzaOver
-                    currentDuration = instance.cadenzaDurationOver
-                generate_notes_interface.createNote(currentNote, currentDuration)
-            elif randomizer <= 0.95:
-                print(' \n in late randomizer - random notes')
-                rando = random.choice(instance.tonesFor1stInstrument)
-                currentNote = rando
-                randoRhythm = random.choice(instance.beats)
-                currentDuration = randoRhythm
-                generate_notes_interface.createNote(currentNote, currentDuration)
-            # the last randomizer is the tonic itself       
-            else:
-                print(' \n in last randomizer - the tonic')     
-                currentNote = instance.tonic
-                rando = random.choice(instance.beats)   
-                currentDuration = rando           
-                generate_notes_interface.createNote(currentNote, currentDuration)
-            gatekeeper.Gate.passGate('generate_notes')
+        #early randomizer is based on the generated motive
+        if randomizer  <= 0.3:
+            db.Data.debug_log.append(' \n in early randomizer - the motive')
+            db.Data.debug_log.append(len(i.motive))
+            db.Data.debug_log.append(len(i.motiveRhythm))        
+            for eachIndex in range(len(i.motive)):
+                currentNote = i.motive[eachIndex]
+                currentDuration = i.motiveRhythm[eachIndex]
+                gni.createNote(currentNote, currentDuration)
+            # print(f'{Name}{Octave}')
+        #early middle randomizer is based on the generated harmonies
+        elif randomizer <= 0.7: #None type errors found here
+            db.Data.debug_log.append(f' \n in early middle randomizer i.harmonies')
+            rando = random.choice(i.Data.harmonies)
+            currentNote = rando
+            currentDuration = random.choice(i.beats)
+            gni.createNote(currentNote, currentDuration)
+        # middle randomizer is based on the cadenza notes in music theory they are 2 and 7
+        elif randomizer <=0.8:
+            db.Data.debug_log.append(' \n in middle randomizer - cadenzas notes')
+            overUnder = random.random()
+            if overUnder <= 0.5:
+                currentNote = i.cadenzaUnder
+                currentDuration = i.cadenzaDurationUnder
+            elif overUnder <=1:
+                currentNote = i.cadenzaOver
+                currentDuration = i.cadenzaDurationOver
+            gni.createNote(currentNote, currentDuration)
+        elif randomizer <= 0.95:
+            db.Data.debug_log.append(' \n in late randomizer - random notes')
+            rando = random.choice(i.tonesFor1stInstrument)
+            currentNote = rando
+            randoRhythm = random.choice(i.beats)
+            currentDuration = randoRhythm
+            gni.createNote(currentNote, currentDuration)
+        # the last randomizer is the tonic itself       
         else:
-            #mySong.Trn.finished = True
-            gatekeeper.Gate.passGate('plot_notes')
+            db.Data.debug_log.append(' \n in last randomizer - the tonic')     
+            currentNote = i.tonic
+            rando = random.choice(i.beats)   
+            currentDuration = rando           
+            gni.createNote(currentNote, currentDuration)
+        #gatekeeper.Gate.passGate('generate_notes')
+    else:
+        #mySong.Trn.finished = True 
+        #gatekeeper.Gate.passGate('generate_notes')
+        pass
