@@ -1,12 +1,12 @@
 #recordMeter.py
 import settings
 
-class Meter():
+class Data():
     
     meter = int(0)
 
-    def advance():
-        Meter.meter += (settings.Preferences.metronome/settings.Preferences.metronomeModifier)
+def advance():
+    Data.meter += (settings.Data.metronome/settings.Preferences.metronomeModifier)
 
-    def reset():
-        Meter.meter = int(0)
+def reset():
+    Data.meter = int(0)

@@ -1,5 +1,5 @@
 #gatekeeper.py
-import branches, pygame, timer as t
+import pygame, branches as b, timer as t
 
 
 
@@ -14,7 +14,7 @@ class Data():
     
     saved_place = 'generate_notes'
 
-    current_function = branches.Branch.pause()
+    current_function = b.Branch.pause()
 
 def testGate():
     print(f' in gatekeeper...{Data.current}')
@@ -25,20 +25,20 @@ def  passGate(gate):
         case 'generate_notes':
     
             Data.current = 'generate_notes'
-            branches.Branch.generator_branches()
+            b.Branch.generator_branches()
             
         case 'plot_notes':
             Data.current = 'plot_notes'
-            branches.Branch.plot_notes()
+            b.Branch.plot_notes()
         
         case 'playback':
             Data.current = 'playback'
-            branches.Branch.playback()
+            b.Branch.playback()
         
         case 'post_production':
             Data.current = 'post_production'
-            branches.Branch.post_production()
+            b.Branch.post_production()
         
         case 'pause':
             Data.current = 'pause'
-            branches.Branch.pause()
+            b.Branch.pause()

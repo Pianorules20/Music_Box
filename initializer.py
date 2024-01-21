@@ -4,58 +4,56 @@ import random
 
 class Initializer():
     
-    #instance.voices = range(len(s.Op.instruments))
+    #instance.voices = range(len(s.Data.instruments))
 
-    i.tonesFor1stInstrument = s.Op.tonesFor1stInstrument
+    i.Data.tonesFor1stInstrument = s.Data.tonesFor1stInstrument
 
-    if s.Op.tonic == 'Random':
-        ps.Populate.createTonic()
+    if s.Data.tonic == 'Random':
+        ps.createTonic()
     else:       
-        i.tonic = s.Op.tonic
+        i.Data.tonic = s.Data.tonic
     
-    indexTonic = s.Op.tonesFor1stInstrument.index(i.tonic)
-    i.indexed = indexTonic
+    indexTonic = s.Data.tonesFor1stInstrument.index(i.Data.tonic)
+    i.Data.indexed = indexTonic
     
-    if s.Op.motiveOption == 'Random':
-        ps.Populate.createMotiveTones()
+    if s.Data.motiveOption == 'Random':
+        ps.createMotiveTones()
     else:
-        i.motive = s.Op.motiveTones
-        i.motiveInteger = len(i.motive)
-    print(f'in initializer: length of motive: {len(i.motive)}')
+        i.Data.motive = s.Data.motiveTones
+        i.Data.motiveInteger = len(i.Data.motive)
+    print(f'in initializer: length of motive: {len(i.Data.motive)}')
 
-    i.beats = s.Op.beats
-    i.metronome = s.Op.metronome
+    i.Data.beats = s.Data.beats
+    i.Data.metronome = s.Data.metronome
 
-    if s.Op.motiveRhythmOption == 'Random':
-        ps.Populate.createMotiveRhythm()
+    if s.Data.motiveRhythmOption == 'Random':
+        ps.createMotiveRhythm()
     else:
-        i.motiveRhythm = s.Op.motiveRhythm
+        i.Data.motiveRhythm = s.Data.motiveRhythm
     print(f'in initializer: length of motive rhythm:{len(i.motiveRhythm)} ')
     print(' ')
 
-    if s.Op.cadenza == 'Standard':
-        ps.Populate.createCadenza()
+    if s.Data.cadenza == 'Standard':
+        ps.createCadenza()
     else:
-        i.cadenzaOver = s.Op.cadenzaOver
-        i.cadenzaUnder = s.Op.cadenzaUnder
-        i.cadenzaDurationOver = s.Op.cadenzaDurationOver
-        i.cadenzaDurationUnder = s.Op.cadenzaDurationUnder
+        i.Data.cadenzaOver = s.Data.cadenzaOver
+        i.Data.cadenzaUnder = s.Data.cadenzaUnder
+        i.Data.cadenzaDurationOver = s.Data.cadenzaDurationOver
+        i.Data.cadenzaDurationUnder = s.Data.cadenzaDurationUnder
     print('')    
     
-    if s.Op.notesRemaining == 'Random':
-        ps.Populate.createRemainingNotes()
+    if s.Data.notesRemaining == 'Random':
+        ps.createRemainingNotes()
     else:
-        i.notesRemaining = s.Op.notesRemaining
-    print(f'in initializer: notes remaining {i.notesRemaining}')
+        i.Data.notesRemaining = s.Data.notesRemaining
+    print(f'in initializer: notes remaining {i.Data.notesRemaining}')
 
-    if s.Op.harmonies == 'Standard':
-        ps.Populate.createHarmonies()
+    if s.Data.harmonies == 'Standard':
+        ps.createHarmonies()
     else:
-        i.harmony1 = s.Op.harmony1
-        i.harmony2 = s.Op.harmony2
-        i.harmony3 = s.Op.harmony3
-        i.harmony4 = s.Op.harmony4
+        i.Data.harmony1 = s.Data.harmony1
+        i.Data = s.Data.harmony2
+        i.Data.harmony3 = s.Data.harmony3
+        i.Data.harmony4 = s.Data.harmony4
     
-    print(s.Op.structure)
-
-   
+    print(s.Data.structure)

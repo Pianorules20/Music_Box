@@ -3,7 +3,7 @@ import tones
 
 master_volume = 0.3
 
-class Op(): #Op stands for 'options'
+class Data(): #Op stands for 'options'
     
     tonesFor1stInstrument = [tones.Piano.A4, tones.Piano.B4, tones.Piano.C4, tones.Piano.D4, tones.Piano.E4, \
                             tones.Piano.F4, tones.Piano.G4, tones.Piano.A5, tones.Piano.Bb5, tones.Piano.B5, \

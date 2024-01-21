@@ -2,7 +2,7 @@
 
 import pygame
 import sys
-import objects, display, initializer, introMusic, gatekeeper, timer as t, debug as db, fonts as f
+import objects, display as d, initializer, introMusic, gatekeeper, timer as t, debug as db, fonts as f
 import display_interface as di, screen_saver as ss, layout_menu_style as lm, layout_playback_style as lp
 import text_handler as th
 
@@ -17,7 +17,7 @@ lp.Data()
 initializer.Initializer()
 objects.Buttons.populate() #this shows the opening screen
 print(objects.Buttons.descriptions)
-display.Window.updateScreen()
+d.Data.updateScreen()
 pygame.display.update()
 introMusic.play()
 
@@ -109,21 +109,29 @@ class mainLoop():
                         di.Data.current = 'debug'
 
             elif _pressed[pygame.K_s]:
-                if th.Data.scroll_pages == True:
-                    db.Data.debug_log.append('scroll page')
-                    th.scroll_page()
-                else:
-                    pass
+                th.Data.scroll_pages == True
+                print('th.Data.scroll_pages = True')
+                db.Data.debug_log.append('scroll page')
+                th.scroll_page()
             
             elif _pressed[pygame.K_q]:
-                if display.Window.quitting == False:
-                    display.Window.quitting = True
+                if d.Window.quitting == False:
+                    d.Window.quitting = True
                 else:
-                    display.Window.quitting = False
+                    d.Window.quitting = False
             
+            elif _pressed[pygame.K_s]:
+                db.Data.debug_log.append('settings accessed')
+                if di.Data.universal_override == False:
+                    di.Data.universal_override = True
+                    di.Data.override = 'settings'
+                else:
+                    di.Data.universal_override = False
+                    di.Data.current = 'menu'
+        
             
             if _pressed[pygame.K_RETURN]:
-                    if display.Window.quitting == True:
+                    if d.Data.quitting == True:
                         pygame.quit()
                         sys.exit
                     else:
@@ -139,8 +147,8 @@ class mainLoop():
                 gatekeeper.Data.current = 'pause'
         
         ss.advance()
-        pygame.event.pump()
-        display.Window.updateScreen()
+        pygame.event.pump() 
+        d.Data.updateScreen()
         gatekeeper.passGate(gatekeeper.Data.current)
 
 pygame.quit()
