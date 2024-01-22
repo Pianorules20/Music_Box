@@ -11,4 +11,14 @@ I can't seem to get python to recognize my 'tones for 1st instrument' when check
 I tried a nested forLoop but it claims it's a 'tone object' and won't budge.  the empty lists of 
 instruments 2-5 work just fine but of course they don't count as a numerical length but rather as empty lists.
 Okay...now it counts....why???  does python prefer formatted strings?  or does python prefer that i counted
-it at the beginning of the function rather than during the 'else' statement????
+it at the beginning of the function rather than during the 'else' statement??
+    6:35AM why does my 'generate_notes' skip while the counter is still at 27?
+    I think I found a major problem with my understanding of memory access and 'global' variables...
+    !!! I mistakenly placed my mySong.Trn functions as indents inside of my Trn class.  Bad move!!!
+
+    11-21-2023 11:41AM in line 35 of 'branches2' i found a forLoop that probably needs to be self-contained
+rather than passing through the mainLoop.  It was regarding 'eachVoice'.
+
+    11-23-2023 11:58AM  I am debating how to use 'plot_notes' along with the 'pni...current_plot' system
+to effectively number and count and transcribe what will ultimately by used on the screen.  
+    

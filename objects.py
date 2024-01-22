@@ -1,7 +1,7 @@
 #objects.py
 import pygame, sys
 from pygame.locals import *
-import display
+import display, debug as db
 
 
 class Button():
@@ -53,7 +53,7 @@ class Note(pygame.sprite.Sprite):
     position = () #2nd item to blit to screen
     
     def __init__(self, frame, x_plot, y_plot) -> None:
-        print('Player Object Initiated')
+        db.Data.debug_log.append('Note Object Initiated')
         pygame.sprite.Sprite.__init__(self)
         self.frame = frame
         self.image = pygame.Surface((0,0))

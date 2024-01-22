@@ -1,5 +1,5 @@
 #textHandler.py
-import fonts as f, screen_saver as ss, display as d
+import pygame, screen_saver as ss, display as d, layout_menu_style as lm
 
 class Data():
     #use the individual screens to update the Data.text
@@ -28,9 +28,14 @@ def reset_text():
     #di.Data.scroll_pages = False
 
 def scroll_page():
-    Data.scroll_pages = True
-    '''for each in lm.y_values:
-        each += 900'''
+    d.Window.background = d.Window.frame.fill((180,180,40),(0,0, d.Window.width, d.Window.height))
+    for each in lm.Data.y_values:
+        each -= 900
+        
+
+def scroll_reset():
+    for each in lm.Data.y_values:
+        each = lm.Data.originalY[each]
 
 def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, multiple):
     Data.text = myText
@@ -39,6 +44,7 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, 
     Data.xAxis = Data.start
     Data.yAxis = yAxis
     Data.offset = 0
+    Data.scroll_offset = -900
     for eachWord in Data.word:
         Data.xAxis += Data.offset
         textA = eachWord
@@ -51,15 +57,15 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, 
         else:
             pass
         if Data.yAxis > bottomEdge:
-            if multiple == 'yes':
-                Data.scroll_pages = True
-            Data.xAxis = Data.start
-            Data.current_color = Data.multi_colors[2]
+            if Data.scroll_pages == True:
+                Data.xAxis = Data.start
+                Data.current_color = Data.multi_colors[2]
+                Data.yAxis -= 900
         else:
             pass
         textD = textC.get_rect()    
         textD.bottomleft = (Data.xAxis, Data.yAxis)
-        d.Window.frame.blit(textC, textD)
+        d.Data.frame.blit(textC, textD)
 
 '''
      d.Window.spacebar1 = 'Press Spacebar to Create and Record'

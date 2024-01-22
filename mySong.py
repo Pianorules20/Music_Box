@@ -1,7 +1,7 @@
 #mySong.py
 import settings as s, instance as i, random, initializer
 
-class Trn(): #'Trn' stands for 'Transcription'
+class Data(): #'Trn' stands for 'Transcription'
     finished = False
     meter = int(0)
     currentSection = []
@@ -29,10 +29,10 @@ def nextInstrument():
     s.Op.createRemainingNotes()
 
 def advance():
-    Trn.Meter -= (s.Op.metronome/s.Op.metronomeModifier)
+    Data.Meter -= (s.Op.metronome/s.Op.metronomeModifier)
 
 def resetInstance():
-    print('in mySongs.Trn.reset()')
+    print('in mySongs.Data.reset()')
     # i.sectionWritten = False
     i.motive = []
     i.motiveInteger = int(1)
@@ -47,21 +47,21 @@ def resetInstance():
     except:
         i.notesRemaining = s.Op.createRemainingNotes()
     i.sectionWritten = False
-    Trn.currentSection = []
+    Data.currentSection = []
 
 def resetTranscript(): # watch out for me!  Trn.finished...
-    Trn.finished = False
-    Trn.transcript = []
-    Trn.generatedStructure = []
-    Trn.newStructureInteger = int(0)
-    Trn.targetStructure = []
+    Data.finished = False
+    Data.transcript = []
+    Data.generatedStructure = []
+    Data.newStructureInteger = int(0)
+    Data.targetStructure = []
 
 def resetSection():
-    Trn.currentSection = []
+    Data.currentSection = []
     
 def recordSection():  # watch out for me!  Trn.finished...
-    for eachList in Trn.currentSection:
-        Trn.transcript.append(Trn.currentSection[eachList])
+    for eachList in Data.currentSection:
+        Data.transcript.append(Data.currentSection[eachList])
     #Trn.finished = True revisit this line
         
     '''def Trn():

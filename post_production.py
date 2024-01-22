@@ -1,12 +1,9 @@
 # post_production.py
 
-class Printer():
 
-    def print_pdf():
-        pass
+def print_sheet():
+    pass
 
 
-class Recorder():
-    
-    def record_it():
-        pass
+def record_audio():
+    pass

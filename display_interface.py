@@ -1,6 +1,6 @@
 #display_interface.py
-import screen_saver as s, playback_meter as pm, menu_screen as ms, playback_screen as ps
-import options_screen as o, credits_screen as cs, debug as db, debug_log as dl
+import settings_screen as scn, playback_meter as pm, menu_screen as ms, playback_screen as ps
+import settings_screen as o, credits_screen as cs, debug as db, debug_log as dl
 
 #'I' stands for 'Interface'
 class Data():
@@ -9,8 +9,8 @@ class Data():
     current = 'menu'
     universal_override = False
     override = 'menu'
-    currentViewMin = pm.Meter.meter
-    currentViewMax = pm.Meter.meter + 1900
+    currentViewMin = pm.Data.meter
+    currentViewMax = pm.Data.meter + 1900
 
 def current(screen):
     match Data.current:
@@ -18,8 +18,8 @@ def current(screen):
             ms.menu_screen()
         case 'playback':
             ps.playback_screen()
-        case 'options':
-            o.options_screen()
+        case 'settings':
+            scn.settings_screen()
         case 'credits':
             cs.credits_screen()
         case 'debug':

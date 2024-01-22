@@ -1,5 +1,5 @@
 #gni means 'generate notes interface'
-import settings, mySong, instance, tones as t, pygame.mixer, display as d, debug as db
+import settings as s, mySong, instance as i, tones as t, pygame.mixer, display as d, debug as db
 
 class Note():
 
@@ -62,17 +62,17 @@ def createNote(currentNote, currentDuration):
     sound = t.Tone.returnSound(currentNote)
     music = Note(sound = sound, duration = currentDuration, \
         letterName = name, octave = octave,\
-            instrument =  settings.Op.instrument1, polyOrder = settings.Op.polyOrderList[0], \
+            instrument =  s.Data.instrument1, polyOrder = s.Data.polyOrderList[0], \
         frame = 'images/quarterNoteCorrect.png', xPos = mySong.Data.meter, \
             yPos = height)
     mySong.Data.currentSection.append(music)
     mySong.Data.meter += currentDuration
         #this is where i blit to a surface??
-    instance.Data.notesRemaining -= 1
+    i.Data.notesRemaining -= 1
     '''except Exception as e:
             print('error in step3 early randomizer with settings...')
             print(e)'''
     db.Data.debug_log.append(f' in gni: Note spacial data xPos {xPos} {name}{octave} yPos{height}')
-    db.Data.debug_log.append(f' instance.notesRemaining = {instance.notesRemaining}')
+    db.Data.debug_log.append(f' instance.notesRemaining = {i.Data.notesRemaining}')
     # breadcrumb print(f' in gni: Note spacial data xPos {xPos} {name}{octave} yPos{height}') 
     # breadcrumb print(f' instance.notesRemaining = {instance.notesRemaining}')

@@ -1,16 +1,18 @@
 #plot_notes.py
-import mySong as my, display as d, playback_meter as pm
-import objects as ob, plot_meter as pm, gni, pni, debug as db
+import mySong as my, display as d, playback as pb, playback_meter as pm
+import gni, pni, debug as db, gatekeeper as g
 
 class Data():
     pass
 
 def plot_notes():
-    for eachSection in my.Trn.transcript:
+    for eachSection in my.Data.transcript:
         for eachNote in eachSection:
-            rectangle = eachNote.get_rect()
+            pb.Data.recording.append(eachNote)
+            rectangle = eachNote.image.get_rect()
             rectangle.center = (eachNote.xPos - pm.Data.meter, eachNote.yPos)
             d.Data.frame.blit(eachNote.image, rectangle)
+    g.Data.current = 'playback'
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
 '''class P():
