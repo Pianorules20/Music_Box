@@ -9,24 +9,35 @@ from pygame.locals import *
 
 class Data():
 
-    recording = [] #this is a list of gni.Note.sound returns
+    note_copy = [] #this is a list of gni.Note.sound returns
 
 def play(): #i will play and pop each plot incrementally from the recording
     
-    t.Data.current = t.Data.slow
+    
 
-    if len(Data.recording) > 0:
-       
+    if len(Data.note_copy) > 0:
+        
+        t.Data.current = t.Data.slow
         print('playing notes')
 
-        for eachNote in Data.recording:
-            the_sound = eachNote.sound
+        for eachNote in Data.note_copy:
 
-            pygame.mixer.find_channel(True)
-        
-            pygame.mixer.Sound.play(the_sound)
+            if eachNote.xPos <= pm.Data.meter:
+                
+                the_sound = eachNote.sound
 
-            db.Data.debug_log.append('playing sound in pni.Plot.playNotes()')
+                pygame.mixer.find_channel(True)
+            
+                pygame.mixer.Sound.play(the_sound)
+
+                Data.note_copy.remove(eachNote)
+
+                db.Data.debug_log.append('playing sound in pni.Plot.playNotes()')
+
+
+            else:
+                pass
+            
             pm.advance()
             #for eachTone in eachIncrement:
 

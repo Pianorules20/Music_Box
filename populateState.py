@@ -1,173 +1,177 @@
 #populateState.py
-import instance as i, mySong as my, settings as s, state
+import instance as i, mySong as my, settings as s, state, debug as db
 
 def recordState():
 
-    state.State.localCounter += 1
-    state.State.state.append(state.State.localCounter)
+    state.Data.localCounter += 1
+    state.Data.state.append(state.Data.localCounter)
     
-    state.State.sectionWritten.append(i.sectionWritten)
-    state.State.motive.append(i.motive)
-    state.State.motiveInteger.append(i.motiveInteger)
-    state.State.motiveRhythm.append(i.motiveRhythm)
-    state.State.instanceTonic.append(i.tonic)
-    state.State.indexed.append(i.indexed)
-    state.State.instanceBeats.append(i.beats)
-    state.State.instanceHarmony1.append(i.harmony1)
-    state.State.instanceHarmony2.append(i.harmony2)
-    state.State.instanceHarmony3.append(i.harmony3)
-    state.State.instanceHarmony4.append(i.harmony4)
-    state.State.instanceCadenzaOver.append(i.cadenzaOver)
-    state.State.instanceCadenzaUnder.append(i.cadenzaUnder)
-    state.State.instanceCadenzaDurationOver.append(i.cadenzaDurationOver)
-    state.State.instanceCadenzaDurationUnder.append(i.cadenzaDurationUnder)
+    state.Data.sectionWritten.append(i.Data.sectionWritten)
+    state.Data.motive.append(i.Data.motive)
+    state.Data.motiveInteger.append(i.Data.motiveInteger)
+    state.Data.motiveRhythm.append(i.Data.motiveRhythm)
+    state.Data.instanceTonic.append(i.Data.tonic)
+    state.Data.indexed.append(i.Data.indexed)
+    state.Data.instanceBeats.append(i.Data.beats)
+    state.Data.instanceHarmony1.append(i.Data.harmony1)
+    state.Data.instanceHarmony2.append(i.Data.harmony2)
+    state.Data.instanceHarmony3.append(i.Data.harmony3)
+    state.Data.instanceHarmony4.append(i.Data.harmony4)
+    state.Data.instanceCadenzaOver.append(i.Data.cadenzaOver)
+    state.Data.instanceCadenzaUnder.append(i.Data.cadenzaUnder)
+    state.Data.instanceCadenzaDurationOver.append(i.Data.cadenzaDurationOver)
+    state.Data.instanceCadenzaDurationUnder.append(i.Data.cadenzaDurationUnder)
 
-    state.State.instanceNotesRemaining.append(i.notesRemaining)
+    state.Data.instanceNotesRemaining.append(i.Data.notesRemaining)
 
     #the second group is from my.Trn
-    state.State.finished.append(my.Trn.finished)
-    state.State.meter.append(my.Trn.meter)
-    state.State.currentSection.append(my.Trn.currentSection)
-    state.State.TrnHarmony1.append(my.Trn.harmony1)
-    state.State.TrnHarmony2.append(my.Trn.harmony2)
-    state.State.TrnHarmony3.append(my.Trn.harmony3)
-    state.State.TrnHarmony4.append(my.Trn.harmony4)
-    state.State.transcript.append(my.Trn.transcript)
-    state.State.targetStructure.append(my.Trn.targetStructure)
-    state.State.generatedStructure.append(my.Trn.generatedStructure)
-    state.State.newStructureInteger.append(my.Trn.newStructureInteger)
-    state.State.sectionA.append(my.Trn.sectionA)
-    state.State.sectionB.append(my.Trn.sectionB)
-    state.State.sectionC.append(my.Trn.sectionC)
-    state.State.sectionD.append(my.Trn.sectionD)
-    state.State.sectionE.append(my.Trn.sectionE)
+    state.Data.finished.append(my.Data.finished)
+    state.Data.meter.append(my.Data.meter)
+    state.Data.currentSection.append(my.Data.currentSection)
+    state.Data.TrnHarmony1.append(my.Data.harmony1)
+    state.Data.TrnHarmony2.append(my.Data.harmony2)
+    state.Data.TrnHarmony3.append(my.Data.harmony3)
+    state.Data.TrnHarmony4.append(my.Data.harmony4)
+    state.Data.transcript.append(my.Data.transcript)
+    state.Data.targetStructure.append(my.Data.targetStructure)
+    state.Data.generatedStructure.append(my.Data.generatedStructure)
+    state.Data.newStructureInteger.append(my.Data.newStructureInteger)
+    state.Data.sectionA.append(my.Data.sectionA)
+    state.Data.sectionB.append(my.Data.sectionB)
+    state.Data.sectionC.append(my.Data.sectionC)
+    state.Data.sectionD.append(my.Data.sectionD)
+    state.Data.sectionE.append(my.Data.sectionE)
 
     #the third group is from s
     
-    state.State.tonesFor1stInstrument.append(s.Op.tonesFor1stInstrument)
-    state.State.tonesFor2ndInstrument.append(s.Op.tonesFor2ndInstrument)
-    state.State.tonesFor3rdInstrument.append(s.Op.tonesFor3rdInstrument)
-    state.State.tonesFor4thInstrument.append(s.Op.tonesFor4thInstrument)
-    state.State.tonesFor5thInstrument.append(s.Op.tonesFor5thInstrument)
+    state.Data.tonesFor1stInstrument.append(s.Data.tonesFor1stInstrument)
+    state.Data.tonesFor2ndInstrument.append(s.Data.tonesFor2ndInstrument)
+    state.Data.tonesFor3rdInstrument.append(s.Data.tonesFor3rdInstrument)
+    state.Data.tonesFor4thInstrument.append(s.Data.tonesFor4thInstrument)
+    state.Data.tonesFor5thInstrument.append(s.Data.tonesFor5thInstrument)
     
-    state.State.metronome.append(s.Op.metronome)
-    state.State.metronomeModifier.append(s.Op.metronomeModifier)
+    state.Data.metronome.append(s.Data.metronome)
+    state.Data.metronomeModifier.append(s.Data.metronomeModifier)
 
-    state.State.instrument1.append(s.Op.instrument1)
-    state.State.instrument2.append(s.Op.instrument2)
-    state.State.instrument3.append(s.Op.instrument3)
-    state.State.instrument4.append(s.Op.instrument4)
-    state.State.instrument5.append(s.Op.instrument5)
+    state.Data.instrument1.append(s.Data.instrument1)
+    state.Data.instrument2.append(s.Data.instrument2)
+    state.Data.instrument3.append(s.Data.instrument3)
+    state.Data.instrument4.append(s.Data.instrument4)
+    state.Data.instrument5.append(s.Data.instrument5)
     
-    state.State.polyOrderList.append(s.Op.polyOrderList)
-    state.State.tonic.append(s.Op.tonic)
+    state.Data.polyOrderList.append(s.Data.polyOrderList)
+    state.Data.tonic.append(s.Data.tonic)
     
-    state.State.motiveOption.append(s.Op.motiveOption)
-    state.State.motiveRhythmOption.append(s.Op.motiveRhythmOption)
-    state.State.motiveTones.append(s.Op.motiveTones)
-    state.State.motiveRhythm.append(s.Op.motiveRhythm)
+    state.Data.motiveOption.append(s.Data.motiveOption)
+    state.Data.motiveRhythmOption.append(s.Data.motiveRhythmOption)
+    state.Data.motiveTones.append(s.Data.motiveTones)
+    state.Data.motiveRhythm.append(s.Data.motiveRhythm)
 
-    state.State.harmony1.append(s.Op.harmony1)
-    state.State.harmony2.append(s.Op.harmony2)
-    state.State.harmony3.append(s.Op.harmony3)
-    state.State.harmony4.append(s.Op.harmony4)
+    state.Data.harmony1.append(s.Data.harmony1)
+    state.Data.harmony2.append(s.Data.harmony2)
+    state.Data.harmony3.append(s.Data.harmony3)
+    state.Data.harmony4.append(s.Data.harmony4)
 
-    state.State.cadenza.append(s.Op.cadenza)
-    state.State.cadenzaOver.append(s.Op.cadenzaOver)
-    state.State.cadenzaUnder.append(s.Op.cadenzaUnder)
-    state.State.cadenzaDurationOver.append(s.Op.cadenzaDurationOver)
-    state.State.cadenzaDurationUnder.append(s.Op.cadenzaDurationUnder)
+    state.Data.cadenza.append(s.Data.cadenza)
+    state.Data.cadenzaOver.append(s.Data.cadenzaOver)
+    state.Data.cadenzaUnder.append(s.Data.cadenzaUnder)
+    state.Data.cadenzaDurationOver.append(s.Data.cadenzaDurationOver)
+    state.Data.cadenzaDurationUnder.append(s.Data.cadenzaDurationUnder)
     
-    state.State.changesBetweenSections.append(s.Op.changesBetweenSections)
+    state.Data.changesBetweenSections.append(s.Data.changesBetweenSections)
     
-    state.State.notesRemaining.append(s.Op.notesRemaining)
+    state.Data.notesRemaining.append(s.Data.notesRemaining)
 
-    state.rigidTempo.append(s.Op.rigidTempo)
+    state.Data.rigidTempo.append(s.Data.rigidTempo)
+
+    state.Data.debug_log = db.Data.debug_log # check this code for accuracy
 
 def rewindCounter():
-    state.localCounter -= 1
+    state.Data.localCounter -= 1
 
 def advanceCounter():
     try:
-        state.localCounter += 1
+        state.Data.localCounter += 1
     except Exception as e:
-        print('Cannot advance local counter in populateState()')
+        message = print('Cannot advance local counter in populateState()')
+        db.Data.debug_log.append(message)
 
 def goToState(n):
-    i.sectionWritten = state.State.sectionWritten[n]
-    i.motive = state.State.motive[n]
-    i.motiveInteger = state.State.motiveInteger[n]
-    i.motiveRhythm = state.State.motiveRhythm[n]
-    i.tonic = state.State.instanceTonic[n]
-    i.indexed = state.State.indexed[n]
-    i.beats = state.State.instanceBeats[n]
-    i.harmony1 = state.State.instanceHarmony1[n]
-    i.harmony2 = state.State.instanceHarmony2[n]
-    i.harmony3 = state.State.instanceHarmony3[n]
-    i.harmony4 = state.State.instanceHarmony4[n]
-    i.cadenzaOver = state.State.instanceCadenzaUnder[n]
-    i.cadenzaUnder = state.State.instanceCadenzaUnder[n]
-    i.cadenzaDurationOver = state.State.instanceCadenzaDurationOver[n]
-    i.cadenzaDurationUnder = state.State.instanceCadenzaDurationUnder[n]
-    i.notesRemaining = state.State.instanceNotesRemaining[n]
+    i.Data.sectionWritten = state.Data.sectionWritten[n]
+    i.Data.motive = state.Data.motive[n]
+    i.Data.motiveInteger = state.Data.motiveInteger[n]
+    i.Data.motiveRhythm = state.Data.motiveRhythm[n]
+    i.Data.tonic = state.Data.instanceTonic[n]
+    i.Data.indexed = state.Data.indexed[n]
+    i.Data.beats = state.Data.instanceBeats[n]
+    i.Data.harmony1 = state.Data.instanceHarmony1[n]
+    i.Data.harmony2 = state.Data.instanceHarmony2[n]
+    i.Data.harmony3 = state.Data.instanceHarmony3[n]
+    i.Data.harmony4 = state.Data.instanceHarmony4[n]
+    i.Data.cadenzaOver = state.Data.instanceCadenzaUnder[n]
+    i.Data.cadenzaUnder = state.Data.instanceCadenzaUnder[n]
+    i.Data.cadenzaDurationOver = state.Data.instanceCadenzaDurationOver[n]
+    i.Data.cadenzaDurationUnder = state.Data.instanceCadenzaDurationUnder[n]
+    i.Data.notesRemaining = state.Data.instanceNotesRemaining[n]
 
-    #the second group is from mySong.Trn 'Trn'
-    my.Trn.finished = state.State.finished[n]
-    my.Trn.meter = state.State.meter[n]
-    my.Trn.currentSection = state.State.currentSection[n]
-    my.Trn.harmony1 = state.State.transcriptionHarmony1[n]
-    my.Trn.harmony2 = state.State.transcriptionHarmony2[n]
-    my.Trn.harmony3 = state.State.transcriptionHarmony3[n]
-    my.Trn.harmony4 = state.State.transcriptionHarmony4[n]
-    my.Trn.transcript = state.State.transcript[n]
-    my.Trn.targetStructure = state.State.targetStructure[n]
-    my.Trn.generatedStructure = state.State.generatedStructure[n]
-    my.Trn.newStructureInteger = state.State.newStructureInteger[n]
-    my.Trn.sectionA = state.State.sectionA[n]
-    my.Trn.sectionB = state.State.sectionB[n]
-    my.Trn.sectionC = state.State.sectionC[n]
-    my.Trn.sectionD = state.State.sectionD[n]
-    my.Trn.sectionE = state.State.sectionE[n]
+    #the second group is from mySong.Data
+    my.Data.finished = state.Data.finished[n]
+    my.Data.meter = state.Data.meter[n]
+    my.Data.currentSection = state.Data.currentSection[n]
+    my.Data.harmony1 = state.Data.transcriptionHarmony1[n]
+    my.Data.harmony2 = state.Data.transcriptionHarmony2[n]
+    my.Data.harmony3 = state.Data.transcriptionHarmony3[n]
+    my.Data.harmony4 = state.Data.transcriptionHarmony4[n]
+    my.Data.transcript = state.Data.transcript[n]
+    my.Data.targetStructure = state.Data.targetStructure[n]
+    my.Data.generatedStructure = state.Data.generatedStructure[n]
+    my.Data.newStructureInteger = state.Data.newStructureInteger[n]
+    my.Data.sectionA = state.Data.sectionA[n]
+    my.Data.sectionB = state.Data.sectionB[n]
+    my.Data.sectionC = state.Data.sectionC[n]
+    my.Data.sectionD = state.Data.sectionD[n]
+    my.Data.sectionE = state.Data.sectionE[n]
     
     #the third group is from settings
     
-    s.Op.tonesFor1stInstrument = state.State.tonesFor1stInstrument[n]
-    s.Op.tonesFor2ndInstrument = state.State.tonesFor2ndInstrument[n]
-    s.Op.tonesFor3rdInstrument = state.State.tonesFor3rdInstrument[n]
-    s.Op.tonesFor4thInstrument = state.State.tonesFor4thInstrument[n]
-    s.Op.tonesFor1stInstrument = state.State.tonesFor1stInstrument[n]
+    s.Data.tonesFor1stInstrument = state.Data.tonesFor1stInstrument[n]
+    s.Data.tonesFor2ndInstrument = state.Data.tonesFor2ndInstrument[n]
+    s.Data.tonesFor3rdInstrument = state.Data.tonesFor3rdInstrument[n]
+    s.Data.tonesFor4thInstrument = state.Data.tonesFor4thInstrument[n]
+    s.Data.tonesFor1stInstrument = state.Data.tonesFor1stInstrument[n]
    
-    s.Op.metronome = state.State.metronome[n]
-    s.Op.metronomeModifier = state.State.metronomeModifier[n]
+    s.Data.metronome = state.Data.metronome[n]
+    s.Data.metronomeModifier = state.Data.metronomeModifier[n]
 
-    s.Op.instrument1 = state.State.instrument1[n]
-    s.Op.instrument2 = state.State.instrument2[n]
-    s.Op.instrument3 = state.State.instrument3[n]
-    s.Op.instrument4 = state.State.instrument4[n]
-    s.Op.instrument5 = state.State.instrument5[n]
+    s.Data.instrument1 = state.Data.instrument1[n]
+    s.Data.instrument2 = state.Data.instrument2[n]
+    s.Data.instrument3 = state.Data.instrument3[n]
+    s.Data.instrument4 = state.Data.instrument4[n]
+    s.Data.instrument5 = state.Data.instrument5[n]
 
-    s.Op.polyOrderList = state.State.polyOrderList[n]
+    s.Data.polyOrderList = state.Data.polyOrderList[n]
     
-    s.Op.tonic = state.State.tonic[n]
+    s.Data.tonic = state.Data.tonic[n]
     
-    s.Op.motiveOption = state.State.motiveOption[n]
-    s.Op.motiveRhythmOption = state.State.motiveRhythmOption[n]
-    s.Op.motiveTones = state.State.motiveTones[n]
-    s.Op.motiveRhythm = state.State.motiveRhythm[n]
+    s.Data.motiveOption = state.Data.motiveOption[n]
+    s.Data.motiveRhythmOption = state.Data.motiveRhythmOption[n]
+    s.Data.motiveTones = state.Data.motiveTones[n]
+    s.Data.motiveRhythm = state.Data.motiveRhythm[n]
 
-    s.Op.harmony1 = state.State.harmony1[n]
-    s.Op.harmony2 = state.State.harmony2[n]
-    s.Op.harmony3 = state.State.harmony3[n]
-    s.Op.harmony4 = state.State.harmony4[n]
+    s.Data.harmony1 = state.Data.harmony1[n]
+    s.Data.harmony1 = state.Data.harmony1[n]
+    s.Data.harmony2 = state.Data.harmony2[n]
+    s.Data.harmony3 = state.Data.harmony3[n]
+    s.Data.harmony4 = state.Data.harmony4[n]
     
-    s.Op.cadenza = state.State.cadenza[n]
-    s.Op.cadenzaOver = state.State.cadenzaOver[n]
-    s.Op.cadenzaUnder = state.State.cadenzaUnder[n]
-    s.Op.cadenzaDurationOver = state.State.CadenzaDurationOver[n]
-    s.Op.cadenzaDurationUnder = state.State.cadenzaDurationUnder[n]
+    s.Data.cadenza = state.Data.cadenza[n]
+    s.Data.cadenzaOver = state.Data.cadenzaOver[n]
+    s.Data.cadenzaUnder = state.Data.cadenzaUnder[n]
+    s.Data.cadenzaDurationOver = state.Data.CadenzaDurationOver[n]
+    s.Data.cadenzaDurationUnder = state.Data.cadenzaDurationUnder[n]
     
-    s.Op.changesBetweenSections = state.State.changesBetweenSections[n]
+    s.Data.changesBetweenSections = state.Data.changesBetweenSections[n]
     
-    s.Op.notesRemaining = state.State.notesRemaining[n]
+    s.Data.notesRemaining = state.Data.notesRemaining[n]
     
-    s.Op.rigidTempo = state.State.rigidTempo[n]
+    s.Data.rigidTempo = state.Data.rigidTempo[n]

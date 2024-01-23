@@ -10,13 +10,13 @@ class Data(): #Op stands for 'options'
                             tones.Piano.C5, tones.Piano.D5, tones.Piano.E5]
     tonesFor2ndInstrument = []
     tonesFor3rdInstrument = []
-    tonesFor4thInstrument = []
+    tonesFor4thInstrument = []      
     tonesFor5thInstrument = []
     tonesInstruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
                         tonesFor4thInstrument, tonesFor5thInstrument]
     
-    metronome = 70
-    metronomeModifier = 2
+    metronome = 60
+    metronomeModifier = 10
     wholeNote = metronome*16
     halfNote = metronome*8
     quarterNote = metronome*4

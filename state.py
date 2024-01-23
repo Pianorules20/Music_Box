@@ -1,7 +1,6 @@
 #state.py
-import tones
 
-class State():
+class Data():
     
     #this is governing variable
     localCounter = int(-1)
@@ -92,3 +91,5 @@ class State():
     notesRemaining = []
 
     rigidTempo = []
+
+    debug_log = []
