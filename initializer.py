@@ -1,15 +1,17 @@
 import instance as i, settings as s, populate_settings as ps
 import random
 
+class Data():
+    pass
 
-class Initializer():
+def initialize():
     
     #instance.voices = range(len(s.Data.instruments))
 
     i.Data.tonesFor1stInstrument = s.Data.tonesFor1stInstrument
 
     if s.Data.tonic == 'Random':
-        ps.createTonic()
+        ps.create_tonic()
     else:       
         i.Data.tonic = s.Data.tonic
     
@@ -42,7 +44,7 @@ class Initializer():
         i.Data.cadenzaDurationUnder = s.Data.cadenzaDurationUnder
     print('')    
     
-    if s.Data.notesRemaining == 'Random':
+    if s.Data.notesRemainingOption == 'Random':
         ps.createRemainingNotes()
     else:
         i.Data.notesRemaining = s.Data.notesRemaining

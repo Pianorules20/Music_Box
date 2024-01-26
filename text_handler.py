@@ -28,7 +28,7 @@ def reset_text():
     #di.Data.scroll_pages = False
 
 def scroll_page():
-    d.Window.background = d.Window.frame.fill((180,180,40),(0,0, d.Window.width, d.Window.height))
+    d.Data.background = d.Data.frame.fill((180,180,40),(0,0, d.Data.width, d.Data.height))
     for each in lm.Data.y_values:
         each -= 900
         

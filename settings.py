@@ -8,13 +8,13 @@ class Data(): #Op stands for 'options'
     tonesFor1stInstrument = [tones.Piano.A4, tones.Piano.B4, tones.Piano.C4, tones.Piano.D4, tones.Piano.E4, \
                             tones.Piano.F4, tones.Piano.G4, tones.Piano.A5, tones.Piano.Bb5, tones.Piano.B5, \
                             tones.Piano.C5, tones.Piano.D5, tones.Piano.E5]
-    tonesFor2ndInstrument = []
+    tonesFor2ndInstrument = [tones.Piano.A2, tones.Piano.A3]
     tonesFor3rdInstrument = []
     tonesFor4thInstrument = []      
     tonesFor5thInstrument = []
     tonesInstruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
                         tonesFor4thInstrument, tonesFor5thInstrument]
-    
+     
     metronome = 60
     metronomeModifier = 10
     wholeNote = metronome*16
@@ -64,7 +64,8 @@ class Data(): #Op stands for 'options'
     structureOptions = ['Random Short Form', 'Long Form New', 'User Constructed']
     
     changeSettingsBetweenSections = False
-    notesRemaining = 'Random'
+    notesRemainingOption = 'Random'
+    notesRemaining = int(80)
 
     rigidTempo = False #use me in future to differentiate between 'loose' studying music and 'firm' driven music
     

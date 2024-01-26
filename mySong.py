@@ -4,7 +4,7 @@ import settings as s, instance as i, random, initializer
 class Data(): #'Trn' stands for 'Transcription'
     finished = False
     meter = int(0)
-    currentSection = []
+    current_section = []
     harmony1 = []
     harmony2 = []
     harmony3 = []
@@ -26,35 +26,21 @@ def createStructure():
     newStructureInteger = random.randint(1,5)
 
 def nextInstrument():
-    s.Op.createRemainingNotes()
+    s.Data.createRemainingNotes()
 
-def advance():
-    Data.Meter -= (s.Op.metronome/s.Op.metronomeModifier)
+def advance_meter():
+    Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)
+    
+def reset_meter():
+    Data.meter = int(0)
 
-def resetInstance():
-    print('in mySongs.Data.reset()')
-    # i.sectionWritten = False
-    i.motive = []
-    i.motiveInteger = int(1)
-    i.motiveRhythm = []
-    i.tonic = int(0)
-    i.harmony1 = int(2)
-    i.harmony2 = int(3)
-    i.harmony3 = int(4)
-    i.harmony4 = int(5)
-    try:
-        i.notesRemaining = s.Op.notesRemaining
-    except:
-        i.notesRemaining = s.Op.createRemainingNotes()
-    i.sectionWritten = False
-    Data.currentSection = []
-
-def resetTranscript(): # watch out for me!  Trn.finished...
+def reset_transcript(): # watch out for me!  Trn.finished...
     Data.finished = False
     Data.transcript = []
     Data.generatedStructure = []
     Data.newStructureInteger = int(0)
     Data.targetStructure = []
+    Data.meter = int(0)
 
 def resetSection():
     Data.currentSection = []

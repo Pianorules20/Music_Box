@@ -1,20 +1,27 @@
 #pDataulates.py
-import settings as s, instance as i, random, tones as t, sounds, pygame, gni
+import settings as s, instance as i, random, tones as t, sounds, pygame, gni, debug as db
 
-    
 def createRemainingNotes():
     
-    rando = random.randint(40, 100)
+    rando = random.randint(40, 120)
     i.Data.notesRemaining = rando
         
-def createTonic():
     print(' ')
     rando = random.choice(s.Data.tonesFor1stInstrument)
     i.Data.tonic = rando
     Name = t.Tone.returnLetterName(rando)
     Octave = t.Tone.returnOctave(rando)
-    print(f'Tonic: {Name}{Octave}')
+    info = print(f'Tonic: {Name}{Octave}')      
+    db.Data.debug_log.append(info)                           
         
+def create_tonic():
+    print(' ')
+    rando = random.choice(s.Data.tonesFor1stInstrument)
+    i.Data.tonic = rando
+    info = print(f'tonic is {i.Data.tonic}')
+    db.Data.debug_log.append(info)
+
+
 def createMotiveTones():
     print(' ')
     i.Data.motive = []

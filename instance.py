@@ -3,6 +3,7 @@ import settings as s
 
 class Data():
 
+    current_section = []
     sectionWritten = False
 
     tonesFor1stInstrument = s.Data.tonesFor1stInstrument
@@ -38,3 +39,18 @@ class Data():
     cadenzaDurationUnder = s.Data.cadenzaDurationUnder
 
     notesRemaining = int(1)
+
+def reset_instance():
+    print('in mySongs.Data.reset()')
+    # i.sectionWritten = False
+    Data.motive = []
+    Data.motiveInteger = int(1)
+    Data.motiveRhythm = []
+    Data.tonic = int(0)
+    Data.harmony1 = int(2)
+    Data.harmony2 = int(3)
+    Data.harmony3 = int(4)
+    Data.harmony4 = int(5)
+    Data.notesRemaining = int(s.Data.notesRemaining)
+    Data.sectionWritten = False
+    Data.currentSection = []
