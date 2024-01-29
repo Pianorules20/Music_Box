@@ -9,53 +9,61 @@ from pygame.locals import *
 
 class Data():
 
-    note_copy = [] #this is a list of gni.Note.sound returns
+    transfer_notes = True    
+    final_copy = [] #this is a list of gni.Note.sound returns
+    section_counter = int(0)
+    current_section = []
     channel_counter = int(0)
     active_notes = []
+    
+def reset_playback():
+    Data.note_copy = []
+    Data.section_counter = int(0)
+    active_notes = []
+
+def advance_playback():
+    Data.section_counter += 1
+    Data.current_section = Data.note_copy[Data.section_counter]
+
 
 def play(): #i will play and pop each plot incrementally from the recording
     
-    
-
-    if len(Data.note_copy) > 0:
+    t.Data.current = t.Data.slow
+    if len(Data.final_copy[0]) > 0:
         
-        t.Data.current = t.Data.slow
         print('playing notes')
 
-        for eachNote in Data.note_copy:
+        for eachNote in Data.final_copy[0]:
 
             if eachNote.xPos <= pm.Data.meter:
-                Data.active_notes.append(eachNote)
+                #Data.active_notes.append(eachNote)
                 
                 the_sound = eachNote.sound
 
-                Data.channel_counter += 1
-                if Data.channel_counter >=20:
-                    Data.active_notes.pop()
-                else:
-                    pass
+                #Data.channel_counter += 1
+                #if Data.channel_counter >=20:
+                    #Data.active_notes.pop()
+                #else:
+                #    pass
 
                 pygame.mixer.find_channel(True)
             
-                
                 pygame.mixer.Sound.play(the_sound)
 
-                Data.note_copy.remove(eachNote)
+                Data.final_copy[0].remove(eachNote)
 
                 db.Data.debug_log.append('playing sound in playback.play()')
 
-
+                
             else:
                 pass
             
-            pm.advance()
+        pm.advance()
             #for eachTone in eachIncrement:
-
-            '''T.Tone.play(eachTone)
-                print(f'playing {eachTone}')'''
 
     else:
 
+        pm.reset_meter()
         g.Data.current = 'post_production'
 
         #TROUBLESHOOT NOTES I AM ONLY GETTING ONE NOTE AT A TIME WHY IS THAT?

@@ -1,5 +1,5 @@
 #mySong.py
-import settings as s, instance as i, random, initializer
+import settings as s, random, initializer
 
 class Data(): #'Trn' stands for 'Transcription'
     finished = False
@@ -36,7 +36,17 @@ def reset_meter():
 
 def reset_transcript(): # watch out for me!  Trn.finished...
     Data.finished = False
+    Data.current_section = []
     Data.transcript = []
+    Data.harmony1 = []
+    Data.harmony2 = []
+    Data.harmony3 = []
+    Data.harmony4 = []
+    Data.sectionA = []
+    Data.sectionB = []
+    Data.sectionC = []
+    Data.sectionD = []
+    Data.sectionE = []
     Data.generatedStructure = []
     Data.newStructureInteger = int(0)
     Data.targetStructure = []

@@ -6,13 +6,17 @@ class Data():
     pass
 
 def plot_notes():
+    #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correct
     for eachSection in my.Data.transcript:
+        pb.Data.final_copy.append(eachSection)
         for eachNote in eachSection:
-            pb.Data.recording.append(eachNote)
+            #pb.Data.final_copy[eachSection].append(eachNote)
             rectangle = eachNote.image.get_rect()
             rectangle.center = (eachNote.xPos - pm.Data.meter, eachNote.yPos)
             d.Data.frame.blit(eachNote.image, rectangle)
+    pb.Data.note_count = len(pb.Data.final_copy)
     g.Data.current = 'playback'
+
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
 '''class P():
@@ -20,6 +24,8 @@ def plot_notes():
 '''
 def plot_notes(): 
 
+    
+        # referencing pm.M.meter
     if pni.Data.populate_me == True:
             
             db.Data.debug_log.append(f'pni.populate_me = {pni.Data.populate_me}')
@@ -27,8 +33,6 @@ def plot_notes():
 
     else:
         pass
-    
-        # referencing pm.M.meter
 
     for eachNote in pni.Data.this_section: 
 

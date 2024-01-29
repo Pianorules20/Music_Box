@@ -1,5 +1,5 @@
 #mainBranch.py
-import settings as s, branches2, plot_notes as pn, playback as pb, post_production as pp, debug as db
+import settings as s, branches2, plot_notes as pn, playback as pb, post_production as pp, debug as db, mySong as my
 
 class Branch():
     pass
@@ -21,8 +21,10 @@ def playback():
     pb.play()
 
 def post_production():
+
     pp.print_sheet()
     pp.record_audio()
+    my.reset_transcript()
 
 def pause():
     pass

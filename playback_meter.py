@@ -1,4 +1,5 @@
-#recordMeter.py
+#playback_meter.py
+
 import settings
 
 class Data():
@@ -8,5 +9,5 @@ class Data():
 def advance():
     Data.meter += (settings.Data.metronome/settings.Data.metronomeModifier)
 
-def reset():
+def reset_meter():
     Data.meter = int(0)

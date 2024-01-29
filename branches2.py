@@ -23,8 +23,8 @@ def randomShortForm():
         localTrace = print(*checkTranscript, sep = '')
         localTrace = str(localTrace)
         db.Data.debug_log.append(localTrace)
-        gatekeeper.Data.current = 'plot_notes'
         db.Data.debug_log.append('finished branches2 randomShortForm() Gate = "plot_notes" ')
+        gatekeeper.Data.current = 'plot_notes'  #!!!!!!
     
     else:
 
@@ -40,14 +40,14 @@ def randomShortForm():
                     
             
             else:
-                # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
+                    # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
                 i.Data.notesRemaining = save_place
                 my.Data.meter  = 0
                 #   my.resetSection()
                 #i.notesRemaining = settings.Op.notesRemaining # is this correct???
                 # i was missing my operator parentheses but i since rewrote this previous line
         
-        my.Data.transcript.append(my.Data.currentSection) #pay careful attention as this is now a list \
+        my.Data.transcript.append(i.Data.current_section) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()
     my.Data.finished = True  #are you the culprit that turned my boolean to True too early???

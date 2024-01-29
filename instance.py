@@ -1,5 +1,5 @@
 #instance.py
-import settings as s
+import settings as s, mySong as my
 
 class Data():
 
@@ -54,3 +54,6 @@ def reset_instance():
     Data.notesRemaining = int(s.Data.notesRemaining)
     Data.sectionWritten = False
     Data.currentSection = []
+
+def transcribe_section():
+    my.Data.current_section = Data.current_section
