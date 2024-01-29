@@ -1,41 +1,56 @@
 #introSound.py
-import pygame, tones
+import pygame, sys, tones, timer as t, debug as db, display as d, fonts as f, screen_saver as ss
     
     #modify the script below to change volume of the intro harp
-for eachSound in tones.Harp.introMusic:
-    Sound = tones.Tone.returnSound(eachSound)
-    pygame.mixer.Sound.set_volume(Sound, 0.3) 
 
-for eachSound in tones.Piano.tones:
-    Sound = tones.Tone.returnSound(eachSound)
-    pygame.mixer.Sound.set_volume(Sound, 2)
+class Data():
 
-class Intro():
-    clock = pygame.time.Clock()
-    
+    loading_A = "Playing Intro"
+    loading_B = f.Data.large_script
+    loading_C = loading_B.render(loading_A, True, ss.Data.text, ss.Data.rbg)
+    loading_D = loading_C.get_rect()
+    loading_D.center = (1000, 1000)
+
 def play():
-    '''try:
-        
-        test = pygame.mixer.Sound.play(settings.Preferences.A3.sound)
-        print('playing test sound')
-        
-    except:
-        print('failed test sound')'''
-    try :
-        length = len(tones.Harp.introMusic)
-        for eachInteger in range(length):
-            note = tones.Harp.introMusic[eachInteger]   
-            pygame.mixer.find_channel(True)
-            sound = tones.Tone.returnSound(note)
-            pygame.mixer.Sound.play(sound)
-            Intro.clock.tick(10)
-            #pygame.time.wait(170)
-        print('playing intro')
-    except Exception as e:
-        print('failed to play introMusic.Intro.play')
-        print(e)
+    
+  
+    d.Data.frame.blit(Data.loading_C, Data.loading_D)
 
-    finally:
-        letterName = tones.Tone.returnLetterName(note)
-        octave = tones.Tone.returnOctave(note)
-        print(f'Note spacial data xPos  {letterName}{octave}')
+    t.Data.current_timer = t.Data.slow
+
+    length = len(tones.Harp.introMusic)
+    
+
+    for eachSound in tones.Harp.introMusic:
+        Sound = tones.Tone.returnSound(eachSound) 
+        Data.letterName = tones.Tone.returnLetterName(Data.note)
+        Data.octave = tones.Tone.returnOctave(Data.note)
+        Data.info = print(f'Note spacial data xPos  {Data.letterName}{Data.octave}')
+        db.Data.debug_log.append(Data.info)
+        Data.note = tones.Harp.introMusic[eachSound]  
+    
+        try :
+             
+            pygame.mixer.find_channel(True)
+            Data.sound = tones.Tone.returnSound(Data.note)
+            pygame.mixer.Sound.play(Data.sound)
+            #Data.clock.tick(15)
+            #pygame.time.wait(170)
+        
+        except Exception as e:
+            
+            print('dev Exception in intoMusic.play')
+            print(e)
+            crash_me_A = pygame.quit()
+            crash_me_B = sys.exit()
+
+
+        finally:
+            pass
+
+        ''' Data.splash_A = "Press  'S'  to scroll through the log"
+    Data.splash_B = f.Data.scripted
+    Data.splash_C = Data.splash_B.render(Data.splash_A, True, ss.Data.text, ss.Data.rbg)
+    Data.splash_D = Data.splash_C.get_rect()
+    Data.splash_D.center = (1000, 50)
+    d.Data.frame.blit(Data.splash_C, Data.splash_D)'''
