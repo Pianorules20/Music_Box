@@ -1,14 +1,14 @@
 #pDataulates.py
-import settings as s, instance as i, random, tones as t, sounds, pygame, gni, debug as db
+import settings as s, current_section as cs, random, tones as t, sounds, pygame, gni, debug as db
 
 def createRemainingNotes():
     
     rando = random.randint(40, 120)
-    i.Data.notesRemaining = rando
+    cs.Data.notesRemaining = rando
         
     print(' ')
     rando = random.choice(s.Data.tonesFor1stInstrument)
-    i.Data.tonic = rando
+    cs.Data.tonic = rando
     Name = t.Tone.returnLetterName(rando)
     Octave = t.Tone.returnOctave(rando)
     info = print(f'Tonic: {Name}{Octave}')      
@@ -17,21 +17,21 @@ def createRemainingNotes():
 def create_tonic():
     print(' ')
     rando = random.choice(s.Data.tonesFor1stInstrument)
-    i.Data.tonic = rando
-    info = print(f'tonic is {i.Data.tonic}')
+    cs.Data.tonic = rando
+    info = print(f'tonic is {cs.Data.tonic}')
     db.Data.debug_log.append(info)
 
 
 def createMotiveTones():
     print(' ')
-    i.Data.motive = []
+    cs.Data.motive = []
     rando = random.randint(2, 13)       
-    i.Data.motiveInteger = rando
-    for eachIndex in range(i.Data.motiveInteger):
+    cs.Data.motiveInteger = rando
+    for eachIndex in range(cs.Data.motiveInteger):
         new = random.choice(s.Data.tonesFor1stInstrument)
-        i.Data.motive.append(new)
+        cs.Data.motive.append(new)
     motive = []
-    for eachObj in i.Data.motive:
+    for eachObj in cs.Data.motive:
         Name = t.Tone.returnLetterName(eachObj)
         motive.append(Name)
         Octave = str(t.Tone.returnOctave(eachObj))
@@ -43,58 +43,58 @@ def createMotiveTones():
 
 def createMotiveRhythm():
     print(' ')
-    i.Data.motiveRhythm = []
-    for eachIndex in i.Data.motive:
-        rando = random.choice(i.Data.beats)
+    cs.Data.motiveRhythm = []
+    for eachIndex in cs.Data.motive:
+        rando = random.choice(cs.Data.beats)
         newDuration = rando     
-        i.Data.motiveRhythm.append(newDuration)
-    print(f'in populate_settings... motiveRhythm {i.Data.motiveRhythm}')
+        cs.Data.motiveRhythm.append(newDuration)
+    print(f'in populate_settings... motiveRhythm {cs.Data.motiveRhythm}')
     print(' ')
 
 def createHarmonies():
 
     try:
-        i.Data.harmony1 = i.Data.tonesFor1stInstrument[i.Data.indexed+2]  #adding integers
+        cs.Data.harmony1 = cs.Data.tonesFor1stInstrument[cs.Data.indexed+2]  #adding integers
     except:
-        i.Data.harmony1 = i.Data.tonesFor1stInstrument[i.Data.indexed-5]
+        cs.Data.harmony1 = cs.Data.tonesFor1stInstrument[cs.Data.indexed-5]
 
     try:
-        i.Data.harmony2 = i.Data.tonesFor1stInstrument[i.Data.indexed+3]
+        cs.Data.harmony2 = cs.Data.tonesFor1stInstrument[cs.Data.indexed+3]
     except:
-        i.Data.harmony2 = i.Data.tonesFor1stInstrument[i.Data.indexed-4]
+        cs.Data.harmony2 = cs.Data.tonesFor1stInstrument[cs.Data.indexed-4]
     try:
-        i.Data.harmony3 = i.Data.tonesFor1stInstrument[i.Data.indexed+4]
+        cs.Data.harmony3 = cs.Data.tonesFor1stInstrument[cs.Data.indexed+4]
     except:
-        i.Data.harmony3 = i.Data.tonesFor1stInstrument[i.Data.indexed-3]
+        cs.Data.harmony3 = cs.Data.tonesFor1stInstrument[cs.Data.indexed-3]
     try:
-        i.Data.harmony4 = i.Data.tonesFor1stInstrument[i.Data.indexed+5]
+        cs.Data.harmony4 = cs.Data.tonesFor1stInstrument[cs.Data.indexed+5]
     except:
-        i.Data.harmony4 = i.Data.tonesFor1stInstrument[i.Data.indexed-2]
+        cs.Data.harmony4 = cs.Data.tonesFor1stInstrument[cs.Data.indexed-2]
     
 def createCadenza():
         
     try:
-        i.Data.cadenzaUnder = i.Data.tonesFor1stInstrument[i.Data.indexed-1]
+        cs.Data.cadenzaUnder = cs.Data.tonesFor1stInstrument[cs.Data.indexed-1]
     except: 
-        i.Data.cadenzaUnder = i.Data.tonesFor1stInstrument[i.Data.indexed]
+        cs.Data.cadenzaUnder = cs.Data.tonesFor1stInstrument[cs.Data.indexed]
     try:
-        i.Data.cadenzaOver= i.Data.tonesFor1stInstrument[i.Data.indexed+1]
+        cs.Data.cadenzaOver= cs.Data.tonesFor1stInstrument[cs.Data.indexed+1]
     except: 
-        i.Data.cadenzaOver = i.Data.tonesFor1stInstrument[i.Data.indexed]
-    Name1 = t.Tone.returnLetterName(i.Data.cadenzaUnder)
-    Octave1 = t.Tone.returnOctave(i.Data.cadenzaUnder)
-    Name2 = t.Tone.returnLetterName(i.Data.cadenzaOver)
-    Octave2 = t.Tone.returnOctave(i.Data.cadenzaOver)
+        cs.Data.cadenzaOver = cs.Data.tonesFor1stInstrument[cs.Data.indexed]
+    Name1 = t.Tone.returnLetterName(cs.Data.cadenzaUnder)
+    Octave1 = t.Tone.returnOctave(cs.Data.cadenzaUnder)
+    Name2 = t.Tone.returnLetterName(cs.Data.cadenzaOver)
+    Octave2 = t.Tone.returnOctave(cs.Data.cadenzaOver)
     print(f'cadenza Under: {Name1}{Octave1}    cadenza Over: {Name2}{Octave2}')
-    cadenzaDuration = random.choice(i.Data.beats)
-    index = i.Data.beats.index(cadenzaDuration)
+    cadenzaDuration = random.choice(cs.Data.beats)
+    index = cs.Data.beats.index(cadenzaDuration)
     #print(f'assigned cadenza pulse in step2...maker {cadenzaDuration}')
     try:
-        i.Data.cadenzaDurationUnder = i.Data.beats[index-1]
-    except: i.Data.cadenzaDurationUnder = i.Data.beats[index]
+        cs.Data.cadenzaDurationUnder = cs.Data.beats[index-1]
+    except: cs.Data.cadenzaDurationUnder = cs.Data.beats[index]
     try:
-        i.Data.cadenzaDurationOver = i.Data.beats[index+1]
-    except: i.Data.cadenzaDurationOver = i.Data.beats[index]
+        cs.Data.cadenzaDurationOver = cs.Data.beats[index+1]
+    except: cs.Data.cadenzaDurationOver = cs.Data.beats[index]
 
     
 def set_master_volume(userInteger):

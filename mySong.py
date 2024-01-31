@@ -1,5 +1,5 @@
 #mySong.py
-import settings as s, random, initializer
+import settings as s, random, initializer, debug as db
 
 class Data(): #'Trn' stands for 'Transcription'
     finished = False
@@ -51,13 +51,15 @@ def reset_transcript(): # watch out for me!  Trn.finished...
     Data.newStructureInteger = int(0)
     Data.targetStructure = []
     Data.meter = int(0)
+    info = print('in mySong.reset_transcript()')
+    db.Data.debug_log.append(info)
 
 def resetSection():
     Data.currentSection = []
     
-def recordSection():  # watch out for me!  Trn.finished...
+    '''def recordSection():  # watch out for me!  Trn.finished...
     for eachList in Data.currentSection:
-        Data.transcript.append(Data.currentSection[eachList])
+        Data.transcript.append(Data.currentSection[eachList])'''
     #Trn.finished = True revisit this line
         
     '''def Trn():
