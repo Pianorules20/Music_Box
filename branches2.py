@@ -1,14 +1,15 @@
 #Step1.py
 
-import settings, random, mySong as my, playback, instance as i, generate_notes, gni as gni, debug as db
+import settings, random, mySong as my, playback, current_section as cs, generate_notes, gni as gni, debug as db
 import populate_settings, gatekeeper, debug as db
 
 def randomShortForm():
     db.Data.debug_log.append('in branches2...random short form')  #breadcrumb
-    for eachVoice in i.Data.instruments:
-        db.Data.debug_log.append(f'checking length of each voice...{len(eachVoice)}')
+    for eachVoice in cs.Data.instruments: #debug log 
+        info = print(f'checking length of each voice...{len(eachVoice)}')
+        db.Data.debug_log.append(info)
     if my.Data.finished == True:
-        checkTranscript = []
+        checkTranscript = []  #debug log
         for eachSection in my.Data.transcript:
             for eachNote in eachSection:
                 Name = gni.Note.returnLetterName(eachNote)
@@ -28,26 +29,28 @@ def randomShortForm():
     
     else:
 
-        for eachVoice in i.Data.instruments:   
+        for eachVoice in cs.Data.instruments:   
             if len(eachVoice) > 0 :  #only runs if the user has a assigned notes to a particular polyphony
 
-                save_place = i.Data.notesRemaining
+                save_place = cs.Data.notesRemaining
 
-                while i.Data.notesRemaining > 0 :
+                if cs.Data.notesRemaining > 0 :
                     
-                
                     generate_notes.generate()
-                    
+
+                else:
+                   
+                    cs.transcribe_section()
             
             else:
                     # i was missing my operator parentheses for my p_s.Populate.createRemainingNotes which I have since moved
-                i.Data.notesRemaining = save_place
+                cs.Data.notesRemaining = save_place
                 my.Data.meter  = 0
                 #   my.resetSection()
                 #i.notesRemaining = settings.Op.notesRemaining # is this correct???
                 # i was missing my operator parentheses but i since rewrote this previous line
         
-        my.Data.transcript.append(i.Data.current_section) #pay careful attention as this is now a list \
+        my.Data.transcript.append(cs.Data.current_section) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()
     my.Data.finished = True  #are you the culprit that turned my boolean to True too early???
@@ -74,7 +77,7 @@ def longFormNew():
                 case 'E':
                     my.Data.transcript.append(my.Data.sectionE)
         else:    
-            if i.Data.sectionWritten == True: # checks for section Written
+            if cs.Data.sectionWritten == True: # checks for section Written
                 my.Data.generatedStructure.append(newLetter)
                 if my.Data.generatedStructure == my.Data.targetStructure:
                     playback.Player.play()
@@ -84,10 +87,10 @@ def longFormNew():
                 else:
                     my.Data.iReset()
             else:
-                if i.notesRemaining >= 0:
+                if cs.notesRemaining >= 0:
                     generate_notes.Generator.generate()
                 else:
-                    i.sectionWritten = True
+                    cs.Data.sectionWritten = True
                     my.Data.generatedStructure.append(newLetter)
                     match newLetter:
                         case 'A':
