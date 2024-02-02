@@ -1,18 +1,19 @@
 #mainBranch.py
-import settings as s, branches2, plot_notes as pn, playback as pb, post_production as pp, debug as db, mySong as my
+import settings as s, structure as struc, plot_notes as pn, playback as pb, post_production as pp, debug as db
+import mySong as my
 
 class Branch():
     pass
 
 def generator_branches():
-    if s.Data.structure == 'Random Short Form':
-        branches2.randomShortForm()
-    elif s.Data.structure == 'Long Form New':
-        branches2.longFormNew()
-    elif s.Data.structure == 'User Constructed': #catches settings 'User Constructed'
-        branches2.userConstructed()
+    if s.Data.struc == 'Random Short Form':
+        struc.randomShortForm()
+    elif s.Data.struc == 'Long Form New':
+        struc.longFormNew()
+    elif s.Data.struc == 'User Constructed': #catches settings 'User Constructed'
+        struc.userConstructed()
     else:
-        db.debug_log.append('Error in branches.Branch...re: settings.Op.structure')
+        db.debug_log.append('Error in branches.Branch...re: settings.Data.structure')
 
 def plot_notes():
     pn.plot_notes()
@@ -24,7 +25,7 @@ def post_production():
 
     pp.print_sheet()
     pp.record_audio()
-    my.reset_transcript()
+    pp.new_instance()
 
 def pause():
     pass
