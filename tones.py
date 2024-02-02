@@ -128,6 +128,9 @@ class Piano():
             A7, Bb7, B7, C7, Db7, D7, Eb7, E7, F7, \
             Gb7, G7, Ab7, A8, Bb8, B8, C8]
 
+    for eachTone in tones:
+        pygame.mixer.Sound.set_volume(eachTone.sound, 1)
+
 class Harp():
     A4 = Tone(letterName = 'C', octave = 4, sound = pygame.mixer.Sound('sounds/polyphone/Celtic_Harp/A4.wav'), clefHeight = 37)
     B4 = Tone(letterName = 'B', octave = 4, sound = pygame.mixer.Sound('sounds/polyphone/Celtic_Harp/B4.wav'), clefHeight = 39)
@@ -149,4 +152,7 @@ class Harp():
     introMusic = [A4, B4, Db4, D4, E4, 
          Gb4, G4, A5, B5, C5, 
          D5, E5, Gb5, Ab5, A6, 
-         B6]
+         B6]    
+    
+    for eachTone in introMusic:
+        pygame.mixer.Sound.set_volume(eachTone.sound, 0.3)
