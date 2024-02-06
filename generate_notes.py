@@ -13,14 +13,14 @@ def generate():
     polyOrder = settings.Data.instruments[0]
     
     #if cs.Data.notesRemaining > 0: #Note the use of the while loop to complete this section !!!!!
-    db.Data.debug_log.append(f' in g_n notes remaining this i: {cs.Data.notesRemaining}')
+    #db.Data.debug_log.append(f'_in_generate_notes notes remaining this i: {cs.Data.notesRemaining}')
     randomizer = random.random()
     
     #early randomizer is based on the generated motive
     if randomizer  <= 0.3:
-        db.Data.debug_log.append(' \n in early randomizer - the motive')
-        db.Data.debug_log.append(len(cs.Data.motive))
-        db.Data.debug_log.append(len(cs.Data.motiveRhythm))        
+        info = f'\n_in_early_randomizer_-_the_motive_'
+        print(info)
+        db.Data.debug_log.append(info)       
         for eachIndex in range(len(cs.Data.motive)):
             currentNote = cs.Data.motive[eachIndex]
             currentDuration = cs.Data.motiveRhythm[eachIndex]
@@ -28,14 +28,18 @@ def generate():
         # print(f'{Name}{Octave}')
     #early middle randomizer is based on the generated harmonies
     elif randomizer <= 0.7: #None type errors found here
-        db.Data.debug_log.append(f' \n in early middle randomizer cs.harmonies')
+        info = f' \n_in_early_middle_randomizer_cs.harmonies_'
+        print(info)
+        db.Data.debug_log.append(info)
         rando = random.choice(cs.Data.harmonies)
         currentNote = rando
         currentDuration = random.choice(cs.Data.beats)
         gni.createNote(currentNote, currentDuration)
     # middle randomizer is based on the cadenza notes in music theory they are 2 and 7
     elif randomizer <=0.8:
-        db.Data.debug_log.append(' \n in middle randomizer - cadenzas notes')
+        info = f' \n_in_middle_randomizer_-_cadenzas_notes'
+        print(info)
+        db.Data.debug_log.append(info)
         overUnder = random.random()
         if overUnder <= 0.5:
             currentNote = cs.Data.cadenzaUnder
@@ -45,7 +49,9 @@ def generate():
             currentDuration = cs.Data.cadenzaDurationOver
         gni.createNote(currentNote, currentDuration)
     elif randomizer <= 0.95:
-        db.Data.debug_log.append(' \n in late randomizer - random notes')
+        info = f' \n_in_late_randomizer_-_random_notes'
+        print(info)
+        db.Data.debug_log.append(info)
         rando = random.choice(cs.Data.tonesFor1stInstrument)
         currentNote = rando
         randoRhythm = random.choice(cs.Data.beats)
@@ -53,7 +59,9 @@ def generate():
         gni.createNote(currentNote, currentDuration)
     # the last randomizer is the tonic itself       
     else:
-        db.Data.debug_log.append(' \n in last randomizer - the tonic')     
+        info = f' \n_in_last_randomizer_-_the_tonic'
+        print(info)
+        db.Data.debug_log.append(info)     
         currentNote = cs.Data.tonic
         rando = random.choice(cs.Data.beats)   
         currentDuration = rando           

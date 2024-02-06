@@ -24,7 +24,7 @@ class Data():
     quitting = False
 
     def updateScreen():
-        update = di.screenGate(di.Data.current)
+        update = di.screenGate(di.Data.current_screen)
         update = update
         #print('updateScreen initialized')
         #layer3.center = (objects.Buttons.xAxis, objects.Buttons.yAxis)

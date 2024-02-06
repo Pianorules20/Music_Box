@@ -1,7 +1,7 @@
 #debug_page_2
 import mainLoop as m, pygame, display_interface as di
 
-
+'''
 class Data():
     def __init__(self) -> None:
         pass    
@@ -22,9 +22,10 @@ class Data():
         #pygame.draw.rect(Window.frame, (200,200,200), pygame.Rect(30,30,60,60))
         #pygame.Surface((Window.width/20, Window.height/20))
         #Window.width, Window.height
-        '''for eachObject in objects.myNotes:
-            eachObject._blit_()'''
+        for eachObject in objects.myNotes:
+            eachObject._blit_()
         pygame.display.flip()       
 
 
-blit_clock = Data.frame.blit(m.clock_titleC, m.clock_titleD)
+    blit_clock = Data.frame.blit(m.clock_titleC, m.clock_titleD)
+'''

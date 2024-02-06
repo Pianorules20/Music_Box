@@ -1,6 +1,6 @@
 #debug.py
-import pygame, display as d, mySong as my, gatekeeper as g, pni #plot_notes_interface
-import screen_saver as ss, text_handler as th, fonts as f, layout_menu_style as lm
+import display as d, mySong as my, gatekeeper as g, structure as struc
+import screen_saver as ss, text_handler as th, fonts as f, layout_menu_style as lm, playback as pb
 
 class Data():
     debug_trace = False
@@ -83,7 +83,7 @@ def debug_screen():
     d.Data.gate_C = d.Data.gate_B.render(d.Data.gate_A, True, ss.Data.text, ss.Data.rbg)
     d.Data.gate_D = d.Data.gate_C.get_rect()
     d.Data.gate_D.bottomleft = (lm.Data.x10, lm.Data.y300)
-    d.Data.tracer1a = g.Data.current
+    d.Data.tracer1a = g.Data.current_gate
     d.Data.tracer1b = f.Data.subtitle
     d.Data.tracer1c = d.Data.tracer1b.render(d.Data.tracer1a, True, ss.Data.text, ss.Data.rbg)
     d.Data.tracer1d = d.Data.tracer1c.get_rect()
@@ -96,11 +96,11 @@ def debug_screen():
     d.Data.C_S_C = d.Data.C_S_B.render(d.Data.C_S_A, True, ss.Data.text, ss.Data.rbg)
     d.Data.C_S_D = d.Data.C_S_C.get_rect()
     d.Data.C_S_D.bottomleft = (lm.Data.x10, lm.Data.y400)
-    d.Data.tracer2a = str(f'currentsection = {my.Data.currentSection}')
+    d.Data.frame.blit(d.Data.C_S_C, d.Data.C_S_D)
+    d.Data.tracer2a = str(f'currentsection = {my.Data.current_section}')
     d.Data.tracer2b = f.Data.subtitle
     d.Data.tracer2c = d.Data.tracer2b.render(d.Data.tracer2a, True, ss.Data.text, ss.Data.rbg)
     #d.Data.tracer2d = d.Data.tracer2c.get_rect()
-    d.Data.frame.blit(d.Data.C_S_C, d.Data.C_S_D)
     th.reset_text()
     th.handle_strings(d.Data.tracer2a, lm.Data.x1000, lm.Data.y450, lm.Data.x1000, lm.Data.x2000-10, \
                       lm.Data.y900, f.Data.subtitle, multiple = 'yes')
@@ -112,12 +112,13 @@ def debug_screen():
     d.Data.Plt_D.bottomleft = (lm.Data.x10, lm.Data.y550-30)
     d.Data.frame.blit(d.Data.Plt_C, d.Data.Plt_D)
     
-    '''d.Data.Plt_E = str(f'pni this section {pni.Data.current_plot}')
+    d.Data.Plt_E = str(f'in_debug.py,_pointing_at_structure.py_Data.save_place_{struc.Data.save_place}')
+    print(d.Data.Plt_E)
     d.Data.Plt_F = f.Data.subtitle
     d.Data.Plt_G = d.Data.Plt_F.render(d.Data.Plt_E, True, ss.Data.text, ss.Data.rbg)
     d.Data.Plt_H = d.Data.Plt_G.get_rect()
     d.Data.Plt_H.bottomleft = (lm.Data.x40+10, lm.Data.y600-30)
-    d.Data.frame.blit(d.Data.Plt_G, d.Data.Plt_H)'''
+    d.Data.frame.blit(d.Data.Plt_G, d.Data.Plt_H)
 
     colors_A = ss.Data.colors 
     colors_B = f.Data.subtitle

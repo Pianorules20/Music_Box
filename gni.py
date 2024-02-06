@@ -8,7 +8,7 @@ class Note():
     position = () #2nd item to blit to screen
 
     def __init__(self, frame, xPos, yPos, sound, duration, letterName, octave, instrument, polyOrder) -> None:
-        print('in gni class Note')
+        print('in_gni_class_Note')
         pygame.sprite.Sprite.__init__(self)
         self.frame = frame
         self.image = pygame.Surface((0,0))
@@ -69,11 +69,13 @@ def createNote(currentNote, currentDuration):
     #mySong.Data.current_section.append(music)
     mySong.Data.meter += currentDuration
         #this is where i blit to a surface??
-    cs.Data.notesRemaining -= 1
+    
     '''except Exception as e:
-            print('error in step3 early randomizer with settings...')
+            print('error_in_step3 early randomizer with settings...')
             print(e)'''
-    db.Data.debug_log.append(f' in gni: Note spacial data xPos {xPos} {name}{octave} yPos{height}')
-    db.Data.debug_log.append(f' instance.notesRemaining = {cs.Data.notesRemaining}')
+    info = f'_in_gni:_{xPos}_{name}{octave}_yPos{height}_'
+    print(info)
+    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(f'_in_gni:_instance.notesRemaining = {cs.Data.notesRemaining}')
     # breadcrumb print(f' in gni: Note spacial data xPos {xPos} {name}{octave} yPos{height}') 
     # breadcrumb print(f' instance.notesRemaining = {instance.notesRemaining}')
