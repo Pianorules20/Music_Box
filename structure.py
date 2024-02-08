@@ -7,13 +7,19 @@ class Data():
     
     save_place = cs.Data.notesRemaining
 
+def flip_save_place():
+    Data.save_place = cs.Data.notesRemaining
+
 def randomShortForm():
-    db.Data.debug_log.append('in branches2...random short form')  #breadcrumb
-    for eachVoice in cs.Data.instruments: #debug log 
-        info = print(f'checking length of each voice...{len(eachVoice)}')
-        db.Data.debug_log.append(info)
-    if my.Data.finished == True:
-        checkTranscript = []  #debug log
+    #info = 'in_structure...random_short_form'
+    #print(info)
+    #db.Data.debug_log.append(info)  #breadcrumb
+    #for eachVoice in cs.Data.instruments: #debug log 
+    #    info = f'checking_length_of_each_voice...{len(eachVoice)}'
+    #    print(info)
+    #    db.Data.debug_log.append(info)
+    if Data.save_place < 1:
+        '''checkTranscript = []  #debug log
         for eachSection in my.Data.transcript:
             for eachNote in eachSection:
                 Name = gni.Note.returnLetterName(eachNote)
@@ -21,40 +27,43 @@ def randomShortForm():
                 spacer = ' '
                 checkTranscript.append(Name)
                 checkTranscript.append(Octave)
-                checkTranscript.append(spacer)
-        db.Data.debug_log.append('in branches2 my.Data.finished = True?')
-        db.Data.debug_log.append(f'my.Data.finished = {my.Data.finished}')
-        db.Data.debug_log.append('my recording')
-        localTrace = print(*checkTranscript, sep = '')
-        localTrace = str(localTrace)
-        db.Data.debug_log.append(localTrace)
-        db.Data.debug_log.append('finished branches2 randomShortForm() Gate = "plot_notes" ')
+                checkTranscript.append(spacer)'''
+        #info = f'in_structure.py,_checking_mySong.Data.song_finished__{my.Data.song_finished}'
+        #print(info)
+        #db.Data.debug_log.append(info)
+        #db.Data.debug_log.append('in_structure.py,_print_my_recording')
+        #localTrace = f"*checkTranscript, sep = '' "
+        #print(localTrace)
+        #localTrace = print(*checkTranscript, sep = '')
+        #localTrace = str(localTrace)
+        #db.Data.debug_log.append(localTrace)
+        #db.Data.debug_log.append('finished_structure_randomShortForm()_Gate_=_"plot_notes"_')
         g.Data.current_gate = 'plot_notes'  #!!!!!!
     
     else:
 
-        for eachVoice in cs.Data.instruments:   
+        for eachVoice in cs.Data.instruments:   #i need to change this forLoop into a counter possibly needs an interface
             if len(eachVoice) > 0 :  #only runs if the user has a assigned notes to a particular polyphony
 
                 if Data.save_place > 0 :
                     
                     generate_notes.generate()
+                    Data.save_place -= 1
 
                 else:
                    
                     Data.save_place = cs.Data.notesRemaining #is this correct?
                     cs.transcribe_section() #make certain to add multi-voice functionality to the transcription process.  
                     #should that be in a a transcript interface?
-            
+                    my.Data.meter = 0
             else:
                    
-                my.Data.meter  = 0
+                pass
 
         
         my.Data.transcript.append(cs.Data.current_section) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()
-    my.Data.finished = True  #are you the culprit that turned my boolean to True too early???
     #print(f'in branches2...random short form...checking transcription length {len(my.Data.transcript)}')
     #print(f'my transcript...{my.Data.transcript}')
 def longFormNew():
@@ -111,7 +120,7 @@ def longFormNew():
                                 my.Data.sectionE.append(my.Data.currentSection[eachNote])
 
 def userConstructed(): 
-    print('user constructed')  #breadcrumb 
+    print('user_constructed')  #breadcrumb 
     for xChar in settings.Preferences.structure:
         if xChar in my.Data.generatedStructure:
             pass

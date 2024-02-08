@@ -15,7 +15,7 @@ def plot_notes():
             rectangle.center = (eachNote.xPos - pm.Data.meter, eachNote.yPos)
             d.Data.frame.blit(eachNote.image, rectangle)
     pb.Data.note_count = len(pb.Data.final_copy)
-    g.Data.current = 'playback'
+    g.Data.current_gate = 'playback'
 
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''

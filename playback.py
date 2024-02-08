@@ -1,7 +1,7 @@
 #play.py 
 import playback_meter as pm, gatekeeper as g, timer as t, debug as db, gni #generate_notes_interface
 '''import pni as pni, tones as T, gatekeeper as g'''
-import pygame
+import pygame, sys
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()
@@ -28,33 +28,55 @@ def advance_playback():
 
 def play(): #i will play and pop each plot incrementally from the recording
     
-    t.Data.current = t.Data.slow
+    t.Data.current_timer = t.Data.slow
+    
     if len(Data.final_copy[0]) > 0:
-        
-        print('playing notes')
 
         for eachNote in Data.final_copy[0]:
 
             if eachNote.xPos <= pm.Data.meter:
-                #Data.active_notes.append(eachNote)
+  
+                Sound = gni.Note.returnSound(eachNote) 
+                Data.letterName = gni.Note.returnLetterName(eachNote)
+                Data.octave = gni.Note.returnOctave(eachNote)
+                Data.info = f'Note {Data.letterName}{Data.octave}'
+                print(Data.info)
+                db.Data.debug_log.append(Data.info)
+                #Data.note = tones.Harp.introMusic[eachSound]  
+    
+                try :
+                    
+                    pygame.mixer.find_channel(True)
+                    pygame.mixer.Sound.play(Sound)
+                    #Data.active_notes.append(eachNote)
+                    
+                    the_sound = eachNote.sound
+
+                    #Data.channel_counter += 1
+                    #if Data.channel_counter >=20:
+                        #Data.active_notes.pop()
+                    #else:
+                    #    pass
+
+                    pygame.mixer.find_channel(True)
                 
-                the_sound = eachNote.sound
+                    pygame.mixer.Sound.play(the_sound)
 
-                #Data.channel_counter += 1
-                #if Data.channel_counter >=20:
-                    #Data.active_notes.pop()
-                #else:
-                #    pass
 
-                pygame.mixer.find_channel(True)
-            
-                pygame.mixer.Sound.play(the_sound)
+                    Data.final_copy[0].remove(eachNote)
 
-                Data.final_copy[0].remove(eachNote)
+                    info = 'playing sound in playback.play()'
+                    print(info)
+                    db.Data.debug_log.append(info)
 
-                db.Data.debug_log.append('playing sound in playback.play()')
-
-                
+                except Exception as e:
+                    info = e
+                    print(info)
+                    db.Data.debug_log.append(info)
+                    crash_me_A = pygame.quit()
+                    crash_me_B = sys.exit()
+                    crash_me_A
+                    crash_me_B
             else:
                 pass
             
@@ -64,6 +86,6 @@ def play(): #i will play and pop each plot incrementally from the recording
     else:
 
         pm.reset_meter()
-        g.Data.current = 'post_production'
+        g.Data.current_gate = 'post_production'
 
         #TROUBLESHOOT NOTES I AM ONLY GETTING ONE NOTE AT A TIME WHY IS THAT?

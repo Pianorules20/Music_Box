@@ -1,8 +1,8 @@
 #mySong.py
-import settings as s, random, initializer, debug as db
+import settings as s, random, initializer as init, debug as db
 
 class Data(): #'Trn' stands for 'Transcription'
-    finished = False
+    song_finished = False
     meter = int(0)
     current_section = []
     harmony1 = []
@@ -19,23 +19,29 @@ class Data(): #'Trn' stands for 'Transcription'
     sectionD = []
     sectionE = []
 
-def initializer():
-    initializer.Initializer()
+#def initializer():
+#    init.initialize()
+def flip_finished():
+    Data.song_finished = not Data.song_finished
+    info = f'Data.song_finished = {Data.song_finished}'
+    print(info)
+    db.Data.debug_log.append(info)
 
 def createStructure():
-    newStructureInteger = random.randint(1,5)
+    Data.newStructureInteger = random.randint(1,5)
 
 def nextInstrument():
     s.Data.createRemainingNotes()
+    '''dev warning!!! watchout for me!'''
 
-def advance_meter():
-    Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)
+#def advance_meter():
+#    Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)
     
-def reset_meter():
-    Data.meter = int(0)
+#def reset_meter():
+#    Data.meter = int(0)
 
 def reset_transcript(): # watch out for me!  Trn.finished...
-    Data.finished = False
+    flip_finished()
     Data.current_section = []
     Data.transcript = []
     Data.harmony1 = []
@@ -51,7 +57,8 @@ def reset_transcript(): # watch out for me!  Trn.finished...
     Data.newStructureInteger = int(0)
     Data.targetStructure = []
     Data.meter = int(0)
-    info = print('in mySong.reset_transcript()')
+    info = 'in mySong.reset_transcript()'
+    print(info)
     db.Data.debug_log.append(info)
 
 def resetSection():

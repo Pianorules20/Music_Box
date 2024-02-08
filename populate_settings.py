@@ -1,5 +1,5 @@
 #pDataulates.py
-import settings as s, current_section as cs, random, tones as t, sounds, pygame, gni, debug as db
+import settings as s, current_section as cs, random, tones as t, user_sounds, pygame, gni, debug as db
 
 def createRemainingNotes():
     
@@ -11,14 +11,16 @@ def createRemainingNotes():
     cs.Data.tonic = rando
     Name = t.Tone.returnLetterName(rando)
     Octave = t.Tone.returnOctave(rando)
-    info = print(f'Tonic: {Name}{Octave}')      
+    info = f'Tonic: {Name}{Octave}'
+    print(info)    
     db.Data.debug_log.append(info)                           
         
 def create_tonic():
     print(' ')
     rando = random.choice(s.Data.tonesFor1stInstrument)
     cs.Data.tonic = rando
-    info = print(f'tonic is {cs.Data.tonic}')
+    info = f'tonic is {cs.Data.tonic}'
+    print(info)
     db.Data.debug_log.append(info)
 
 
@@ -37,8 +39,11 @@ def createMotiveTones():
         Octave = str(t.Tone.returnOctave(eachObj))
         motive.append(Octave)
         motive.append(' ')
-    print(f'newly created motive')
-    print(*motive, sep = '')
+    info = 'newly created motive'
+    print(info)
+    info = print(*motive, sep = '')
+    info = info
+    db.Data.debug_log.append(info)
     print('')
 
 def createMotiveRhythm():
@@ -48,7 +53,9 @@ def createMotiveRhythm():
         rando = random.choice(cs.Data.beats)
         newDuration = rando     
         cs.Data.motiveRhythm.append(newDuration)
-    print(f'in populate_settings... motiveRhythm {cs.Data.motiveRhythm}')
+    info = f'in populate_settings... motiveRhythm in current_section {cs.Data.motiveRhythm}'
+    print(info)
+    db.Data.debug_log.append(info)
     print(' ')
 
 def createHarmonies():
@@ -85,7 +92,9 @@ def createCadenza():
     Octave1 = t.Tone.returnOctave(cs.Data.cadenzaUnder)
     Name2 = t.Tone.returnLetterName(cs.Data.cadenzaOver)
     Octave2 = t.Tone.returnOctave(cs.Data.cadenzaOver)
-    print(f'cadenza Under: {Name1}{Octave1}    cadenza Over: {Name2}{Octave2}')
+    info = f'cadenza Under: {Name1}{Octave1}    cadenza Over: {Name2}{Octave2}'
+    print(info)
+    db.Data.debug_log.append(info)
     cadenzaDuration = random.choice(cs.Data.beats)
     index = cs.Data.beats.index(cadenzaDuration)
     #print(f'assigned cadenza pulse in step2...maker {cadenzaDuration}')
@@ -98,6 +107,6 @@ def createCadenza():
 
     
 def set_master_volume(userInteger):
-    for eachObject in sounds.mySounds:
-        Sound = gni.Creation.returnSound(eachObject)
+    for eachObject in user_sounds.mySounds:
+        Sound = gni.Note.returnSound(eachObject)
         pygame.mixer.Sound.set_volume(Sound, userInteger/10)

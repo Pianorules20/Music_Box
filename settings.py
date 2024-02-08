@@ -20,7 +20,7 @@ class Data():
     tonesInstruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
                         tonesFor4thInstrument, tonesFor5thInstrument]
      
-    metronome = 60
+    metronome = 72
     metronomeModifier = 3
     wholeNote = metronome*16
     halfNote = metronome*8
@@ -75,6 +75,8 @@ class Data():
     rigidTempo = False #use me in future to differentiate between 'loose' studying music and 'firm' driven music
 
     volume = 0.3
+
+    repeat_composition = False
     #pygame.mixer.Sound.set_volume(t.Piano.A1, 0.3)
     
     '''def addSounds():

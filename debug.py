@@ -41,6 +41,20 @@ def debug_screen():
     d.Data.splash_D.center = lm.Data.header
     d.Data.frame.blit(d.Data.splash_C, d.Data.splash_D)
 
+    Data.song_finished_A = 'Is Song Finished?'
+    Data.song_finished_B = f.Data.scripted
+    Data.song_finished_C = Data.song_finished_B.render(Data.song_finished_A, True, ss.Data.text, ss.Data.rbg)
+    Data.song_finished_D = Data.song_finished_C.get_rect()
+    Data.song_finished_D.center = lm.Data.x1000, lm.Data.y300
+    d.Data.frame.blit(Data.song_finished_C, Data.song_finished_D)
+    Data.song_finished_E = str(my.Data.song_finished)
+    Data.song_finished_F = f.Data.subtitle
+    Data.song_finished_G = Data.song_finished_F.render(Data.song_finished_E, True, ss.Data.text, ss.Data.rbg)
+    Data.song_finished_H = Data.song_finished_G.get_rect()
+    Data.song_finished_H.center = lm.Data.x1000, lm.Data.y400
+    d.Data.frame.blit(Data.song_finished_G, Data.song_finished_H)
+
+
     d.Data.spacebar1 = 'Press Spacebar to Create and Record'
     d.Data.spacebar2 = f.Data.scripted
     d.Data.spacebar3 = d.Data.spacebar2.render(d.Data.spacebar1, True, ss.Data.text, ss.Data.rbg)
@@ -114,6 +128,7 @@ def debug_screen():
     
     d.Data.Plt_E = str(f'in_debug.py,_pointing_at_structure.py_Data.save_place_{struc.Data.save_place}')
     print(d.Data.Plt_E)
+    Data.debug_log.append(d.Data.Plt_E)
     d.Data.Plt_F = f.Data.subtitle
     d.Data.Plt_G = d.Data.Plt_F.render(d.Data.Plt_E, True, ss.Data.text, ss.Data.rbg)
     d.Data.Plt_H = d.Data.Plt_G.get_rect()

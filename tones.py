@@ -155,4 +155,4 @@ class Harp():
          B6]    
     
     for eachTone in introMusic:
-        pygame.mixer.Sound.set_volume(eachTone.sound, 0.3)
+        pygame.mixer.Sound.set_volume(eachTone.sound, 0.2)

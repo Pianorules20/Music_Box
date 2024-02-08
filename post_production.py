@@ -2,12 +2,18 @@
 import gatekeeper as g, current_section as cs, initializer as init, mySong as my, playback_meter as pm
 
 def print_sheet():
-    
-    cs.reset_instance()
-    #init.Initializer()
-    my.reset_transcript()
-    pm.reset_meter()
-    g.Data.current = 'generate notes'
+    pass
+  
 
 def record_audio():
+    pass
+    # g.Data.current = 'generate notes'
+
+
+def new_instance():
+
+    cs.reset_instance()
+    my.reset_transcript()
+    pm.reset_meter()
+    init.initialize()
     g.Data.current = 'generate notes'

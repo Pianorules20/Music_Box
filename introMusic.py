@@ -18,24 +18,25 @@ def play():
 
     t.Data.current_timer = t.Data.slow
 
-    length = len(tones.Harp.introMusic)
-    
+    #length = len(tones.Harp.introMusic)
 
     for eachSound in tones.Harp.introMusic:
         Sound = tones.Tone.returnSound(eachSound) 
-        Data.letterName = tones.Tone.returnLetterName(Data.note)
-        Data.octave = tones.Tone.returnOctave(Data.note)
-        Data.info = print(f'Note spacial data xPos  {Data.letterName}{Data.octave}')
+        Data.letterName = tones.Tone.returnLetterName(eachSound)
+        Data.octave = tones.Tone.returnOctave(eachSound)
+        Data.info = f'{Data.letterName}{Data.octave}'  # note spacial data
+        print(Data.info)
         db.Data.debug_log.append(Data.info)
-        Data.note = tones.Harp.introMusic[eachSound]  
+        #Data.note = tones.Harp.introMusic[eachSound]  
     
         try :
              
             pygame.mixer.find_channel(True)
-            Data.sound = tones.Tone.returnSound(Data.note)
-            pygame.mixer.Sound.play(Data.sound)
+            #volume = pygame.mixer.Sound.set_volume(0.3)
+            #volume = volume
+            pygame.mixer.Sound.play(Sound)
             #Data.clock.tick(15)
-            #pygame.time.wait(170)
+            pygame.time.wait(125)
         
         except Exception as e:
             

@@ -64,7 +64,7 @@ def menu_screen():
     else:
         pass
 
-    options_A = "Press  'O'  for Options"
+    options_A = "Press  'S'  for  Settings"
     options_B = f.Data.scripted
     options_C = options_B.render(options_A, True, ss.Data.text, ss.Data.rbg)
     options_D = options_C.get_rect()

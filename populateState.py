@@ -1,5 +1,5 @@
 #populateState.py
-import instance as i, mySong as my, settings as s, state, debug as db
+import current_section as i, mySong as my, settings as s, state, debug as db
 
 def recordState():
 
@@ -93,8 +93,9 @@ def advanceCounter():
     try:
         state.Data.localCounter += 1
     except Exception as e:
-        message = print('Cannot advance local counter in populateState()')
-        db.Data.debug_log.append(message)
+        info = 'Cannot advance local counter in populateState()'
+        print(info)
+        db.Data.debug_log.append(info)
 
 def goToState(n):
     i.Data.sectionWritten = state.Data.sectionWritten[n]

@@ -2,7 +2,7 @@
 
 import pygame
 import sys
-import objects, display as d, initializer as init, introMusic, gatekeeper as g, timer as t
+import display as d, initializer as init, introMusic, gatekeeper as g, timer as t
 import display_interface as di, screen_saver as ss, layout_menu_style as lm, layout_playback_style as lp
 import text_handler as th, debug as db, fonts as f
 
@@ -15,8 +15,8 @@ pygame.mixer.set_num_channels(50)
 lm.Data()
 lp.Data()
 init.initialize()
-objects.Buttons.populate() #this shows the opening screen
-print(objects.Buttons.descriptions)
+#objects.Buttons.populate() #this shows the opening screen
+#print(objects.Buttons.descriptions)
 d.Data.updateScreen()
 pygame.display.update()
 introMusic.play()
@@ -40,18 +40,18 @@ class mainLoop():
     
     while on:
 
-        clock.tick(t.Data.current)
-        clock_titleA = "clock speed"
+        clock.tick(t.Data.current_timer)
+        '''clock_titleA = "clock speed"
         clock_titleB = f.Data.scripted
         clock_titleC = clock_titleB.render(clock_titleA, True, ss.Data.text, ss.Data.rbg)
         clock_titleD = clock_titleC.get_rect()
         clock_titleD.bottomleft = (lm.Data.x10, lm.Data.x100)
         #blitted on 'debug_page_2'
-        clock_currentA = str(t.Data.current)
+        clock_currentA = str(t.Data.current_timer)
         clock_currentB = f.Data.subtitle
         clock_currentC = clock_currentB.render(clock_currentA, True, ss.Data.text, ss.Data.rbg)
         clock_currentD = clock_titleC.get_rect()
-        clock_currentD
+        clock_currentD'''
 
         key_press = pygame.key.get_pressed()
 
@@ -66,25 +66,28 @@ class mainLoop():
 
 
             if  key_press[pygame.K_SPACE]:
-                info = print('Spacebar Pressed')
+                info = 'Spacebar Pressed'
                 db.Data.debug_log.append(info)
-                if g.Data.current == 'pause':
-                    g.Data.current = g.Data.saved_place
+                if g.Data.current_gate == 'pause':
+                    g.Data.current_gate = g.Data.saved_place
                 else:
-                    info = print('th.Data.scroll_pages = True')
+                    info = 'th.Data.scroll_pages = True'
+                    print(info)
                     db.Data.debug_log.append(info)
                     th.Data.scroll_pages == True 
                     th.scroll_page()
             elif key_press[pygame.K_ESCAPE]: 
-                info = print("Pause program")
-                db.Data.debug_log.append(info)
-                if g.Data.current == 'pause':
+                info = "Pause program"
+                print(info)
+                #db.Data.debug_log.append(info)
+                if g.Data.current_gate == 'pause':
                     pass
                 else:
-                    g.Data.saved_place = g.Data.current
-                    g.Data.current = 'pause'
+                    g.Data.saved_place = g.Data.current_gate
+                    g.Data.current_gate = 'pause'
             elif key_press[pygame.K_RETURN]:
-                info = print("RETURN pressed")
+                info = "RETURN pressed"
+                print(info)
                 db.Data.debug_log.append(info)
                 if d.Data.quitting == True:
                     db.Data.debug_log.append('Exit Program')
@@ -92,115 +95,84 @@ class mainLoop():
                     sys.exit
                 else:
                         pass
-            
-            elif key_press[pygame.K_a]:
-                info = print(" 'A' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_b]:
-                info = print(" 'B' pressed ")
-                db.Data.debug_log.append(info)
+                
             elif key_press[pygame.K_c]:
-                info = print(" 'C' pressed ")
+                info = " 'C' pressed "
+                print(info)
                 db.Data.debug_log.append(info)
                 if key_press[pygame.K_r]:
-                    info = print(" Credits accessed ")
+                    info = " Credits accessed "
+                    print(info)
                     db.Data.debug_log.append(info)
                     if di.Data.universal_override == False:
                         di.Data.universal_override = True
-                        di.Data.override = 'credits'
+                        di.Data.override_screen = 'credits'
                     else:
                         di.Data.universal_override = False
-                        di.Data.current = 'menu'
+                        di.Data.current_screen = 'menu'
                 else:
                     pass
             elif key_press[pygame.K_d]:
-                info = print(" 'B' pressed ")
+                info = " 'B' pressed "
+                print(info)
                 db.Data.debug_log.append(info)
                 if key_press[pygame.K_d]:
-                    info = print(" D pressed ")
+                    info = " D pressed "
+                    print(info)
+                    db.Data.debug_log.append(info)
                     #db.Data.debug_log.append(info)
                     #if key_press[pygame.K_g]:
                         #info = print("Debug accessed")
                         #db.Data.debug_log.append(info)
                     if di.Data.universal_override == False:
                         di.Data.universal_override = True
-                        di.Data.override = 'debug'
+                        di.Data.override_screen = 'debug'
                     else:
                         di.Data.universal_override = False
-                        di.Data.current = 'menu'
+                        di.Data.current_screen = 'menu'
                 else:                        
                     pass
-                #else:
-                #    pass
-            elif key_press[pygame.K_e]:
-                info = print(" 'E' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_f]:
-                info = print(" 'F' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_g]:
-                info = print(" 'G' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_h]:
-                info = print(" 'H' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_i]:
-                info = print(" 'I' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_j]:
-                info = print(" 'J' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_k]:
-                info = print(" 'K' pressed ")
-                db.Data.debug_log.append(info)
+            
             elif key_press[pygame.K_l]:
-                info = print(" 'L' pressed ")
-                #db.Data.debug_log.append(info)
+                info = " 'L' pressed "
+                print(info)
+                db.Data.debug_log.append(info)
                 if key_press[pygame.K_g]:
-                    #info = print('debug log accessed')
-                    #db.Data.debug_log.append(info)
+                    info = 'debug log accessed'
+                    print(info)
+                    db.Data.debug_log.append(info)
                     if di.Data.universal_override == False:
                         di.Data.universal_override = True
-                        di.Data.override = 'debug log'
+                        di.Data.override_screen = 'debug log'
                     else:
                         di.Data.universal_override = False
-                        di.Data.current = 'debug'
+                        di.Data.current_screen = 'debug'
                 else:
                     pass
-            elif key_press[pygame.K_m]:
-                info = print(" 'M' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_n]:
-                info = print(" 'N' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_o]:
-                info = print(" 'O' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_p]:
-                info = print(" 'P' pressed ")
-                db.Data.debug_log.append(info)
+              
             elif key_press[pygame.K_q]:
-                info = print(" 'Q' pressed ")
+                info = " 'Q' pressed "
+                print(info)
                 db.Data.debug_log.append(info)
                 if d.Data.quitting == False:
                     d.Data.quitting = True
                 else:
                     d.Data.quitting = False
-            elif key_press[pygame.K_r]:
-                info = print(" 'R' pressed ")
-                db.Data.debug_log.append(info)
+                
             elif key_press[pygame.K_s]:
-                info = print(" 'S' pressed ")
+                info = " 'S' pressed "
+                print(info)
                 db.Data.debug_log.append(info)
-                db.Data.debug_log.append(" settings accessed ")
+                db.Data.debug_log.append("_settings_accessed_")
                 if di.Data.universal_override == False:
                     di.Data.universal_override = True
-                    di.Data.override = 'settings'
+                    di.Data.override_screen = 'settings'
                 else:
                     di.Data.universal_override = False
-                    di.Data.current = 'menu'
+                    di.Data.current_screen = 'menu'
             elif key_press[pygame.K_t]:
-                info = print(" 'T' pressed ")
+                info = " 'T' pressed "
+                print(info)
                 db.Data.debug_log.append(info)
                 if di.Data.universal_override == True:
                     if db.Data.debug_trace == False:
@@ -209,30 +181,10 @@ class mainLoop():
                         db.Data.debug_trace = False
                 else:
                     pass   
-            elif key_press[pygame.K_u]:
-                info = print(" 'U' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_v]:
-                info = print(" 'V' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_w]:
-                info = print(" 'w' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_x]:
-                info = print(" 'X' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_y]:
-                info = print(" 'Y' pressed ")
-                db.Data.debug_log.append(info)
-            elif key_press[pygame.K_z]:
-                info = print(" 'Z' pressed ")
-                db.Data.debug_log.append(info)
-            #inp.keyboard_inputs()
-                
         ss.advance()
         pygame.event.pump() 
         d.Data.updateScreen()
-        g.passGate(g.Data.current)
+        g.passGate(g.Data.current_gate)
 
 pygame.quit()
 '''Credits:

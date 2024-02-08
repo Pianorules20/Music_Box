@@ -1,6 +1,7 @@
 #screen_saver.py
 
 class Data():
+    
     red = 180
     blue = 180
     green = 40

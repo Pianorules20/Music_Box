@@ -1,4 +1,4 @@
-import current_section as cs, settings as s, populate_settings as ps
+import current_section as cs, settings as s, populate_settings as ps, debug as db
 import random
 
 class Data():
@@ -23,7 +23,9 @@ def initialize():
     else:
         cs.Data.motive = s.Data.motiveTones
         cs.Data.motiveInteger = len(cs.Data.motive)
-    print(f'in initializer: length of motive: {len(cs.Data.motive)}')
+    info = f'in initializer: length of motive: {len(cs.Data.motive)}'
+    print(info)
+    db.Data.debug_log.append(info)
 
     cs.Data.beats = s.Data.beats
     cs.Data.metronome = s.Data.metronome
@@ -32,7 +34,9 @@ def initialize():
         ps.createMotiveRhythm()
     else:
         cs.Data.motiveRhythm = s.Data.motiveRhythm
-    print(f'in initializer: length of motive rhythm:{len(cs.Data.motiveRhythm)} ')
+    info = f'in initializer: length of motive rhythm:{len(cs.Data.motiveRhythm)}'
+    print(info)
+    db.Data.debug_log.append(info)
     print(' ')
 
     if s.Data.cadenza == 'Standard':
@@ -48,14 +52,17 @@ def initialize():
         ps.createRemainingNotes()
     else:
         cs.Data.notesRemaining = s.Data.notesRemaining
-    print(f'in initializer: notes remaining {cs.Data.notesRemaining}')
+    info = f'in initializer: notes remaining {cs.Data.notesRemaining}'
+    print(info)
+    db.Data.debug_log.append(info)
 
     if s.Data.harmonies == 'Standard':
         ps.createHarmonies()
     else:
         cs.Data.harmony1 = s.Data.harmony1
-        cs.Data = s.Data.harmony2
+        cs.Data.harmony2 = s.Data.harmony2
         cs.Data.harmony3 = s.Data.harmony3
         cs.Data.harmony4 = s.Data.harmony4
-    
-    print(s.Data.structure)
+    info = f'in initializer: refer to settings.Data.structure {s.Data.structure}'
+    print(info)
+    db.Data.debug_log.append(info)

@@ -7,4 +7,4 @@ class Data():
     fast = 300
     slow = s.Data.metronome/s.Data.metronomeModifier
 
-    current = fast
+    current_timer = fast
