@@ -3,10 +3,15 @@ import mySong as my, display as d, playback as pb, playback_meter as pm
 import gni, pni, debug as db, gatekeeper as g
 
 class Data():
-    pass
+   
+    counter = int(0)
 
+def reset_counter():
+    Data.counter = int(0)
+    
 def plot_notes():
     #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correct
+
     for eachSection in my.Data.transcript:
         pb.Data.final_copy.append(eachSection)
         for eachNote in eachSection:
@@ -14,7 +19,9 @@ def plot_notes():
             rectangle = eachNote.image.get_rect()
             rectangle.center = (eachNote.xPos - pm.Data.meter, eachNote.yPos)
             d.Data.frame.blit(eachNote.image, rectangle)
-    pb.Data.note_count = len(pb.Data.final_copy)
+            Data.counter += 1
+    pb.Data.note_count = Data.counter
+    reset_counter()
     g.Data.current_gate = 'playback'
 
 

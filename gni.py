@@ -73,7 +73,7 @@ def createNote(currentNote, currentDuration):
     '''except Exception as e:
             print('error_in_step3 early randomizer with settings...')
             print(e)'''
-    info = f'_in_gni:_{xPos}_{name}{octave}_yPos{height}_'
+    info = f'_in_gni:_xPos_{name}{octave}_yPos_{height}_'
     print(info)
     db.Data.debug_log.append(info)
     #db.Data.debug_log.append(f'_in_gni:_instance.notesRemaining = {cs.Data.notesRemaining}')

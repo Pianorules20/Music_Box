@@ -15,6 +15,7 @@ class Data():
     current_section = []
     channel_counter = int(0)
     active_notes = []
+    note_count = int(0)
     
 def reset_playback():
     Data.note_copy = []
@@ -68,6 +69,7 @@ def play(): #i will play and pop each plot incrementally from the recording
                     info = 'playing sound in playback.play()'
                     print(info)
                     db.Data.debug_log.append(info)
+                    Data.note_count -= 1
 
                 except Exception as e:
                     info = e
@@ -84,7 +86,7 @@ def play(): #i will play and pop each plot incrementally from the recording
             #for eachTone in eachIncrement:
 
     else:
-
+        t.Data.current_timer = t.Data.fast
         pm.reset_meter()
         g.Data.current_gate = 'post_production'
 

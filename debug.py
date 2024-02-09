@@ -9,6 +9,7 @@ class Data():
 
 def reset():
     Data.debug_log = ['begin program']
+
 def print_log():
     print(Data.debug_log)
 
@@ -16,24 +17,6 @@ def debug_screen():
     #Data.debug_log.append('debug_screen')
     d.Data.frame.fill(ss.Data.rbg, lm.Data.frame_data)
     # pygame.draw.rect(d.Data.screen, (100,100,100), (300,800, 100,180), 3,25)
-
-    ''' artifact for aqcuiring system available fonts
-        !!! important note !!! the devs seem to have 'hidden' some of the more proprietary fonts with
-        an 'noto' prefix to some of the fonts.  This prefix must be removed for them to function although 
-        they do not actually function as the fonts themselves rather as a smaller normal font
-    Data.myFonts = pygame.font.get_fonts()
-    Data.myFontsA = str(Data.myFonts)
-    Data.myFontsB = pygame.font.Font('freesansbold.ttf', 24)
-    Data.myFontsC = Data.myFontsB.render(Data.myFontsA, True, ss.Data.text, ss.Data.rbg)
-    Data.myFontsD = Data.myFontsC.get_rect()
-    Data.myFontsD.center = (di.Data.width*.5, di.Data.height*0.9)
-    d.Data.frame.blit(Data.myFontsC, Data.myFontsD)
-    if Data.fonts_gate == True:
-        print(Data.myFontsA)
-        Data.fonts_gate = False
-    else:
-        pass'''
-
     d.Data.splash_A = 'DEBUG SCREEN'
     d.Data.splash_B = f.Data.title
     d.Data.splash_C = d.Data.splash_B.render(d.Data.splash_A, True, ss.Data.text, ss.Data.rbg)
@@ -51,7 +34,7 @@ def debug_screen():
     Data.song_finished_F = f.Data.subtitle
     Data.song_finished_G = Data.song_finished_F.render(Data.song_finished_E, True, ss.Data.text, ss.Data.rbg)
     Data.song_finished_H = Data.song_finished_G.get_rect()
-    Data.song_finished_H.center = lm.Data.x1000, lm.Data.y400
+    Data.song_finished_H.center = lm.Data.x1000, lm.Data.y350
     d.Data.frame.blit(Data.song_finished_G, Data.song_finished_H)
 
 
@@ -117,7 +100,7 @@ def debug_screen():
     #d.Data.tracer2d = d.Data.tracer2c.get_rect()
     th.reset_text()
     th.handle_strings(d.Data.tracer2a, lm.Data.x1000, lm.Data.y450, lm.Data.x1000, lm.Data.x2000-10, \
-                      lm.Data.y900, f.Data.subtitle, multiple = 'yes')
+                      lm.Data.y900, f.Data.subtitle, auto_scroll = 'no')
 
     d.Data.Plt_A = 'plotted notes'
     d.Data.Plt_B = f.Data.scripted
@@ -127,8 +110,8 @@ def debug_screen():
     d.Data.frame.blit(d.Data.Plt_C, d.Data.Plt_D)
     
     d.Data.Plt_E = str(f'in_debug.py,_pointing_at_structure.py_Data.save_place_{struc.Data.save_place}')
-    print(d.Data.Plt_E)
-    Data.debug_log.append(d.Data.Plt_E)
+    #print(d.Data.Plt_E)
+    #Data.debug_log.append(d.Data.Plt_E)
     d.Data.Plt_F = f.Data.subtitle
     d.Data.Plt_G = d.Data.Plt_F.render(d.Data.Plt_E, True, ss.Data.text, ss.Data.rbg)
     d.Data.Plt_H = d.Data.Plt_G.get_rect()
@@ -149,13 +132,19 @@ def debug_screen():
     d.Data.debug_D.bottomleft = (lm.Data.x10, lm.Data.y400)
     d.Data.frame.blit(d.Data.debug_C, d.Data.debug_D)
 
-    '''add a notification for the section counter'''
-    Data.section_counter_A = 'section counter'      
-    Data.section_counter_B = f.Data.scripted
-    Data.section_counter_C = Data.section_counter_B.render(Data.section_counter_A, True, ss.Data.text, ss.Data.rbg)
-    Data.section_counter_D = Data.section_counter_C.get_rect()
-    Data.section_counter_D.bottomleft = (lm.Data.x500-60, lm.Data.y550-30)
-    d.Data.frame.blit(Data.section_counter_C, Data.section_counter_D)
+    '''add a notification for the note counter'''
+    Data.note_counter_A = 'note counter'      
+    Data.note_counter_B = f.Data.scripted
+    Data.note_counter_C = Data.note_counter_B.render(Data.note_counter_A, True, ss.Data.text, ss.Data.rbg)
+    Data.note_counter_D = Data.note_counter_C.get_rect()
+    Data.note_counter_D.bottomleft = (lm.Data.x500-60, lm.Data.y550-30)
+    d.Data.frame.blit(Data.note_counter_C, Data.note_counter_D)
+    Data.note_counter_E = str(pb.Data.note_count)
+    Data.note_counter_F = f.Data.scripted
+    Data.note_counter_G = Data.note_counter_F.render(Data.note_counter_E, True, ss.Data.text, ss.Data.rbg)
+    Data.note_counter_H = Data.note_counter_G.get_rect()
+    Data.note_counter_H.bottomleft = (lm.Data.x700-20, lm.Data.y550-30)
+    d.Data.frame.blit(Data.note_counter_G, Data.note_counter_H)
     
                       
     '''Data.local_counter_A = str(pni.Data.section_local_counter)
@@ -175,4 +164,5 @@ def debug_screen():
     Data.transcript_copy_F = f.Data.subtitle
     Data.transcript_copy_G = Data.transcript_copy_F.render(Data.transcript_copy_E, True, ss.Data.text, ss.Data.rbg)
     th.reset_text()
-    th.handle_strings(Data.transcript_copy_E, lm.Data.x10, lm.Data.y750, lm.Data.x10, lm.Data.x900-25, lm.Data.y1000-10, f.Data.subtitle, multiple = 'yes')
+    th.handle_strings(Data.transcript_copy_E, lm.Data.x10, lm.Data.y750, lm.Data.x10, lm.Data.x900-25, lm.Data.y1000-10, \
+                     f.Data.subtitle, auto_scroll = 'no')

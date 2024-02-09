@@ -37,7 +37,7 @@ def scroll_reset():
     for each in lm.Data.y_values:
         each = lm.Data.originalY[each]
 
-def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, multiple):
+def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, auto_scroll):
     Data.text = myText
     Data.word = Data.text.split(' ')
     Data.start = xAxis
@@ -52,15 +52,18 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, 
         textC = textB.render(textA, True, Data.current_color, ss.Data.rbg)
         Data.offset = textC.get_width()
         if Data.xAxis > rightEdge:
-            Data.xAxis = Data.start
+            Data.xAxis = leftEdge
             Data.yAxis += 50
         else:
             pass
         if Data.yAxis > bottomEdge:
-            if Data.scroll_pages == True:
-                Data.xAxis = Data.start
-                Data.current_color = Data.multi_colors[2]
-                Data.yAxis -= 900
+            if auto_scroll == 'yes':
+                d.Data.frame.fill(ss.Data.rbg)
+                Data.xAxis = leftEdge
+                Data.yAxis = yAxis
+                Data.current_color = Data.multi_colors[1]
+            else:
+                pass
         else:
             pass
         textD = textC.get_rect()    

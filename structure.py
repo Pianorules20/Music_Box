@@ -1,6 +1,6 @@
 #Step1.py
 
-import settings, random, mySong as my, playback, current_section as cs, generate_notes, gni as gni, debug as db
+import settings, random, mySong as my, playback, current_section as cs, generate_notes as g_n, gni as gni, debug as db
 import gatekeeper as g, debug as db
 
 class Data():
@@ -47,8 +47,8 @@ def randomShortForm():
 
                 if Data.save_place > 0 :
                     
-                    generate_notes.generate()
-                    Data.save_place -= 1
+                    g_n.generate()
+                    Data.save_place -= g_n.Data.notes_generated
 
                 else:
                    
@@ -90,7 +90,7 @@ def longFormNew():
             if cs.Data.sectionWritten == True: # checks for section Written
                 my.Data.generatedStructure.append(newLetter)
                 if my.Data.generatedStructure == my.Data.targetStructure:
-                    playback.Player.play()
+                    playback.Data.play()
                     #printer._print_PDF()  include a pdf printout of the sheet music
                     my.Data.resetInstance()
                     my.Data.transcriptReset()
@@ -98,7 +98,7 @@ def longFormNew():
                     my.Data.iReset()
             else:
                 if cs.notesRemaining >= 0:
-                    generate_notes.Generator.generate()
+                    g_n.generate()
                 else:
                     cs.Data.sectionWritten = True
                     my.Data.generatedStructure.append(newLetter)
