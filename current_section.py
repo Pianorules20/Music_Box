@@ -1,22 +1,22 @@
 #instance.py
-import settings as s, mySong as my, current_section as cs
+import settings as s, mySong as m_s, current_section as cs
 class Data():
 
     current_section = []
     sectionWritten = False
 
-    tonesFor1stInstrument = s.Data.tonesFor1stInstrument
-    volumeFor1stInstrument = s.Data.volumeFor1stInstrument
-    tonesFor2ndInstrument = s.Data.tonesFor2ndInstrument
-    volumeFor2ndInstrument = s.Data.volumeFor2ndInstrument
-    tonesFor3rdInstrument = s.Data.tonesFor3rdInstrument
-    volumeFor3rdInstrument = s.Data.volumeFor3rdInstrument
-    tonesFor4thInstrument = s.Data.tonesFor4thInstrument
-    volumeFor4thInstrument = s.Data.volumeFor4thInstrument
-    tonesFor5thInstrument = s.Data.tonesFor5thInstrument
-    volumeFor5thInstrument = s.Data.volumeFor5thInstrument
-    instruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
-                tonesFor4thInstrument, tonesFor5thInstrument]
+    tonesFor1stVoice = s.Data.tonesFor1stVoice
+    volumeFor1stVoice = s.Data.volumeFor1stVoice
+    tonesFor2ndVoice = s.Data.tonesFor2ndVoice
+    volumeFor2ndVoice = s.Data.volumeFor2ndVoice
+    tonesFor3rdVoice = s.Data.tonesFor3rdVoice
+    volumeFor3rdVoice = s.Data.volumeFor3rdVoice
+    tonesFor4thVoice = s.Data.tonesFor4thVoice
+    volumeFor4thVoice = s.Data.volumeFor4thVoice
+    tonesFor5thVoice = s.Data.tonesFor5thVoice
+    volumeFor5thVoice = s.Data.volumeFor5thVoice
+    voices_list = [tonesFor1stVoice, tonesFor2ndVoice, tonesFor3rdVoice, \
+                tonesFor4thVoice, tonesFor5thVoice]
 
     #voices = int(0) #does not reset with instance reset
 
@@ -89,7 +89,8 @@ def reset_instance():
 
     Data.notesRemaining = int(1)
     
-def transcribe_section():
+def transcribe_voice():
 
     for eachNote in Data.current_section:
-        my.Data.current_section.append(eachNote)
+        m_s.Data.current_section.append(eachNote)
+        Data.current_section = []

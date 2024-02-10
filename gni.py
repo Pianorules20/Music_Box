@@ -1,5 +1,5 @@
 #gni means 'generate notes interface'
-import settings as s, mySong, current_section as cs, tones as t, pygame.mixer, display as d, debug as db
+import settings as s, mySong as m_s, current_section as c_s, tones as t, pygame.mixer, display as d, debug as db
 
 class Note():
 
@@ -57,17 +57,17 @@ class Note():
 def createNote(currentNote, currentDuration):
     name = t.Tone.returnLetterName(currentNote)
     octave = t.Tone.returnOctave(currentNote)
-    xPos = mySong.Data.meter
+    xPos = m_s.Data.meter
     height = t.Tone.returnClefHeight(currentNote)
     sound = t.Tone.returnSound(currentNote)
     music = Note(sound = sound, duration = currentDuration, \
         letterName = name, octave = octave,\
             instrument =  s.Data.instrument1, polyOrder = s.Data.polyOrderList[0], \
-        frame = 'images/quarterNoteCorrect.png', xPos = mySong.Data.meter, \
+        frame = 'images/quarterNoteCorrect.png', xPos = m_s.Data.meter, \
             yPos = height)
-    cs.Data.current_section.append(music)
+    c_s.Data.current_section.append(music)
     #mySong.Data.current_section.append(music)
-    mySong.Data.meter += currentDuration
+    m_s.Data.meter += currentDuration
         #this is where i blit to a surface??
     
     '''except Exception as e:

@@ -1,14 +1,42 @@
 #Step1.py
 
-import settings, random, mySong as my, playback, current_section as cs, generate_notes as g_n, gni as gni, debug as db
+import settings, random, mySong as m_s, playback, current_section as c_s, generate_notes as g_n, gni as gni, debug as db
 import gatekeeper as g, debug as db
 
 class Data():
     
-    save_place = cs.Data.notesRemaining
+    save_place = c_s.Data.notesRemaining
+    voice_counter = int(0)
+    song_finished = False
 
 def flip_save_place():
-    Data.save_place = cs.Data.notesRemaining
+    Data.save_place = c_s.Data.notesRemaining
+
+'''def advance_voice():
+    try:
+        Data.voice_counter += 1
+    except Exception as e:
+        print(e)
+        db.Data.debug_log.append(e)'''
+
+def advance_data():
+    
+    try:
+
+        Data.voice_counter = int(0)
+    
+    except:
+
+        info = 'last_voice_finished'
+        
+        print(info)
+        
+        db.Data.debug_log.append(info)
+
+        song_finished = not song_finished
+
+        Data.save_place = c_s.Data.notesRemaining
+
 
 def randomShortForm():
     #info = 'in_structure...random_short_form'
@@ -18,7 +46,10 @@ def randomShortForm():
     #    info = f'checking_length_of_each_voice...{len(eachVoice)}'
     #    print(info)
     #    db.Data.debug_log.append(info)
-    if Data.save_place < 1:
+    
+    
+    
+    if Data.song_finished == True:
         '''checkTranscript = []  #debug log
         for eachSection in my.Data.transcript:
             for eachNote in eachSection:
@@ -42,89 +73,94 @@ def randomShortForm():
     
     else:
 
-        for eachVoice in cs.Data.instruments:   #i need to change this forLoop into a counter possibly needs an interface
-            if len(eachVoice) > 0 :  #only runs if the user has a assigned notes to a particular polyphony
+        #for eachVoice in cs.Data.instruments:   #i need to change this forLoop into a counter possibly needs an interface
 
-                if Data.save_place > 0 :
-                    
-                    g_n.generate()
-                    Data.save_place -= g_n.Data.notes_generated
+        current_voice = c_s.Data.voices_list[Data.voice_counter]
+        if len(current_voice) > 0:
 
-                else:
-                   
-                    Data.save_place = cs.Data.notesRemaining #is this correct?
-                    cs.transcribe_section() #make certain to add multi-voice functionality to the transcription process.  
-                    #should that be in a a transcript interface?
-                    my.Data.meter = 0
+            if Data.save_place > 0 :
+                
+                g_n.generate(current_voice)
+                
+                Data.save_place -= g_n.Data.notes_generated
+
             else:
-                   
-                pass
+                
+                c_s.transcribe_voice() 
+                
+                m_s.Data.meter = 0
+        
+        else:
+                
+            pass
+    
+        advance_data()
 
         
-        my.Data.transcript.append(cs.Data.current_section) #pay careful attention as this is now a list \
+        m_s.Data.transcript.append(c_s.Data.current_section) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()
     #print(f'in branches2...random short form...checking transcription length {len(my.Data.transcript)}')
     #print(f'my transcript...{my.Data.transcript}')
 def longFormNew():
     #print('long form new')   #breadcrumb
-    if len(my.Data.generatedStructure) == 0: # this indicates a blank structure 
-        my.Data.createStructure()    # this creates an integer length for the new structure
+    if len(m_s.Data.generatedStructure) == 0: # this indicates a blank structure 
+        m_s.Data.createStructure()    # this creates an integer length for the new structure
     else:
         pass
-    while my.Data.newStructureInteger > 0: #this is a counter variable for the new structure
+    while m_s.Data.newStructureInteger > 0: #this is a counter variable for the new structure
         newLetter = random.choice(['A','B','C','D','E']) #randomizer
-        if newLetter in my.Data.generatedStructure: #checks for duplicate section
+        if newLetter in m_s.Data.generatedStructure: #checks for duplicate section
             match newLetter: #adds duplicate to final transcript
                 case 'A':
-                    my.Data.transcript.append(my.Data.sectionA)
+                    m_s.Data.transcript.append(m_s.Data.sectionA)
                 case 'B':
-                    my.Data.transcript.append(my.Data.sectionB)
+                    m_s.Data.transcript.append(m_s.Data.sectionB)
                 case 'C':
-                    my.Data.transcript.append(my.Data.sectionC)
+                    m_s.Data.transcript.append(m_s.Data.sectionC)
                 case 'D':
-                    my.Data.transcript.append(my.Data.sectionD)
+                    m_s.Data.transcript.append(m_s.Data.sectionD)
                 case 'E':
-                    my.Data.transcript.append(my.Data.sectionE)
+                    m_s.Data.transcript.append(m_s.Data.sectionE)
         else:    
-            if cs.Data.sectionWritten == True: # checks for section Written
-                my.Data.generatedStructure.append(newLetter)
-                if my.Data.generatedStructure == my.Data.targetStructure:
+            if c_s.Data.sectionWritten == True: # checks for section Written
+                m_s.Data.generatedStructure.append(newLetter)
+                if m_s.Data.generatedStructure == m_s.Data.targetStructure:
                     playback.Data.play()
                     #printer._print_PDF()  include a pdf printout of the sheet music
-                    my.Data.resetInstance()
-                    my.Data.transcriptReset()
+                    m_s.Data.resetInstance()
+                    m_s.Data.transcriptReset()
                 else:
-                    my.Data.iReset()
+                    m_s.Data.iReset()
             else:
-                if cs.notesRemaining >= 0:
+                if c_s.notesRemaining >= 0:
                     g_n.generate()
                 else:
-                    cs.Data.sectionWritten = True
-                    my.Data.generatedStructure.append(newLetter)
+                    c_s.Data.sectionWritten = True
+                    m_s.Data.generatedStructure.append(newLetter)
                     match newLetter:
                         case 'A':
-                            for eachNote in my.Data.currentSection:
-                                my.Data.sectionA.append(my.Data.currentSection[eachNote])
+                            for eachNote in m_s.Data.currentSection:
+                                m_s.Data.sectionA.append(m_s.Data.currentSection[eachNote])
                         case 'B':
-                            for eachNote in my.Data.currentSection:
-                                my.Data.sectionB.append(my.Data.currentSection[eachNote])
+                            for eachNote in m_s.Data.currentSection:
+                                m_s.Data.sectionB.append(m_s.Data.currentSection[eachNote])
                         case 'C':
-                            for eachNote in my.Data.currentSection:
-                                my.Data.sectionC.append(my.Data.currentSection[eachNote])
+                            for eachNote in m_s.Data.currentSection:
+                                m_s.Data.sectionC.append(m_s.Data.currentSection[eachNote])
                         case 'D':
-                            for eachNote in my.Data.currentSection:
-                                my.Data.sectionD.append(my.Data.currentSection[eachNote])
+                            for eachNote in m_s.Data.currentSection:
+                                m_s.Data.sectionD.append(m_s.Data.currentSection[eachNote])
                         case 'E':
-                            for eachNote in my.Data.currentSection:
-                                my.Data.sectionE.append(my.Data.currentSection[eachNote])
+                            for eachNote in m_s.Data.currentSection:
+                                m_s.Data.sectionE.append(m_s.Data.currentSection[eachNote])
 
 def userConstructed(): 
     print('user_constructed')  #breadcrumb 
     for xChar in settings.Preferences.structure:
-        if xChar in my.Data.generatedStructure:
+        if xChar in m_s.Data.generatedStructure:
             pass
             #mySong.Data.melody = mySong.Data.total
             #mySong.Data.durations = mySong.Data.totalDurations
         else:
-            my.Data.generatedStructure.append(xChar)
+            m_s.Data.generatedStructure.append(xChar)
