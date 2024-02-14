@@ -1,5 +1,5 @@
 #menu.py
-import pygame, display as d, layout_menu_style as lm, fonts as f, screen_saver as ss 
+import display as d, layout_menu_style as lm, fonts as f, screen_saver as ss 
 
 class Data():
     null = ''

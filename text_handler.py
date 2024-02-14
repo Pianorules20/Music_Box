@@ -1,5 +1,5 @@
 #textHandler.py
-import pygame, screen_saver as ss, display as d, layout_menu_style as lm
+import screen_saver as s_s, display as d, layout_menu_style as l_m
 
 class Data():
     #use the individual screens to update the Data.text
@@ -9,8 +9,8 @@ class Data():
     offset = 0
     #right_edge = 0
     color_counter = int(0)
-    current_color = ss.Data.text
-    multi_colors = ss.Data.color_list
+    current_color = s_s.Data.text
+    multi_colors = s_s.Data.color_list
     scroll_pages = False
 
 '''def advance():
@@ -24,20 +24,20 @@ def reset_text():
     Data.yAxis = 650
     Data.offset = 0
     Data.color_counter = int(0)
-    Data.current_color = ss.Data.text
+    Data.current_color = s_s.Data.text
     #di.Data.scroll_pages = False
 
 def scroll_page():
     d.Data.background = d.Data.frame.fill((180,180,40),(0,0, d.Data.width, d.Data.height))
-    for each in lm.Data.y_values:
+    for each in l_m.Data.y_values:
         each -= 900
         
 
 def scroll_reset():
-    for each in lm.Data.y_values:
-        each = lm.Data.originalY[each]
+    for each in l_m.Data.y_values:
+        each = l_m.Data.originalY[each]
 
-def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, multiple):
+def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, auto_scroll):
     Data.text = myText
     Data.word = Data.text.split(' ')
     Data.start = xAxis
@@ -49,18 +49,21 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, 
         Data.xAxis += Data.offset
         textA = eachWord
         textB = font
-        textC = textB.render(textA, True, Data.current_color, ss.Data.rbg)
+        textC = textB.render(textA, True, Data.current_color, s_s.Data.rbg)
         Data.offset = textC.get_width()
         if Data.xAxis > rightEdge:
-            Data.xAxis = Data.start
+            Data.xAxis = leftEdge
             Data.yAxis += 50
         else:
             pass
         if Data.yAxis > bottomEdge:
-            if Data.scroll_pages == True:
-                Data.xAxis = Data.start
-                Data.current_color = Data.multi_colors[2]
-                Data.yAxis -= 900
+            if auto_scroll == 'yes':
+                d.Data.frame.fill(s_s.Data.rbg)
+                Data.xAxis = leftEdge
+                Data.yAxis = yAxis
+                Data.current_color = Data.multi_colors[1]
+            else:
+                pass
         else:
             pass
         textD = textC.get_rect()    

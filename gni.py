@@ -1,5 +1,5 @@
 #gni means 'generate notes interface'
-import settings as s, mySong, current_section as cs, tones as t, pygame.mixer, display as d, debug as db
+import settings as s, my_song as m_s, current_section as c_s, tones as t, pygame.mixer, display as d, debug as db
 
 class Note():
 
@@ -57,23 +57,23 @@ class Note():
 def createNote(currentNote, currentDuration):
     name = t.Tone.returnLetterName(currentNote)
     octave = t.Tone.returnOctave(currentNote)
-    xPos = mySong.Data.meter
+    xPos = m_s.Data.meter
     height = t.Tone.returnClefHeight(currentNote)
     sound = t.Tone.returnSound(currentNote)
     music = Note(sound = sound, duration = currentDuration, \
         letterName = name, octave = octave,\
-            instrument =  s.Data.instrument1, polyOrder = s.Data.polyOrderList[0], \
-        frame = 'images/quarterNoteCorrect.png', xPos = mySong.Data.meter, \
+            instrument =  s.Data.voice1, polyOrder = s.Data.polyOrderList[0], \
+        frame = 'images/quarterNoteCorrect.png', xPos = m_s.Data.meter, \
             yPos = height)
-    cs.Data.current_section.append(music)
+    c_s.Data.current_section.append(music)
     #mySong.Data.current_section.append(music)
-    mySong.Data.meter += currentDuration
+    m_s.Data.meter += currentDuration
         #this is where i blit to a surface??
     
     '''except Exception as e:
             print('error_in_step3 early randomizer with settings...')
             print(e)'''
-    info = f'_in_gni:_{xPos}_{name}{octave}_yPos{height}_'
+    info = f'_in_gni:_xPos_{name}{octave}_yPos_{height}_'
     print(info)
     db.Data.debug_log.append(info)
     #db.Data.debug_log.append(f'_in_gni:_instance.notesRemaining = {cs.Data.notesRemaining}')

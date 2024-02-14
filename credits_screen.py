@@ -42,4 +42,4 @@ def credits_screen():
           in   me   and   for  \
           steering   me   in   the   direction   of   programming."
     th.reset_text()
-    th.handle_strings(Data.special_thanks_A, 200, 700, 200, 1650, 990, f.Data.scripted, multiple = 'no')
+    th.handle_strings(Data.special_thanks_A, 200, 700, 200, 1650, 990, f.Data.scripted, auto_scroll = 'no')

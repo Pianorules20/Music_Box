@@ -1,5 +1,5 @@
 # plot_notes_interface.py
-import playback as pb, gni as gni, mySong as my, gatekeeper, tones as t, debug as db
+import playback as pb, gni as gni, my_song as m_s, tones as t, debug as db
 
 '''
 class Data():   

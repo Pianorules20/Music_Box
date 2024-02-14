@@ -23,4 +23,4 @@ def debug_log_screen():
     Data.log_A = str(db.Data.debug_log)
     th.reset_text()
     th.handle_strings(Data.log_A, lm.Data.x20-5, lm.Data.y150, lm.Data.x10, lm.Data.x1700, \
-                      lm.Data.y1000-30, f.Data.subtitle, multiple = 'yes')
+                      lm.Data.y1000-30, f.Data.subtitle, auto_scroll = 'yes')

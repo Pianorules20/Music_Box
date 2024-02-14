@@ -1,6 +1,6 @@
 #timer.py
 
-import pygame, settings as s
+import settings as s
 
 class Data():
 

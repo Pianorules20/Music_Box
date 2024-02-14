@@ -2,9 +2,9 @@
 
 import pygame
 import sys
-import display as d, initializer as init, introMusic, gatekeeper as g, timer as t
+import display as d, populate_settings as p_s, introMusic, gatekeeper as g, timer as t
 import display_interface as di, screen_saver as ss, layout_menu_style as lm, layout_playback_style as lp
-import text_handler as th, debug as db, fonts as f
+import text_handler as th, debug as db
 
 # The term 'motive' is more/less equivalent to 'hook' in the melody of a song.  It is a small piece of pitch and rhythm.
 #clock = pygame.time.Clock()
@@ -14,7 +14,7 @@ pygame.mixer.init()
 pygame.mixer.set_num_channels(50)
 lm.Data()
 lp.Data()
-init.initialize()
+p_s.initialize()
 #objects.Buttons.populate() #this shows the opening screen
 #print(objects.Buttons.descriptions)
 d.Data.updateScreen()
@@ -113,23 +113,25 @@ class mainLoop():
                 else:
                     pass
             elif key_press[pygame.K_d]:
-                info = " 'B' pressed "
+                info = " 'D' pressed "
                 print(info)
                 db.Data.debug_log.append(info)
-                if key_press[pygame.K_d]:
-                    info = " D pressed "
+                if key_press[pygame.K_b]:
+                    info = " B pressed "
                     print(info)
                     db.Data.debug_log.append(info)
-                    #db.Data.debug_log.append(info)
-                    #if key_press[pygame.K_g]:
-                        #info = print("Debug accessed")
-                        #db.Data.debug_log.append(info)
-                    if di.Data.universal_override == False:
-                        di.Data.universal_override = True
-                        di.Data.override_screen = 'debug'
+                    if key_press[pygame.K_g]:
+                        info = print("Debug accessed")
+                        print(info)
+                        db.Data.debug_log.append(info)
+                        if di.Data.universal_override == False:
+                            di.Data.universal_override = True
+                            di.Data.override_screen = 'debug'
+                        else:
+                            di.Data.universal_override = False
+                            di.Data.current_screen = 'menu'
                     else:
-                        di.Data.universal_override = False
-                        di.Data.current_screen = 'menu'
+                        pass
                 else:                        
                     pass
             

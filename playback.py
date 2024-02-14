@@ -1,5 +1,5 @@
 #play.py 
-import playback_meter as pm, gatekeeper as g, timer as t, debug as db, gni #generate_notes_interface
+import playback_meter as p_m, gatekeeper as g, timer as t, debug as db, gni #generate_notes_interface
 '''import pni as pni, tones as T, gatekeeper as g'''
 import pygame, sys
 from pygame.locals import *
@@ -15,6 +15,7 @@ class Data():
     current_section = []
     channel_counter = int(0)
     active_notes = []
+    note_count = int(0)
     
 def reset_playback():
     Data.note_copy = []
@@ -34,7 +35,7 @@ def play(): #i will play and pop each plot incrementally from the recording
 
         for eachNote in Data.final_copy[0]:
 
-            if eachNote.xPos <= pm.Data.meter:
+            if eachNote.xPos <= p_m.Data.meter:
   
                 Sound = gni.Note.returnSound(eachNote) 
                 Data.letterName = gni.Note.returnLetterName(eachNote)
@@ -68,6 +69,7 @@ def play(): #i will play and pop each plot incrementally from the recording
                     info = 'playing sound in playback.play()'
                     print(info)
                     db.Data.debug_log.append(info)
+                    Data.note_count -= 1
 
                 except Exception as e:
                     info = e
@@ -80,12 +82,12 @@ def play(): #i will play and pop each plot incrementally from the recording
             else:
                 pass
             
-        pm.advance()
+        p_m.advance()
             #for eachTone in eachIncrement:
 
     else:
-
-        pm.reset_meter()
+        t.Data.current_timer = t.Data.fast
+        p_m.reset_meter()
         g.Data.current_gate = 'post_production'
 
         #TROUBLESHOOT NOTES I AM ONLY GETTING ONE NOTE AT A TIME WHY IS THAT?

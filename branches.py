@@ -1,6 +1,6 @@
 #mainBranch.py
 import settings as s, structure as struc, plot_notes as pn, playback as pb, post_production as pp, debug as db
-import mySong as my
+import my_song as m_s
 
 class Branch():
     pass
@@ -25,7 +25,7 @@ def post_production():
 
     pp.print_sheet()
     pp.record_audio()
-    if s.Data.repeat_composition == True:
+    if s.Data.repeat_composition == False:
         pass
     else:
         pp.new_instance()

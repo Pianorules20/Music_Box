@@ -1,24 +1,24 @@
 #settings.py
-import pygame, tones as t
+import tones as t
 
 master_volume = 0.3
 
 class Data(): 
     
-    tonesFor1stInstrument = [t.Piano.A4, t.Piano.B4, t.Piano.C4, t.Piano.D4, t.Piano.E4, \
+    tonesFor1stVoice = [t.Piano.A4, t.Piano.B4, t.Piano.C4, t.Piano.D4, t.Piano.E4, \
                             t.Piano.F4, t.Piano.G4, t.Piano.A5, t.Piano.Bb5, t.Piano.B5, \
                             t.Piano.C5, t.Piano.D5, t.Piano.E5]
-    volumeFor1stInstrument = 0.3
-    tonesFor2ndInstrument = [t.Piano.A2, t.Piano.A3]
-    volumeFor2ndInstrument = 0.3
-    tonesFor3rdInstrument = []
-    volumeFor3rdInstrument = 0.3
-    tonesFor4thInstrument = []  
-    volumeFor4thInstrument = 0.3 
-    tonesFor5thInstrument = []
-    volumeFor5thInstrument = 0.3
-    tonesInstruments = [tonesFor1stInstrument, tonesFor2ndInstrument, tonesFor3rdInstrument, \
-                        tonesFor4thInstrument, tonesFor5thInstrument]
+    volumeFor1stVoice = 0.3
+    tonesFor2ndVoice = [t.Piano.A2, t.Piano.A3, t.Piano.C3]
+    volumeFor2ndVoice = 0.3
+    tonesFor3rdVoice = [t.Piano.A1, t.Piano.E1, t.Piano.F1]
+    volumeFor3rdVoice = 0.3
+    tonesFor4thVoice = []  
+    volumeFor4thVoice = 0.3 
+    tonesFor5thVoice = []
+    volumeFor5thVoice = 0.3
+    tonesInstruments = [tonesFor1stVoice, tonesFor2ndVoice, tonesFor3rdVoice, \
+                        tonesFor4thVoice, tonesFor5thVoice]
      
     metronome = 72
     metronomeModifier = 3
@@ -29,12 +29,12 @@ class Data():
     sixteenthNote = metronome
     beats = [wholeNote, halfNote, quarterNote, eighthNote, sixteenthNote]
 
-    instrument1 = 'Piano'
-    instrument2 = 'Piano'
-    instrument3 = 'Piano'
-    instrument4 = 'Piano'
-    instrument5 = 'Piano'
-    instruments = [instrument1, instrument2, instrument3, instrument4, instrument5]
+    voice1 = 'Piano'
+    voice2 = 'Piano'
+    voice3 = 'Piano'
+    voice4 = 'Piano'
+    voice5 = 'Piano'
+    voices = [voice1, voice2, voice3, voice4, voice5]
     
     polyOrderList = ['1st', '2nd', '3rd', '4th', '5th']
     
@@ -50,17 +50,17 @@ class Data():
     motiveRhythm = [eighthNote, eighthNote, quarterNote, quarterNote, quarterNote, quarterNote, eighthNote, \
                     eighthNote, halfNote]
     
-    harmony1 = tonesFor1stInstrument[2]
-    harmony2 = tonesFor1stInstrument[3]
-    harmony3 = tonesFor1stInstrument[4]
-    harmony4 = tonesFor1stInstrument[6]
+    harmony1 = tonesFor1stVoice[2]
+    harmony2 = tonesFor1stVoice[3]
+    harmony3 = tonesFor1stVoice[4]
+    harmony4 = tonesFor1stVoice[6]
     harmonies = 'Standard'
     harmonyOptions = ['Standard', 'Custom']
 
     cadenza = 'Standard'        
     cadenzaOptions = ['Standard', 'Custom']
-    cadenzaOver = tonesFor1stInstrument[1]
-    cadenzaUnder = tonesFor1stInstrument[7]
+    cadenzaOver = tonesFor1stVoice[1]
+    cadenzaUnder = tonesFor1stVoice[7]
     cadenzaDurationOver = beats[2]
     cadenzaDurationUnder = beats[3]
     

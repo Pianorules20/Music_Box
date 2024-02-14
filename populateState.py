@@ -1,5 +1,5 @@
 #populateState.py
-import current_section as i, mySong as my, settings as s, state, debug as db
+import current_section as i, my_song as m_s, settings as s, state, debug as db
 
 def recordState():
 
@@ -25,22 +25,22 @@ def recordState():
     state.Data.instanceNotesRemaining.append(i.Data.notesRemaining)
 
     #the second group is from my.Trn
-    state.Data.finished.append(my.Data.finished)
-    state.Data.meter.append(my.Data.meter)
-    state.Data.currentSection.append(my.Data.currentSection)
-    state.Data.TrnHarmony1.append(my.Data.harmony1)
-    state.Data.TrnHarmony2.append(my.Data.harmony2)
-    state.Data.TrnHarmony3.append(my.Data.harmony3)
-    state.Data.TrnHarmony4.append(my.Data.harmony4)
-    state.Data.transcript.append(my.Data.transcript)
-    state.Data.targetStructure.append(my.Data.targetStructure)
-    state.Data.generatedStructure.append(my.Data.generatedStructure)
-    state.Data.newStructureInteger.append(my.Data.newStructureInteger)
-    state.Data.sectionA.append(my.Data.sectionA)
-    state.Data.sectionB.append(my.Data.sectionB)
-    state.Data.sectionC.append(my.Data.sectionC)
-    state.Data.sectionD.append(my.Data.sectionD)
-    state.Data.sectionE.append(my.Data.sectionE)
+    state.Data.finished.append(m_s.Data.finished)
+    state.Data.meter.append(m_s.Data.meter)
+    state.Data.currentSection.append(m_s.Data.currentSection)
+    state.Data.TrnHarmony1.append(m_s.Data.harmony1)
+    state.Data.TrnHarmony2.append(m_s.Data.harmony2)
+    state.Data.TrnHarmony3.append(m_s.Data.harmony3)
+    state.Data.TrnHarmony4.append(m_s.Data.harmony4)
+    state.Data.transcript.append(m_s.Data.transcript)
+    state.Data.targetStructure.append(m_s.Data.targetStructure)
+    state.Data.generatedStructure.append(m_s.Data.generatedStructure)
+    state.Data.newStructureInteger.append(m_s.Data.newStructureInteger)
+    state.Data.sectionA.append(m_s.Data.sectionA)
+    state.Data.sectionB.append(m_s.Data.sectionB)
+    state.Data.sectionC.append(m_s.Data.sectionC)
+    state.Data.sectionD.append(m_s.Data.sectionD)
+    state.Data.sectionE.append(m_s.Data.sectionE)
 
     #the third group is from s
     
@@ -116,22 +116,22 @@ def goToState(n):
     i.Data.notesRemaining = state.Data.instanceNotesRemaining[n]
 
     #the second group is from mySong.Data
-    my.Data.finished = state.Data.finished[n]
-    my.Data.meter = state.Data.meter[n]
-    my.Data.currentSection = state.Data.currentSection[n]
-    my.Data.harmony1 = state.Data.transcriptionHarmony1[n]
-    my.Data.harmony2 = state.Data.transcriptionHarmony2[n]
-    my.Data.harmony3 = state.Data.transcriptionHarmony3[n]
-    my.Data.harmony4 = state.Data.transcriptionHarmony4[n]
-    my.Data.transcript = state.Data.transcript[n]
-    my.Data.targetStructure = state.Data.targetStructure[n]
-    my.Data.generatedStructure = state.Data.generatedStructure[n]
-    my.Data.newStructureInteger = state.Data.newStructureInteger[n]
-    my.Data.sectionA = state.Data.sectionA[n]
-    my.Data.sectionB = state.Data.sectionB[n]
-    my.Data.sectionC = state.Data.sectionC[n]
-    my.Data.sectionD = state.Data.sectionD[n]
-    my.Data.sectionE = state.Data.sectionE[n]
+    m_s.Data.finished = state.Data.finished[n]
+    m_s.Data.meter = state.Data.meter[n]
+    m_s.Data.currentSection = state.Data.currentSection[n]
+    m_s.Data.harmony1 = state.Data.transcriptionHarmony1[n]
+    m_s.Data.harmony2 = state.Data.transcriptionHarmony2[n]
+    m_s.Data.harmony3 = state.Data.transcriptionHarmony3[n]
+    m_s.Data.harmony4 = state.Data.transcriptionHarmony4[n]
+    m_s.Data.transcript = state.Data.transcript[n]
+    m_s.Data.targetStructure = state.Data.targetStructure[n]
+    m_s.Data.generatedStructure = state.Data.generatedStructure[n]
+    m_s.Data.newStructureInteger = state.Data.newStructureInteger[n]
+    m_s.Data.sectionA = state.Data.sectionA[n]
+    m_s.Data.sectionB = state.Data.sectionB[n]
+    m_s.Data.sectionC = state.Data.sectionC[n]
+    m_s.Data.sectionD = state.Data.sectionD[n]
+    m_s.Data.sectionE = state.Data.sectionE[n]
     
     #the third group is from settings
     
