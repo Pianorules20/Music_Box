@@ -1,12 +1,53 @@
 #step2 contains Generator (randomizer)
 
-import random, settings, current_section as c_s, gni, debug as db
+import random, settings as sett, current_section as c_s, gni, debug as db, my_song as m_s
 
 class Data():
     
     notes_generated = int(1) #generate() contains the randomizer. it connects to step3 the note object creator
 
+def select_image(current_duration):
+
+    match current_duration:
+
+        case sett.Data.dottedWholeNote:
+            image = 'images/dottedWholeNoteCorrect.png'
+        
+        case sett.Data.wholeNote:
+            image = 'images/wholeNoteCorrect.png'
+
+        case sett.Data.dottedHalfNote:
+            image = 'images/dottedHalfNoteCorrect.png'
+
+        case sett.Data.halfNote:
+            image = 'images/halfNoteCorrect.png'
+
+        case sett.Data.dottedQuarterNote:
+            image = 'images/dottedQuarterNoteCorrect.png'
+
+        case sett.Data.quarterNote:
+            image = 'images/quarterNoteCorrect.png'
+        
+        case sett.Data.dottedEighthNote:
+            image = 'images/dottedEighthNoteCorrect.png'
+
+        case sett.Data.eighthNote:
+            image = 'images/eighthNoteCorrect.png'
+
+        case sett.Data.dottedSixteenthNote:
+            image = 'images/dottedSixteenthNoteCorrect.png'
+
+        case sett.Data.sixteenthNote:
+            image = 'images/sixteenthNoteCorrect.png'
+    
+    return image
+
+
+def rectangle():
+    pass
+
 def generate(voice):
+
 
     randomizer = random.random()
 
@@ -16,8 +57,6 @@ def generate(voice):
     
             #currentNote = c_s.Data.tonic #initializes currentNote
             #currentDuration = settings.Data.quarterNote #initializes currentDuration
-
-            polyOrder = settings.Data.voices[0]
             
             #early randomizer is based on the generated motive
             if randomizer  <= 0.3:
@@ -28,7 +67,8 @@ def generate(voice):
                 for eachIndex in range(len(c_s.Data.motive)):
                     currentNote = c_s.Data.motive[eachIndex]
                     currentDuration = c_s.Data.motiveRhythm[eachIndex]
-                    gni.createNote(currentNote, currentDuration)
+                    image = select_image(currentDuration)
+                    gni.createNote(currentNote, currentDuration, image, polyOrderIn = sett.Data.voice1, )
                 # print(f'{Name}{Octave}')
             #early middle randomizer is based on the generated harmonies
             elif randomizer <= 0.7: #None type errors found here
@@ -39,7 +79,8 @@ def generate(voice):
                 rando = random.choice(c_s.Data.harmonies)
                 currentNote = rando
                 currentDuration = random.choice(c_s.Data.beats)
-                gni.createNote(currentNote, currentDuration)
+                image = select_image(currentDuration)
+                gni.createNote(currentNote, currentDuration, image)
             # middle randomizer is based on the cadenza notes in music theory they are 2 and 7
             elif randomizer <=0.8:
                 info = f' \n_in_middle_randomizer_-_cadenzas_notes'
@@ -53,7 +94,8 @@ def generate(voice):
                 elif overUnder <=1:
                     currentNote = c_s.Data.cadenzaOver
                     currentDuration = c_s.Data.cadenzaDurationOver
-                gni.createNote(currentNote, currentDuration)
+                    image = select_image(currentDuration)
+                gni.createNote(currentNote, currentDuration, image)
             elif randomizer <= 0.95:
                 info = f' \n_in_late_randomizer_-_random_notes'
                 print(info)
@@ -63,7 +105,8 @@ def generate(voice):
                 currentNote = rando
                 randoRhythm = random.choice(c_s.Data.beats)
                 currentDuration = randoRhythm
-                gni.createNote(currentNote, currentDuration)
+                image = select_image(currentDuration)
+                gni.createNote(currentNote, currentDuration, image)
             # the last randomizer is the tonic itself       
             else:
                 info = f' \n_in_last_randomizer_-_the_tonic'
@@ -72,8 +115,9 @@ def generate(voice):
                 data = 1 
                 currentNote = c_s.Data.tonic
                 rando = random.choice(c_s.Data.beats)   
-                currentDuration = rando           
-                gni.createNote(currentNote, currentDuration)
+                currentDuration = rando    
+                image = select_image(currentDuration)       
+                gni.createNote(currentNote, currentDuration, image)
         
         case c_s.Data.tonesFor2ndVoice:
             
@@ -85,7 +129,8 @@ def generate(voice):
             currentNote = rando
             rando = random.choice(c_s.Data.beats)
             currentDuration = rando
-            gni.createNote(currentNote, currentDuration)
+            image = select_image(currentDuration)
+            gni.createNote(currentNote, currentDuration, image)
 
         case c_s.Data.tonesFor3rdVoice:
 
@@ -97,7 +142,8 @@ def generate(voice):
             currentNote = rando
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
-            gni.createNote(currentNote, currentDuration)
+            image = select_image(currentDuration)
+            gni.createNote(currentNote, currentDuration, image)
 
         case c_s.Data.tonesFor4thVoice:
 
@@ -109,7 +155,8 @@ def generate(voice):
             currentNote = rando
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
-            gni.createNote(currentNote, currentDuration)
+            image = select_image(currentDuration)
+            gni.createNote(currentNote, currentDuration, image)
 
         case c_s.Data.tonesFor5thVoice:
 
@@ -121,7 +168,8 @@ def generate(voice):
             currentNote = rando
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
-            gni.createNote(currentNote, currentDuration)
+            image = select_image(currentDuration)
+            gni.createNote(currentNote, currentDuration, image)
 
     Data.notes_generated = data
     #gatekeeper.Gate.passGate('generate_notes')

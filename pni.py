@@ -1,22 +1,25 @@
 # plot_notes_interface.py
+import pygame
 import playback as pb, gni as gni, my_song as m_s, tones as t, debug as db, layout_playback_style as l_p, playback_meter as p_m
-
 
 class Data():
     
     plot = []
 
+
 class Plot():
 
-    def __init__(self, images, rectangles):
+    def __init__(self, Note, sound, image, rectangle):
 
-        self.images = images
-        self.rectangles = rectangles
+        self.Note = Note
+        self.sound = sound
+        self.image = image
+        self.rectangle = rectangle
 
 
 def create_plot(plot):
 
-    info = f'plot created pni'
+    info = f'pni_create_plot'
     print(info)
     db.Data.debug_log.append(info)
 
@@ -27,10 +30,12 @@ def create_plot(plot):
     
     else:
         for eachNote in plot:
-            image = eachNote.image
+            sound = eachNote.sound
+            image = pygame.Surface((100,100))
             rectangle = eachNote.image.get_rect()
             rectangle.center = (eachNote.xPos - p_m.Data.meter, eachNote.yPos)
-            l_p.Data.objects.append()
+            newPlot = Plot(eachNote, )
+            l_p.Data.objects.append(newPlot)
         
 
 

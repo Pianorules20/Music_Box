@@ -3,6 +3,10 @@ import current_section as i, my_song as m_s, settings as s, state, debug as db
 
 def recordState():
 
+    '''ranger = len(state.Data.total_data) - 1  #!!!!!
+    for eachData in state.Data.total_data:
+        state.Data.total_data[eachData]'''
+
     state.Data.localCounter += 1
     state.Data.state.append(state.Data.localCounter)
     
@@ -176,3 +180,4 @@ def goToState(n):
     s.Data.notesRemaining = state.Data.notesRemaining[n]
     
     s.Data.rigidTempo = state.Data.rigidTempo[n]
+

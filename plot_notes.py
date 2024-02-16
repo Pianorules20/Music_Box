@@ -1,5 +1,5 @@
 #plot_notes.py
-import my_song as m_s, playback as pb, display_interface as d_i, settings as s
+import my_song as m_s, playback as pb, display_interface as d_i, settings as s, state
 import debug as db, gatekeeper as g, pni
 
 class Data():
@@ -8,6 +8,7 @@ class Data():
     section_counter = int(0)
     populate_copy = True
     plot_meter = int(0)
+    plot_copy = []
 
 def reset_counter():
     Data.counter = int(0)
@@ -20,31 +21,37 @@ def plot_notes():
     db.Data.debug_log.append(info)
 
     if Data.populate_copy == True:
-        pb.Data.final_copy = m_s.Data.transcript
+        pb.Data.plot_copy = m_s.Data.transcript
         Data.populate_copy = not Data.populate_copy
-        info = f'plot_nots populate_copy = False. final_copy {pb.Data.final_copy}'
+        info = f'p_n_populate_copy = False. final_copy {pb.Data.final_copy}'
         print(info)
         db.Data.debug_log.append(info)
 
+
     
     else:
-
-        if len(pb.Data.final_copy[Data.section_counter]) > 0:
-            info = f'p_n_len_final_copy_this_section_{pb.Data.final_copy[Data.section_counter]}'
+        ranger = len(pb.Data.plot_copy[Data.section_counter])
+        if ranger > 0:
+            
+            info = f'p_n_len_final_copy_this_section_{pb.Data.plot_copy[Data.section_counter]}'
             print(info)
             db.Data.debug_log.append(info)
-            
-            for eachNote in pb.Data.final_copy[Data.section_counter]:
+
+            for eachNote in pb.Data.plot_copy[Data.section_counter]:
                 if Data.plot_meter >= eachNote.xPos:
                     pni.Data.current_plot.append(eachNote)
+                    pb.Data.final_copy.pop(eachNote)
+
                 else: 
                     pass
-
+                    
+            state.update('plot_copy')
             pni.create_plot()
+            pni.Data.current_plot = [] #!!!
             Data.counter += 1
 
         else:
-            pass
+            info = f'p_n_current_section_empty_{Data.section_counter}'
     pb.Data.note_count = Data.counter
     pb.Data.note_count = Data.counter
     reset_counter()

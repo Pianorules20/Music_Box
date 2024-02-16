@@ -93,3 +93,7 @@ class Data():
     rigidTempo = []
 
     debug_log = []
+
+    objects = []
+
+    total_data = []
