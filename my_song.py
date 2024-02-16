@@ -19,8 +19,10 @@ class Data(): #'Trn' stands for 'Transcription'
     sectionD = []
     sectionE = []
 
-#def initializer():
-#    init.initialize()
+def append_section():
+    Data.transcript.append(Data.current_section)
+
+
 def flip_finished():
     Data.song_finished = not Data.song_finished
     info = f'Data.song_finished = {Data.song_finished}'
@@ -32,7 +34,7 @@ def createStructure():
 
 def nextInstrument():
     s.Data.createRemainingNotes()
-    '''dev warning!!! watchout for me!'''
+    '''dev warning!!! watch out for me!'''
 
 #def advance_meter():
 #    Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)

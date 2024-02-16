@@ -1,30 +1,37 @@
 #Step1.py
 
 import settings, random, my_song as m_s, playback, current_section as c_s, generate_notes as g_n, gni as gni, debug as db
-import gatekeeper as g, debug as db
+import gatekeeper as g, debug as db, plot_notes as p_n
 
 class Data():
     
     save_place = c_s.Data.notesRemaining
     voice_counter = int(0)
+    length_counter = len(c_s.Data.voices_list)
     current_voice = c_s.Data.voices_list[voice_counter]
-    song_finished = False
 
 def flip_save_place():
     Data.save_place = c_s.Data.notesRemaining
 
-def advance_voice():
-    
+def advance_voice_short_form():
+
+    Data.voice_counter += 1
+    info = f'voice_counter_{Data.voice_counter}'        
+    print(info)
+    db.Data.debug_log.append(info)
+    info = f'length_counter_{Data.length_counter}'
+    print(info)
+    db.Data.debug_log.append(info)
     try:
-        Data.voice_counter += 1
         Data.current_voice = c_s.Data.voices_list[Data.voice_counter]
+        Data.save_place = c_s.Data.notesRemaining
         info = 'finished_current_voice'
         print(info)
         db.Data.debug_log.append(info)
-    
+
     except:
-        Data.voice_counter = int(0)
-        Data.song_finished = not Data.song_finished                        #BREADCRUMB
+        #Data.voice_counter = int(0)
+        #Data.song_finished = not Data.song_finished                        #BREADCRUMB
         info = 'finished_last_voice'
         print(info)
         db.Data.debug_log.append(info)
@@ -39,6 +46,10 @@ def advance_voice():
         print(info)
         db.Data.debug_log.append(info)
 
+        m_s.Data.song_finished = not m_s.Data.song_finished
+        m_s.append_section()
+        g.Data.current_gate = 'plot_notes'
+
 def randomShortForm():
     #info = 'in_structure...random_short_form'
     #print(info)
@@ -50,36 +61,12 @@ def randomShortForm():
     
     
     
-    if Data.song_finished == True:
+    if m_s.Data.song_finished == True:
 
         g.Data.current_gate = 'plot_notes'  #!!!!!!
-
-        '''checkTranscript = []  #debug log
-        for eachSection in my.Data.transcript:
-            for eachNote in eachSection:
-                Name = gni.Note.returnLetterName(eachNote)
-                Octave = gni.Note.returnOctave(eachNote)
-                spacer = ' '
-                checkTranscript.append(Name)
-                checkTranscript.append(Octave)
-                checkTranscript.append(spacer)'''
-        #info = f'in_structure.py,_checking_mySong.Data.song_finished__{my.Data.song_finished}'
-        #print(info)
-        #db.Data.debug_log.append(info)
-        #db.Data.debug_log.append('in_structure.py,_print_my_recording')
-        #localTrace = f"*checkTranscript, sep = '' "
-        #print(localTrace)
-        #localTrace = print(*checkTranscript, sep = '')
-        #localTrace = str(localTrace)
-        #db.Data.debug_log.append(localTrace)
-        #db.Data.debug_log.append('finished_structure_randomShortForm()_Gate_=_"plot_notes"_')
     
     else:
-
-        #for eachVoice in cs.Data.instruments:   #i need to change this forLoop into a counter possibly needs an interface
-
-        Data.current_voice = c_s.Data.voices_list[Data.voice_counter]
-        
+    
         if len(Data.current_voice) > 0:
 
             if Data.save_place > 0 :
@@ -88,24 +75,32 @@ def randomShortForm():
                 
                 Data.save_place -= g_n.Data.notes_generated
 
+                info = f'Data.save_place = {Data.save_place}'
+                print(info)
+                db.Data.debug_log.append(info)
+
+
             else:
                 
                 c_s.transcribe_voice() 
                 
                 m_s.Data.meter = 0
 
-                advance_voice()
+                advance_voice_short_form()
+
+
         
         else:
-                
-            pass
 
-        info = f'Data.save_place = {Data.save_place}'
-        print(info)
-        db.Data.debug_log.append(info)
-    
+            info = 'skipping empty voice'
+            print(info)
+            db.Data.debug_log.append(info)
+            
+            advance_voice_short_form()
 
-        '''the line below i think was an inadvertent duplicate of the c_s.transcribe_voice()  was this causing problems???'''
+       
+
+            '''the line below i think was an inadvertent duplicate of the c_s.transcribe_voice()  was this causing problems???'''
         #m_s.Data.transcript.append(c_s.Data.current_section) #pay careful attention as this is now a list \
             #inside of a list
             #printer._print_PDF()

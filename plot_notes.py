@@ -1,10 +1,13 @@
 #plot_notes.py
-import my_song as m_s, display as d, playback as pb, playback_meter as pm
-import gni, pni, debug as db, gatekeeper as g
+import my_song as m_s, playback as pb, display_interface as d_i, settings as s
+import debug as db, gatekeeper as g, pni
 
 class Data():
    
-    counter = int(0)
+    counter = s.Data.metronome
+    section_counter = int(0)
+    populate_copy = True
+    plot_meter = int(0)
 
 def reset_counter():
     Data.counter = int(0)
@@ -12,17 +15,42 @@ def reset_counter():
 def plot_notes():
     #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correct
 
-    for eachSection in m_s.Data.transcript:
-        pb.Data.final_copy.append(eachSection)
-        for eachNote in eachSection:
-            #pb.Data.final_copy[eachSection].append(eachNote)
-            rectangle = eachNote.image.get_rect()
-            rectangle.center = (eachNote.xPos - pm.Data.meter, eachNote.yPos)
-            d.Data.frame.blit(eachNote.image, rectangle)
+    info = f'transcript_{m_s.Data.transcript}'
+    print(info)    
+    db.Data.debug_log.append(info)
+
+    if Data.populate_copy == True:
+        pb.Data.final_copy = m_s.Data.transcript
+        Data.populate_copy = not Data.populate_copy
+        info = f'plot_nots populate_copy = False. final_copy {pb.Data.final_copy}'
+        print(info)
+        db.Data.debug_log.append(info)
+
+    
+    else:
+
+        if len(pb.Data.final_copy[Data.section_counter]) > 0:
+            info = f'p_n_len_final_copy_this_section_{pb.Data.final_copy[Data.section_counter]}'
+            print(info)
+            db.Data.debug_log.append(info)
+            
+            for eachNote in pb.Data.final_copy[Data.section_counter]:
+                if Data.plot_meter >= eachNote.xPos:
+                    pni.Data.current_plot.append(eachNote)
+                else: 
+                    pass
+
+            pni.create_plot()
             Data.counter += 1
+
+        else:
+            pass
+    pb.Data.note_count = Data.counter
     pb.Data.note_count = Data.counter
     reset_counter()
     g.Data.current_gate = 'playback'
+    d_i.Data.current_screen =  'playback'
+    Data.populate_copy = not Data.populate_copy
 
 
 '''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''

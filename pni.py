@@ -1,5 +1,40 @@
 # plot_notes_interface.py
-import playback as pb, gni as gni, my_song as m_s, tones as t, debug as db
+import playback as pb, gni as gni, my_song as m_s, tones as t, debug as db, layout_playback_style as l_p, playback_meter as p_m
+
+
+class Data():
+    
+    plot = []
+
+class Plot():
+
+    def __init__(self, images, rectangles):
+
+        self.images = images
+        self.rectangles = rectangles
+
+
+def create_plot(plot):
+
+    info = f'plot created pni'
+    print(info)
+    db.Data.debug_log.append(info)
+
+    if len(plot) == 0:
+        info = f'empty plot'
+        print(info)
+        db.Data.debug_log.append(info)
+    
+    else:
+        for eachNote in plot:
+            image = eachNote.image
+            rectangle = eachNote.image.get_rect()
+            rectangle.center = (eachNote.xPos - p_m.Data.meter, eachNote.yPos)
+            l_p.Data.objects.append()
+        
+
+
+
 
 '''
 class Data():   

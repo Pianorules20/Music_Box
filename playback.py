@@ -31,6 +31,10 @@ def play(): #i will play and pop each plot incrementally from the recording
     
     t.Data.current_timer = t.Data.slow
     
+    info = f'playback_final_copy_{Data.final_copy}'
+    print(info)
+    db.Data.debug_log.append(info)
+    
     if len(Data.final_copy[0]) > 0:
 
         for eachNote in Data.final_copy[0]:
