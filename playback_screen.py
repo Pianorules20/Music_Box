@@ -1,5 +1,5 @@
 #player.py
-import playback as pb, screen_saver as ss, fonts as f, layout_playback_style as lp, text_handler as th, display as d
+import playback as pb, screen_saver as ss, fonts as f, layout_playback_style as l_p, text_handler as th, display as d
 
 
 #def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, multiple):
@@ -8,19 +8,20 @@ class Data():
 
 def playback_screen():
 
-    d.Data.frame.fill(ss.Data.rbg,(0,0, lp.Data.width, lp.Data.height))
+    d.Data.frame.fill(ss.Data.rbg,(0,0, l_p.Data.width, lp.Data.height))
 
     Data.splash_A = 'My Recording'
     Data.splash_B = f.Data.large_script
     Data.splash_C = Data.splash_B.render(Data.splash_A, True, ss.Data.text, ss.Data.rbg)
     Data.splash_D = Data.splash_C.get_rect()
-    Data.splash_D.center = lp.Data.x1000, lp.Data.y100
+    Data.splash_D.center = l_p.Data.x1000, l_p.Data.y100
     d.Window.frame.blit(Data.splash_C, Data.splash_D)
     Data.recording_A = pb.Data.recording
     th.reset_text()
-    th.handle_strings(Data.recording_A, lp.Data.x10, lp.Data.y100, lp.Data.x10, lp.Data.x1800, \
-                      lp.Data.y1900, f.Data.large_script, multiple = 'yes')
-
+    th.handle_strings(Data.recording_A, l_p.Data.x10, l_p.Data.y100, l_p.Data.x10, l_p.Data.x1800, \
+                      l_p.Data.y1900, f.Data.large_script, multiple = 'yes')
+    for eachNote in l_p.Data.objects:
+        d.Data.frame.blit(eachNote.image, rectangle)
 
 
 '''def menu_screen():  

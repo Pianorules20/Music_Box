@@ -97,3 +97,10 @@ class Data():
     objects = []
 
     total_data = []
+
+    transfer_notes = []
+
+def update(data, destination):
+    match destination:
+        case Data.transfer_notes:
+            Data.transfer_notes.append(data)

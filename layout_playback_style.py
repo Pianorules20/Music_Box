@@ -1,6 +1,9 @@
 #layout_playback_style.py
+import state
 
 class Data():
+
+    objects = []
 
     width = 2000
     height = 1000
@@ -60,3 +63,14 @@ class Data():
 
     y_values = [y50, y100, y150, y200, y250, y300, \
                 y350, y400, y450, y500, y550, y600, y650, y700, y750, y800, y850, y900, y950, y1000]
+    
+def populate_objects(note):
+    
+    if note == 'reset':
+
+        Data.objects = []
+        
+    else:
+        Data.objects.append(note)
+
+ 

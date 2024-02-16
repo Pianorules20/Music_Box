@@ -1,7 +1,6 @@
 #play.py 
-import playback_meter as p_m, gatekeeper as g, timer as t, debug as db, gni #generate_notes_interface
-'''import pni as pni, tones as T, gatekeeper as g'''
-import pygame, sys
+import playback_meter as p_m, gatekeeper as g, timer as t, debug as db, state, gni #generate_notes_interface
+import pygame, sys, my_song as m_s
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()
@@ -26,57 +25,57 @@ def advance_playback():
     Data.section_counter += 1
     Data.current_section = Data.note_copy[Data.section_counter]
 
-
 def play(): #i will play and pop each plot incrementally from the recording
     
-    t.Data.current_timer = t.Data.slow
+    if Data.transfer_notes == True:
+        info = f'playback_transfer_notes_{Data.transfer_notes}'
+        print(info)
+        db.Data.debug_log.append(info)
+        state.update(Data.transfer_notes, state.Data.transfer_notes)
+        #Data.transfer_notes = not Data.transfer_notes
+        for eachSection in m_s.Data.transcript:
+            Data.final_copy.append(eachSection)
+
+    #t.Data.current_timer = t.Data.slow
     
     info = f'playback_final_copy_{Data.final_copy}'
     print(info)
     db.Data.debug_log.append(info)
     
-    if len(Data.final_copy[0]) > 0:
+    if len(Data.final_copy[Data.section_counter]) > 0:
 
-        for eachNote in Data.final_copy[0]:
+        for eachNote in Data.final_copy[Data.section_counter]:
 
-            if eachNote.xPos <= p_m.Data.meter:
+            if p_m.Data.meter >= eachNote.xPos:
   
-                Sound = gni.Note.returnSound(eachNote) 
-                Data.letterName = gni.Note.returnLetterName(eachNote)
-                Data.octave = gni.Note.returnOctave(eachNote)
-                Data.info = f'Note {Data.letterName}{Data.octave}'
-                print(Data.info)
-                db.Data.debug_log.append(Data.info)
+                #Sound = gni.Note.returnSound(eachNote) 
+                #Data.letterName = gni.Note.returnLetterName(eachNote)
+                #Data.octave = gni.Note.returnOctave(eachNote)
+                info = f'Note {eachNote.letterName}{eachNote.octave}'
+                print(info)
+                db.Data.debug_log.append(info)
                 #Data.note = tones.Harp.introMusic[eachSound]  
     
                 try :
                     
                     pygame.mixer.find_channel(True)
-                    pygame.mixer.Sound.play(Sound)
+                    pygame.mixer.Sound.play(eachNote.sound)
                     #Data.active_notes.append(eachNote)
                     
-                    the_sound = eachNote.sound
+                    #the_sound = eachNote.sound
 
-                    #Data.channel_counter += 1
-                    #if Data.channel_counter >=20:
-                        #Data.active_notes.pop()
-                    #else:
-                    #    pass
-
-                    pygame.mixer.find_channel(True)
+                    #pygame.mixer.find_channel(True)
                 
-                    pygame.mixer.Sound.play(the_sound)
+                    #pygame.mixer.Sound.play(the_sound)
 
-
-                    Data.final_copy[0].remove(eachNote)
+                    Data.final_copy[Data.section_counter].remove(eachNote)
 
                     info = 'playing sound in playback.play()'
                     print(info)
                     db.Data.debug_log.append(info)
                     Data.note_count -= 1
 
-                except Exception as e:
-                    info = e
+                except Exception as info:
                     print(info)
                     db.Data.debug_log.append(info)
                     crash_me_A = pygame.quit()

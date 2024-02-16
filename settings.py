@@ -21,13 +21,19 @@ class Data():
                         tonesFor4thVoice, tonesFor5thVoice]
      
     metronome = 72
-    metronomeModifier = 3
-    wholeNote = metronome*16
-    halfNote = metronome*8
-    quarterNote = metronome*4
-    eighthNote = metronome*2
-    sixteenthNote = metronome
-    beats = [wholeNote, halfNote, quarterNote, eighthNote, sixteenthNote]
+    metronomeModifier = 1
+    dottedWholeNote = metronome*48
+    wholeNote = metronome*32
+    dottedHalfNote = metronome*24
+    halfNote = metronome*16
+    dottedQuarterNote = metronome*12
+    quarterNote = metronome*8
+    dottedEighthNote = metronome*6
+    eighthNote = metronome*4
+    dottedSixteenthNote = metronome*3
+    sixteenthNote = metronome*2
+    beats = [dottedWholeNote, wholeNote, dottedHalfNote, halfNote, dottedQuarterNote, quarterNote, \
+             dottedEighthNote, eighthNote, dottedSixteenthNote, sixteenthNote]
 
     voice1 = 'Piano'
     voice2 = 'Piano'
