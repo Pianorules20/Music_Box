@@ -8,20 +8,20 @@ class Data():
 
 def playback_screen():
 
-    d.Data.frame.fill(ss.Data.rbg,(0,0, l_p.Data.width, lp.Data.height))
+    d.Data.frame.fill(ss.Data.rbg,(0,0, l_p.Data.width, l_p.Data.height))
 
     Data.splash_A = 'My Recording'
     Data.splash_B = f.Data.large_script
     Data.splash_C = Data.splash_B.render(Data.splash_A, True, ss.Data.text, ss.Data.rbg)
     Data.splash_D = Data.splash_C.get_rect()
     Data.splash_D.center = l_p.Data.x1000, l_p.Data.y100
-    d.Window.frame.blit(Data.splash_C, Data.splash_D)
+    d.Data.frame.blit(Data.splash_C, Data.splash_D)
     Data.recording_A = pb.Data.recording
     th.reset_text()
     th.handle_strings(Data.recording_A, l_p.Data.x10, l_p.Data.y100, l_p.Data.x10, l_p.Data.x1800, \
-                      l_p.Data.y1900, f.Data.large_script, multiple = 'yes')
+                      l_p.Data.y1900, f.Data.large_script, multiple = 'no')
     for eachNote in l_p.Data.objects:
-        d.Data.frame.blit(eachNote.image, rectangle)
+        d.Data.frame.blit(eachNote.image, Data.splash_D)  #update my second parameter
 
 
 '''def menu_screen():  

@@ -18,14 +18,14 @@ def plot_notes():
 
     info = f'transcript_{m_s.Data.transcript}'
     print(info)    
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     if Data.populate_copy == True:
         pb.Data.plot_copy = m_s.Data.transcript
         Data.populate_copy = not Data.populate_copy
         info = f'p_n_populate_copy = False. final_copy {pb.Data.final_copy}'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
 
     
@@ -35,7 +35,7 @@ def plot_notes():
             
             info = f'p_n_len_final_copy_this_section_{pb.Data.plot_copy[Data.section_counter]}'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
 
             for eachNote in pb.Data.plot_copy[Data.section_counter]:
                 if Data.plot_meter >= eachNote.xPos:

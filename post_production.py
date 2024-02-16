@@ -23,4 +23,4 @@ def new_instance():
     else:
         info = 'add code for new structure'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)

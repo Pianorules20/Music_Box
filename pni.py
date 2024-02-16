@@ -21,12 +21,12 @@ def create_plot(plot):
 
     info = f'pni_create_plot'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     if len(plot) == 0:
         info = f'empty plot'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
     
     else:
         for eachNote in plot:

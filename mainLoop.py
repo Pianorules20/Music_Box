@@ -11,7 +11,7 @@ import text_handler as th, debug as db
 from pygame.locals import *
 pygame.init()
 pygame.mixer.init()
-pygame.mixer.set_num_channels(50)
+pygame.mixer.set_num_channels(24)
 lm.Data()
 lp.Data()
 p_s.initialize()
@@ -73,9 +73,9 @@ class mainLoop():
                 else:
                     info = 'th.Data.scroll_pages = True'
                     print(info)
-                    db.Data.debug_log.append(info)
-                    th.Data.scroll_pages == True 
-                    th.scroll_page()
+                    #db.Data.debug_log.append(info)
+                    #th.Data.scroll_pages == True 
+                    #th.scroll_page()
             elif key_press[pygame.K_ESCAPE]: 
                 info = "Pause program"
                 print(info)
@@ -88,9 +88,9 @@ class mainLoop():
             elif key_press[pygame.K_RETURN]:
                 info = "RETURN pressed"
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 if d.Data.quitting == True:
-                    db.Data.debug_log.append('Exit Program')
+                    #db.Data.debug_log.append('Exit Program')
                     pygame.quit()
                     sys.exit
                 else:
@@ -99,11 +99,11 @@ class mainLoop():
             elif key_press[pygame.K_c]:
                 info = " 'C' pressed "
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 if key_press[pygame.K_r]:
                     info = " Credits accessed "
                     print(info)
-                    db.Data.debug_log.append(info)
+                    #db.Data.debug_log.append(info)
                     if di.Data.universal_override == False:
                         di.Data.universal_override = True
                         di.Data.override_screen = 'credits'
@@ -115,15 +115,15 @@ class mainLoop():
             elif key_press[pygame.K_d]:
                 info = " 'D' pressed "
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 if key_press[pygame.K_b]:
                     info = " B pressed "
                     print(info)
-                    db.Data.debug_log.append(info)
+                    #db.Data.debug_log.append(info)
                     if key_press[pygame.K_g]:
                         info = print("Debug accessed")
                         print(info)
-                        db.Data.debug_log.append(info)
+                        #db.Data.debug_log.append(info)
                         if di.Data.universal_override == False:
                             di.Data.universal_override = True
                             di.Data.override_screen = 'debug'
@@ -155,7 +155,7 @@ class mainLoop():
             elif key_press[pygame.K_q]:
                 info = " 'Q' pressed "
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 if d.Data.quitting == False:
                     d.Data.quitting = True
                 else:
@@ -164,8 +164,8 @@ class mainLoop():
             elif key_press[pygame.K_s]:
                 info = " 'S' pressed "
                 print(info)
-                db.Data.debug_log.append(info)
-                db.Data.debug_log.append("_settings_accessed_")
+                #db.Data.debug_log.append(info)
+                #db.Data.debug_log.append("_settings_accessed_")
                 if di.Data.universal_override == False:
                     di.Data.universal_override = True
                     di.Data.override_screen = 'settings'
@@ -175,7 +175,7 @@ class mainLoop():
             elif key_press[pygame.K_t]:
                 info = " 'T' pressed "
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 if di.Data.universal_override == True:
                     if db.Data.debug_trace == False:
                         db.Data.debug_trace = True
@@ -186,6 +186,8 @@ class mainLoop():
         ss.advance()
         pygame.event.pump() 
         d.Data.updateScreen()
+        debug_log_count = len(db.Data.debug_log)
+        print(debug_log_count)
         g.passGate(g.Data.current_gate)
 
 pygame.quit()

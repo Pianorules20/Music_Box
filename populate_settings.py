@@ -14,7 +14,7 @@ def createRemainingNotes():
     Octave = t.Tone.returnOctave(rando)
     info = f'Tonic: {Name}{Octave}'
     print(info)    
-    db.Data.debug_log.append(info)                           
+    #db.Data.debug_log.append(info)                           
         
 def create_tonic():
     print(' ')
@@ -22,7 +22,7 @@ def create_tonic():
     c_s.Data.tonic = rando
     info = f'tonic is {c_s.Data.tonic}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
 
 def createMotiveTones():
@@ -44,7 +44,7 @@ def createMotiveTones():
     print(info)
     info = print(*motive, sep = '')
     info = info
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     print('')
 
 def createMotiveRhythm():
@@ -56,7 +56,7 @@ def createMotiveRhythm():
         c_s.Data.motiveRhythm.append(newDuration)
     info = f'in populate_settings... motiveRhythm in current_section {c_s.Data.motiveRhythm}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     print(' ')
 
 def createHarmonies():
@@ -95,7 +95,7 @@ def createCadenza():
     Octave2 = t.Tone.returnOctave(c_s.Data.cadenzaOver)
     info = f'cadenza Under: {Name1}{Octave1}    cadenza Over: {Name2}{Octave2}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     cadenzaDuration = random.choice(c_s.Data.beats)
     index = c_s.Data.beats.index(cadenzaDuration)
     #print(f'assigned cadenza pulse in step2...maker {cadenzaDuration}')
@@ -133,7 +133,7 @@ def initialize():
         c_s.Data.motiveInteger = len(c_s.Data.motive)
     info = f'in initializer: length of motive: {len(c_s.Data.motive)}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     c_s.Data.beats = s.Data.beats
     c_s.Data.metronome = s.Data.metronome
@@ -162,7 +162,7 @@ def initialize():
         c_s.Data.notesRemaining = s.Data.notesRemaining
     info = f'in initializer: notes remaining {c_s.Data.notesRemaining}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     if s.Data.harmonies == 'Standard':
         createHarmonies()
@@ -173,7 +173,7 @@ def initialize():
         c_s.Data.harmony4 = s.Data.harmony4
     info = f'in initializer: refer to settings.Data.structure {s.Data.structure}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     if s.Data.notesRemainingOption == 'Random':
         createRemainingNotes()

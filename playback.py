@@ -30,17 +30,17 @@ def play(): #i will play and pop each plot incrementally from the recording
     if Data.transfer_notes == True:
         info = f'playback_transfer_notes_{Data.transfer_notes}'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
         state.update(Data.transfer_notes, state.Data.transfer_notes)
         #Data.transfer_notes = not Data.transfer_notes
         for eachSection in m_s.Data.transcript:
             Data.final_copy.append(eachSection)
 
-    #t.Data.current_timer = t.Data.slow
+    t.Data.current_timer = t.Data.slow
     
     info = f'playback_final_copy_{Data.final_copy}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     
     if len(Data.final_copy[Data.section_counter]) > 0:
 
@@ -53,13 +53,16 @@ def play(): #i will play and pop each plot incrementally from the recording
                 #Data.octave = gni.Note.returnOctave(eachNote)
                 info = f'Note {eachNote.letterName}{eachNote.octave}'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 #Data.note = tones.Harp.introMusic[eachSound]  
     
                 try :
                     
-                    pygame.mixer.find_channel(True)
-                    pygame.mixer.Sound.play(eachNote.sound)
+                    gni.Note.play(eachNote.sound)
+
+                    #pygame.mixer.find_channel(True)
+                    #pygame.Sound.play()
+                    #pygame.mixer.Sound.play(eachNote.sound)
                     #Data.active_notes.append(eachNote)
                     
                     #the_sound = eachNote.sound
@@ -72,19 +75,19 @@ def play(): #i will play and pop each plot incrementally from the recording
 
                     info = 'playing sound in playback.play()'
                     print(info)
-                    db.Data.debug_log.append(info)
+                    #db.Data.debug_log.append(info)
                     Data.note_count -= 1
 
                 except Exception as info:
                     print(info)
-                    db.Data.debug_log.append(info)
+                    #db.Data.debug_log.append(info)
                     crash_me_A = pygame.quit()
                     crash_me_B = sys.exit()
                     crash_me_A
                     crash_me_B
             else:
                 pass
-            
+        t.Data.current_timer = t.Data.fast  #is this okay??:  
         p_m.advance()
             #for eachTone in eachIncrement:
 

@@ -9,9 +9,9 @@ class Data():
                             t.Piano.F4, t.Piano.G4, t.Piano.A5, t.Piano.Bb5, t.Piano.B5, \
                             t.Piano.C5, t.Piano.D5, t.Piano.E5]
     volumeFor1stVoice = 0.3
-    tonesFor2ndVoice = [t.Piano.A2, t.Piano.A3, t.Piano.C3]
+    tonesFor2ndVoice = [t.Piano.E3, t.Piano.F3, t.Piano.G3]
     volumeFor2ndVoice = 0.3
-    tonesFor3rdVoice = [t.Piano.A1, t.Piano.E1, t.Piano.F1]
+    tonesFor3rdVoice = [t.Piano.E2, t.Piano.A3, t.Piano.F3]
     volumeFor3rdVoice = 0.3
     tonesFor4thVoice = []  
     volumeFor4thVoice = 0.3 

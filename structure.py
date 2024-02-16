@@ -18,33 +18,33 @@ def advance_voice_short_form():
     Data.voice_counter += 1
     info = f'voice_counter_{Data.voice_counter}'        
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     info = f'length_counter_{Data.length_counter}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
     try:
         Data.current_voice = c_s.Data.voices_list[Data.voice_counter]
         Data.save_place = c_s.Data.notesRemaining
         info = 'finished_current_voice'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
     except:
         #Data.voice_counter = int(0)
         #Data.song_finished = not Data.song_finished                        #BREADCRUMB
         info = 'finished_last_voice'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
         c_s.Data.sectionWritten = not c_s.Data.sectionWritten
         info = 'sectionWritten in struc...'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
         Data.save_place = c_s.Data.notesRemaining
         info = 'save_place reset in struc...'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
         m_s.Data.song_finished = not m_s.Data.song_finished
         m_s.append_section()
@@ -77,7 +77,7 @@ def randomShortForm():
 
                 info = f'Data.save_place = {Data.save_place}'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
 
 
             else:
@@ -94,7 +94,7 @@ def randomShortForm():
 
             info = 'skipping empty voice'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
             
             advance_voice_short_form()
 

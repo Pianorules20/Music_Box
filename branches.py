@@ -13,7 +13,9 @@ def generator_branches():
     elif s.Data.structure == 'User Constructed': #catches settings 'User Constructed'
         struc.userConstructed()
     else:
-        db.debug_log.append('Error in branches.Branch...re: settings.Data.structure')
+        info = 'Error in branches.Branch...re: settings.Data.structure'
+        print(info)
+        #db.debug_log.append(info)
 
 def plot_notes():
     pn.plot_notes()

@@ -26,7 +26,7 @@ def play():
         Data.octave = tones.Tone.returnOctave(eachSound)
         Data.info = f'{Data.letterName}{Data.octave}'  # note spacial data
         print(Data.info)
-        db.Data.debug_log.append(Data.info)
+        #db.Data.debug_log.append(Data.info)
         #Data.note = tones.Harp.introMusic[eachSound]  
     
         try :

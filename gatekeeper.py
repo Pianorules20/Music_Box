@@ -19,7 +19,7 @@ class Data():
 def testGate():
     info = f' in gatekeeper...{Data.current_gate}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
 def  passGate(gate):
     

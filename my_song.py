@@ -27,7 +27,7 @@ def flip_finished():
     Data.song_finished = not Data.song_finished
     info = f'Data.song_finished = {Data.song_finished}'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
 def createStructure():
     Data.newStructureInteger = random.randint(1,5)
@@ -61,7 +61,7 @@ def reset_transcript(): # watch out for me!  Trn.finished...
     Data.meter = int(0)
     info = 'in mySong.reset_transcript()'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
 def resetSection():
     Data.currentSection = []

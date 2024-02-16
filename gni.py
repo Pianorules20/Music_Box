@@ -55,9 +55,9 @@ class Note():
     def _blit_():
        d.Data.frame.blit(Note.note, Note.position)
     
-    def play(x):
+    def play(sound):
         pygame.mixer.find_channel(True)
-        pygame.mixer.Sound.play(x)  
+        pygame.mixer.Sound.play(sound)  
     
     '''except Exception as e:
             print('error_in_step3 early randomizer with settings...')

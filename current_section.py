@@ -93,7 +93,7 @@ def transcribe_voice():
 
     info = 'in c_s.transcribe_voice().  resetting c_s current_section'
     print(info)
-    db.Data.debug_log.append(info)
+    #db.Data.debug_log.append(info)
 
     for eachNote in Data.current_section:
         m_s.Data.current_section.append(eachNote)

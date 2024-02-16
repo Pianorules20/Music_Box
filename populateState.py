@@ -99,7 +99,7 @@ def advanceCounter():
     except Exception as e:
         info = 'Cannot advance local counter in populateState()'
         print(info)
-        db.Data.debug_log.append(info)
+        #db.Data.debug_log.append(info)
 
 def goToState(n):
     i.Data.sectionWritten = state.Data.sectionWritten[n]

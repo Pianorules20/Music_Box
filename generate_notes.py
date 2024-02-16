@@ -11,36 +11,36 @@ def select_image(current_duration):
     match current_duration:
 
         case sett.Data.dottedWholeNote:
-            image = 'images/dottedWholeNoteCorrect.png'
+            imageIn = 'images/dottedWholeNoteCorrect.png'
         
         case sett.Data.wholeNote:
-            image = 'images/wholeNoteCorrect.png'
+            imageIn = 'images/wholeNoteCorrect.png'
 
         case sett.Data.dottedHalfNote:
-            image = 'images/dottedHalfNoteCorrect.png'
+            imageIn = 'images/dottedHalfNoteCorrect.png'
 
         case sett.Data.halfNote:
-            image = 'images/halfNoteCorrect.png'
+            imageIn = 'images/halfNoteCorrect.png'
 
         case sett.Data.dottedQuarterNote:
-            image = 'images/dottedQuarterNoteCorrect.png'
+            imageIn = 'images/dottedQuarterNoteCorrect.png'
 
         case sett.Data.quarterNote:
-            image = 'images/quarterNoteCorrect.png'
+            imageIn = 'images/quarterNoteCorrect.png'
         
         case sett.Data.dottedEighthNote:
-            image = 'images/dottedEighthNoteCorrect.png'
+            imageIn = 'images/dottedEighthNoteCorrect.png'
 
         case sett.Data.eighthNote:
-            image = 'images/eighthNoteCorrect.png'
+            imageIn = 'images/eighthNoteCorrect.png'
 
         case sett.Data.dottedSixteenthNote:
-            image = 'images/dottedSixteenthNoteCorrect.png'
+            imageIn = 'images/dottedSixteenthNoteCorrect.png'
 
         case sett.Data.sixteenthNote:
-            image = 'images/sixteenthNoteCorrect.png'
+            imageIn = 'images/sixteenthNoteCorrect.png'
     
-    return image
+    return imageIn
 
 
 def rectangle():
@@ -63,7 +63,7 @@ def generate(voice):
             if randomizer  <= 0.3:
                 info = f'\n_in_early_randomizer_-_the_motive_'
                 print(info)
-                db.Data.debug_log.append(info)   
+                #db.Data.debug_log.append(info)   
                 data = len(c_s.Data.motive)    
                 for eachIndex in range(len(c_s.Data.motive)):
                     currentNote = c_s.Data.motive[eachIndex]
@@ -76,13 +76,13 @@ def generate(voice):
                     m_s.Data.meter += currentDuration
                     info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
                     print(info)
-                    db.Data.debug_log.append(info)
+                    #db.Data.debug_log.append(info)
                 # print(f'{Name}{Octave}')
             #early middle randomizer is based on the generated harmonies
             elif randomizer <= 0.7: #None type errors found here
                 info = f' \n_in_early_middle_randomizer_cs.harmonies_'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 data = 1
                 rando = random.choice(c_s.Data.harmonies)
                 currentNote = rando
@@ -95,12 +95,12 @@ def generate(voice):
                 m_s.Data.meter += currentDuration
                 info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
             # middle randomizer is based on the cadenza notes in music theory they are 2 and 7
             elif randomizer <=0.8:
                 info = f' \n_in_middle_randomizer_-_cadenzas_notes'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 overUnder = random.random()
                 data = 1
                 if overUnder <= 0.5:
@@ -117,11 +117,11 @@ def generate(voice):
                 m_s.Data.meter += currentDuration
                 info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
             elif randomizer <= 0.95:
                 info = f' \n_in_late_randomizer_-_random_notes'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
                 data = 1
                 rando = random.choice(c_s.Data.tonesFor1stVoice)
                 currentNote = rando
@@ -135,12 +135,12 @@ def generate(voice):
                 m_s.Data.meter += currentDuration
                 info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
             # the last randomizer is the tonic itself       
             else:
                 info = f' \n_in_last_randomizer_-_the_tonic'
                 print(info)
-                db.Data.debug_log.append(info)    
+                #db.Data.debug_log.append(info)    
                 data = 1 
                 currentNote = c_s.Data.tonic
                 rando = random.choice(c_s.Data.beats)   
@@ -153,13 +153,13 @@ def generate(voice):
                 m_s.Data.meter += currentDuration
                 info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}'
                 print(info)
-                db.Data.debug_log.append(info)
+                #db.Data.debug_log.append(info)
         
         case c_s.Data.tonesFor2ndVoice:
             
             info = f' \n_in_2nd_voice'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
             data = 1
             rando = random.choice(c_s.Data.tonesFor2ndVoice)
             currentNote = rando
@@ -173,13 +173,13 @@ def generate(voice):
             m_s.Data.meter += currentDuration
             info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
 
         case c_s.Data.tonesFor3rdVoice:
 
             info = f' \n_in_3rd_voice'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
             data = 1
             rando = random.choice(c_s.Data.tonesFor3rdVoice)
             currentNote = rando
@@ -193,13 +193,13 @@ def generate(voice):
             m_s.Data.meter += currentDuration
             info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
 
         case c_s.Data.tonesFor4thVoice:
 
             info = f' \n_in_4th_voice'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
             data = 1
             rando = random.choice(c_s.Data.tonesFor4thVoice)
             currentNote = rando
@@ -213,13 +213,13 @@ def generate(voice):
             m_s.Data.meter += currentDuration
             info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
 
         case c_s.Data.tonesFor5thVoice:
 
             info = f' \n_in_5th_voice'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
             data = 1
             rando = random.choice(c_s.Data.tonesFor5thVoice)
             currentNote = rando
@@ -233,7 +233,7 @@ def generate(voice):
             m_s.Data.meter += currentDuration
             info = f'_in_p_n:_xPos_{music.letterName}{music.octave}_yPos_{music.yPos}_'
             print(info)
-            db.Data.debug_log.append(info)
+            #db.Data.debug_log.append(info)
 
     Data.notes_generated = data
     #gatekeeper.Gate.passGate('generate_notes')
