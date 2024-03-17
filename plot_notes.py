@@ -1,140 +1,128 @@
 #plot_notes.py
-import my_song as m_s, playback as pb, display_interface as d_i, settings as s, state
-import debug as db, gatekeeper as g, pni
+import my_song as m_s, playback as pb, display_interface as d_i, settings as s
+import debug as db, gatekeeper as g, pni #plot_notes_interfaces
 
 class Data():
-   
-    counter = s.Data.metronome
-    section_counter = int(0)
+    #generic / pass once
+    timer = s.Data.metronome
     populate_copy = True
-    plot_meter = int(0)
     plot_copy = []
+    num_sections = len(plot_copy)
+    total_length = int(0)
+    completion_float_count = float(0)
+    finished_plotting = False
+    #section_related 
+    populate__this_section = True
+    this_section_copy = []
+    section_counter = int(0)
+    #each pass
+    this_section_plot_counter = int(0)
+    section_meter = int(0)
+    song_meter = int(0)
 
-def reset_counter():
-    Data.counter = int(0)
+def advance_meter():
+    Data.section_meter += Data.timer
+    Data.song_meter += Data.timer
+
+def reset_data():
+    print('resetting Data in plot_notes')
+    #generic / pass once
+    Data.timer = s.Data.metronome
+    Data.populate_copy = True
+    Data.plot_copy = []
+    Data.num_sections = len(Data.plot_copy)
+    Data.total_length = int(0)
+    Data.completion_float_count = float(0)
+    #section_related
+    Data.populate__this_section = True  
+    Data.this_section_copy = []
+    #Data.section_counter = int(0)
+    Data.section_meter = int(0)
+    #each pass
+    Data.this_section_plot_counter = int(0)
     
-def plot_notes():
-    #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correct
-
-    info = f'transcript_{m_s.Data.transcript}'
-    print(info)    
-    #db.Data.debug_log.append(info)
-
-    if Data.populate_copy == True:
-        pb.Data.plot_copy = m_s.Data.transcript
-        Data.populate_copy = not Data.populate_copy
-        info = f'p_n_populate_copy = False. final_copy {pb.Data.final_copy}'
-        print(info)
-        #db.Data.debug_log.append(info)
-
-
-    
+    if Data.finished_plotting == True:
+        print('finished plotting')
+        Data.populate_copy = True
+        pb.Data.plot_meter_saved = int(Data.song_meter)
+        Data.song_meter = int(0)
+        Data.finished_plotting = False
+        g.Data.current_gate = 'playback'
+        d_i.Data.current_screen =  'playback'
     else:
-        ranger = len(pb.Data.plot_copy[Data.section_counter])
-        if ranger > 0:
-            
-            info = f'p_n_len_final_copy_this_section_{pb.Data.plot_copy[Data.section_counter]}'
-            print(info)
-            #db.Data.debug_log.append(info)
-
-            for eachNote in pb.Data.plot_copy[Data.section_counter]:
-                if Data.plot_meter >= eachNote.xPos:
-                    pni.Data.current_plot.append(eachNote)
-                    pb.Data.final_copy.pop(eachNote)
-
-                else: 
-                    pass
+        pass
                     
-            state.update('plot_copy')
-            pni.create_plot()
-            pni.Data.current_plot = [] #!!!
-            Data.counter += 1
-
+def advance_section_counter():
+    print('advancing section counter')
+    try:
+        #Data.section_counter += int(1)
+        if Data.num_sections == 0:
+            print('end of sections in plot_notes.py')
+            Data.finished_plotting = True
+            reset_data()
         else:
-            info = f'p_n_current_section_empty_{Data.section_counter}'
-    pb.Data.note_count = Data.counter
-    pb.Data.note_count = Data.counter
-    reset_counter()
-    g.Data.current_gate = 'playback'
-    d_i.Data.current_screen =  'playback'
-    Data.populate_copy = not Data.populate_copy
+            Data.section_counter += int(1)
+            print(f'in advance_section_counter section counter {Data.section_counter}')
+        reset_data()
+        print(f'in p_n advance_section_counter()...Data.section_counter = {Data.section_counter}')
+    except:
+        print('end of sections in plot_notes.py')
+        Data.finished_plotting = True
+        reset_data()
 
-
-'''This file works primarily with 'pni' class 'Count' variables are sectionCounter, noteCounter and populate *bool*'''
-'''class P():
-     pass #'Pl' stands for 'Plot'''
-'''
-def plot_notes(): 
-
+def plot_notes():
+    #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correci
+    #info = f'transcript_{m_s.Data.transcript}'
+    #print(info)    i
+    #db.Data.debug_log.append(info)
     
-        # referencing pm.M.meter
-    if pni.Data.populate_me == True:
-            
-            db.Data.debug_log.append(f'pni.populate_me = {pni.Data.populate_me}')
-            pni.populateNotes()
-
+    Data.timer = s.Data.metronome
+    if Data.populate_copy == True:
+        Data.populate_copy = not Data.populate_copy
+        Data.plot_copy = m_s.Data.transcript   
+        Data.num_sections = len(Data.plot_copy) 
+        for eachSection in Data.plot_copy:
+            for eachNote in eachSection:
+                Data.total_length += int(1)
     else:
         pass
 
-    for eachNote in pni.Data.this_section: 
-
-        xPos = gni.Note.returnXPos(eachNote)
-
-        if pm.M.meter == xPos:
-
-            pni.Data.current_plot.append(eachNote)  # pay attention!!!  This is what the playback will use
-            try:
-                    
-                pni.Data.section_counter -= 1
-
-            except:
-                
-                pni.advance()
-
-        else:
-            
-            pass
-    
-    pni.createPlot(notesExternal = pni.Data.current_plot)
-    
-    pni.resetPlot()
-
-        #gatekeeper.Gate.current = 'plot_notes'
+    if Data.populate__this_section == True:
+        Data.populate__this_section = not Data.populate__this_section
+        Data.this_section_copy = Data.plot_copy[Data.section_counter]
+        Data.this_section_plot_counter = len(Data.this_section_copy)
     else:
-        print('error in plot_notes? what happened to Count.note Counter?')
-        try: 
-                pni.I.sectionCounter +=1
-        except:
-            pni.I.populateMe != pni.I.populateMe
-            gatekeeper.Gate.current = 'playback'''
-
-
+        pass
         
-'''class Note(pygame.sprite.Sprite):
+    if Data.this_section_plot_counter > 0:
+        
+        #info = f'p_n_len_final_copy_this_section_{pb.Data.plot_copy[Data.section_counter]}'
+        #print(info)
+        #db.Data.debug_log.append(info)
+        
+        for eachNote in Data.this_section_copy:
+            if Data.section_meter >= eachNote.xPos:
+                pni.Data.current_plot.append(eachNote)
+                Data.this_section_copy.remove(eachNote)  
+                Data.total_length -= int(1)
+                Data.this_section_plot_counter -= int(1)
 
-    counter = 0
-    note = pygame.sprite.Sprite()
-    note = pygame.Surface((0,0))    #1st item to blit to screen
-    rect = () #refers to __init__ item 10 
-    position = () #2nd item to blit to screen
-    
-    def __init__(self, frame, x_plot, y_plot) -> None:
-        print('Player Object Initiated')
-        pygame.sprite.Sprite.__init__(self)
-        self.frame = frame
-        self.image = pygame.Surface((0,0))
-        self.image = pygame.image.load(frame).convert()
-        self.rect = self.image.get_rect()
-        Note.note = self.image
-        self.x_plot = x_plot
-        self.y_plot = y_plot
-        #Player.face_right = Player.hero
-        Note.position = (self.x_plot, self.y_plot)
-        display.Window.position= Note.position
-        #create.py should handle inputting a new surface into the Window.note position
-        Note.rect = self.rect 
-    def returnData():
-       return Note.note, Note.position
-    
-    def _blit_():
-       display.Window.frame.blit(Note.note, Note.position)'''
+            else: 
+                pass
+                
+                    
+        pni.create_plot()
+        pni.Data.current_plot = [] #!!!
+        advance_meter()
+
+    else:
+        #info = f'p_n_current_section_empty_{Data.section_counter}'
+        advance_section_counter()
+    Data.completion_float_count = float(Data.total_length/100)
+    info = f'in plot_notes, completion_float_count {Data.completion_float_count}'
+    print(info)
+    db.Data.debug_log = info
+    info = f'this_section_plot_counter {Data.this_section_plot_counter}'
+    print(info)
+    db.Data.debug_log = info
+    print(f'num_sections {Data.num_sections}')
