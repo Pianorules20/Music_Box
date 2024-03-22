@@ -11,6 +11,7 @@ class Data():
     total_length = int(0)
     completion_float_count = float(0)
     finished_plotting = False
+    transfer_notes = True
     #section_related 
     populate__this_section = True
     this_section_copy = []
@@ -46,29 +47,42 @@ def reset_data():
         Data.populate_copy = True
         pb.Data.plot_meter_saved = int(Data.song_meter)
         Data.song_meter = int(0)
-        Data.finished_plotting = False
+        Data.finished_plotting = not Data.finished_plotting
+        if Data.transfer_notes == True:
+        
+            info = f'in plot_notes transfer_notes = {Data.transfer_notes}. resetting boolean.'
+            print(info)
+            db.Data.debug_log = info
+            Data.transfer_notes = not Data.transfer_notes
+
+        #state.update(Data.transfer_notes, state.Data.transfer_notes)
+        #Data.transfer_notes = not Data.transfer_notes
+            for eachSection in m_s.Data.transcript:
+                pb.Data.section_counter += 1
+                pb.Data.final_copy.append(eachSection)
+        else:
+            pass
         g.Data.current_gate = 'playback'
         d_i.Data.current_screen =  'playback'
     else:
         pass
                     
-def advance_section_counter():
-    print('advancing section counter')
+def advancing_section_counter():
+    print(f'advancing_section_counter(). previous was {Data.section_counter}')
     try:
-        #Data.section_counter += int(1)
-        if Data.num_sections == 0:
-            print('end of sections in plot_notes.py')
-            Data.finished_plotting = True
-            reset_data()
-        else:
-            Data.section_counter += int(1)
-            print(f'in advance_section_counter section counter {Data.section_counter}')
-        reset_data()
-        print(f'in p_n advance_section_counter()...Data.section_counter = {Data.section_counter}')
-    except:
-        print('end of sections in plot_notes.py')
+        Data.section_counter += int(1)
+        Data.this_section_copy = Data.plot_copy[Data.section_counter]
+    except:         
         Data.finished_plotting = True
-        reset_data()
+        print(f'finished_plotting = {Data.finished_plotting}')
+        '''try:
+            
+        except:
+            print('end of sections in plot_notes.py')
+            Data.finished_plotting = True'''
+    else:
+        pass
+    reset_data()
 
 def plot_notes():
     #careful Bryan!!! Make certain that you reset your meter if necessary and or get your sections correci
@@ -117,11 +131,11 @@ def plot_notes():
 
     else:
         #info = f'p_n_current_section_empty_{Data.section_counter}'
-        advance_section_counter()
+        advancing_section_counter()
     Data.completion_float_count = float(Data.total_length/100)
     info = f'in plot_notes, completion_float_count {Data.completion_float_count}'
     print(info)
-    db.Data.debug_log = info
+    #db.Data.debug_log = info
     info = f'this_section_plot_counter {Data.this_section_plot_counter}'
     print(info)
     db.Data.debug_log = info

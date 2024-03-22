@@ -1,4 +1,4 @@
-#main.py
+#mainLoop.py
 
 import pygame
 import sys
@@ -66,8 +66,8 @@ class mainLoop():
 
 
             if  key_press[pygame.K_SPACE]:
-                info = 'Spacebar Pressed'
-                db.Data.debug_log.append(info)
+                info = str('Spacebar Pressed')
+                db.Data.debug_log = info
                 if g.Data.current_gate == 'pause':
                     g.Data.current_gate = g.Data.saved_place
                 else:
@@ -86,7 +86,7 @@ class mainLoop():
                     g.Data.saved_place = g.Data.current_gate
                     g.Data.current_gate = 'pause'
             elif key_press[pygame.K_RETURN]:
-                info = "RETURN pressed"
+                info = str("RETURN pressed")
                 print(info)
                 #db.Data.debug_log.append(info)
                 if d.Data.quitting == True:
@@ -151,7 +151,6 @@ class mainLoop():
                         di.Data.current_screen = 'debug'
                 else:
                     pass
-              
             elif key_press[pygame.K_q]:
                 info = " 'Q' pressed "
                 print(info)
@@ -186,16 +185,9 @@ class mainLoop():
         ss.advance()
         pygame.event.pump() 
         d.Data.updateScreen()
-        debug_log_count = len(db.Data.debug_log)
-        print(debug_log_count)
+        print(f'current_gate = {g.Data.current_gate} ')
+        #debug_log_count = len(db.Data.debug_log)
+        #print(debug_log_count)
         g.passGate(g.Data.current_gate)
 
 pygame.quit()
-'''Credits:
-    
-        The piano samples come from 'www.polyphone-soundfonts.com' user 'JT' on 'Yamaha CFX Studio Grand V2' 
-    They were submitted on 11 May, 2020
- 
-        The introductory harp originally comes from 'www.freesound.com' by user 'tarane468'.
-    I picked it up as a derivative submission at 'www.polyphone-soundfonts.com', which was 
-    submitted by user 'Arianna' as 'Celtic Harp.sf2' on 19 February 2017'''
