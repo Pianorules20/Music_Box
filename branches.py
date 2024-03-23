@@ -1,4 +1,4 @@
-#mainBranch.py
+#branches.py
 import settings as s, structure as struc, plot_notes as pn, playback as pb, post_production as pp, debug as db
 import my_song as m_s
 

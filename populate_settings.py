@@ -1,4 +1,4 @@
-#pDataulates.py
+#populate_settings.py
 import settings as s, current_section as c_s, random, tones as t, user_sounds, pygame, gni, debug as db, structure as st
 
 def createRemainingNotes():

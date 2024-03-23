@@ -19,7 +19,7 @@ class Data():
     volumeFor5thVoice = 0.3
     tonesInstruments = [tonesFor1stVoice, tonesFor2ndVoice, tonesFor3rdVoice, \
                         tonesFor4thVoice, tonesFor5thVoice]
-     
+
     metronome = 72
     metronomeModifier = 1
     dottedWholeNote = metronome*48
@@ -33,7 +33,7 @@ class Data():
     dottedSixteenthNote = metronome*3
     sixteenthNote = metronome*2
     beats = [dottedWholeNote, wholeNote, dottedHalfNote, halfNote, dottedQuarterNote, quarterNote, \
-             dottedEighthNote, eighthNote, dottedSixteenthNote, sixteenthNote]
+            dottedEighthNote, eighthNote, dottedSixteenthNote, sixteenthNote]
 
     voice1 = 'Piano'
     voice2 = 'Piano'
