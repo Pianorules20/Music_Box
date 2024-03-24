@@ -1,16 +1,16 @@
 #display_interface.py
-import settings_screen as scn, playback_meter as pm, menu_screen as ms, playback_screen as ps
+import settings_screen as scn, playback as pb, menu_screen as ms, playback_screen as ps
 import settings_screen as o, credits_screen as crs, debug as db, debug_log as dl
+import post_production_screen as p_p_s
 
-#'I' stands for 'Interface'
 class Data():
     width = 2000
     height = 1000
     current_screen = 'menu'
     universal_override = False
     override_screen = 'menu'
-    currentViewMin = pm.Data.meter
-    currentViewMax = pm.Data.meter + 1900
+    currentViewMin = pb.Data.meter
+    currentViewMax = pb.Data.meter + 1900
 
 def current(screen):
     match Data.current_screen: 
@@ -26,6 +26,8 @@ def current(screen):
             db.debug_screen()
         case 'debug log':
             dl.debug_log_screen()
+        case 'post_production':
+            p_p_s.post_production_screen()
 
 def override(screen):
     match Data.override_screen:
@@ -41,7 +43,8 @@ def override(screen):
             db.debug_screen()
         case 'debug log':
             dl.debug_log_screen()
- 
+        case 'post_production':
+            p_p_s.post_production_screen()
 
 def screenGate(screen):
     '''it appears that i need to implement a universal override in order to prevent the screens from changing while the debugging/credits/userinfo /

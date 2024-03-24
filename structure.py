@@ -1,4 +1,4 @@
-#Step1.py
+#structure.py
 
 import settings, random, my_song as m_s, playback, current_section as c_s, generate_notes as g_n, gni as gni, debug as db
 import gatekeeper as g, debug as db, plot_notes as p_n
@@ -32,23 +32,24 @@ def advance_voice_short_form():
     except:
         #Data.voice_counter = int(0)
         #Data.song_finished = not Data.song_finished                        #BREADCRUMB
-        info = 'finished_last_voice'
+        info = 'finished_last_voice in structure.py'
         print(info)
         #db.Data.debug_log.append(info)
 
         c_s.Data.sectionWritten = not c_s.Data.sectionWritten
-        info = 'sectionWritten in struc...'
+        info = 'sectionWritten in structure.py'
         print(info)
         #db.Data.debug_log.append(info)
 
         Data.save_place = c_s.Data.notesRemaining
-        info = 'save_place reset in struc...'
+        info = 'save_place reset in structure.py'
         print(info)
         #db.Data.debug_log.append(info)
 
         m_s.Data.song_finished = not m_s.Data.song_finished
         m_s.append_section()
         g.Data.current_gate = 'plot_notes'
+        print('entering plot_notes')
 
 def randomShortForm():
     #info = 'in_structure...random_short_form'
