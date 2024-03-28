@@ -18,10 +18,11 @@ class Data():
     width = 2000
     height = 1000
     #surf = pygame.Surface((di.Data.width/2  , di.Data.height/2))
-    frame = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-    background = frame.fill((180,180,40),(0,0, width, height))
+    window = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+    background = window.fill((180,180,40),(0,0, width, height))
     #screen = pygame.Surface((0,0), pygame.RESIZABLE)
     quitting = False
+    view_multiplier = 100
 
     def updateScreen():
         update = di.screenGate(di.Data.current_screen)

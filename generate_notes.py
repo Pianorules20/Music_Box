@@ -1,6 +1,6 @@
 #step2 contains Generator (randomizer)
 
-import random, settings as sett, current_section as c_s, gni, debug as db, my_song as m_s, tones as t
+import random, settings as s, current_section as c_s, gni, debug as db, my_song as m_s, tones as t
 
 class Data():
     
@@ -10,34 +10,34 @@ def select_image(current_duration):
 
     match current_duration:
 
-        case sett.Data.dottedWholeNote:
+        case s.Data.dottedWholeNote:
             imageIn = 'images/dottedWholeNoteCorrect.png'
         
-        case sett.Data.wholeNote:
+        case s.Data.wholeNote:
             imageIn = 'images/wholeNoteCorrect.png'
 
-        case sett.Data.dottedHalfNote:
+        case s.Data.dottedHalfNote:
             imageIn = 'images/dottedHalfNoteCorrect.png'
 
-        case sett.Data.halfNote:
+        case s.Data.halfNote:
             imageIn = 'images/halfNoteCorrect.png'
 
-        case sett.Data.dottedQuarterNote:
+        case s.Data.dottedQuarterNote:
             imageIn = 'images/dottedQuarterNoteCorrect.png'
 
-        case sett.Data.quarterNote:
+        case s.Data.quarterNote:
             imageIn = 'images/quarterNoteCorrect.png'
         
-        case sett.Data.dottedEighthNote:
+        case s.Data.dottedEighthNote:
             imageIn = 'images/dottedEighthNoteCorrect.png'
 
-        case sett.Data.eighthNote:
+        case s.Data.eighthNote:
             imageIn = 'images/eighthNoteCorrect.png'
 
-        case sett.Data.dottedSixteenthNote:
+        case s.Data.dottedSixteenthNote:
             imageIn = 'images/dottedSixteenthNoteCorrect.png'
 
-        case sett.Data.sixteenthNote:
+        case s.Data.sixteenthNote:
             imageIn = 'images/sixteenthNoteCorrect.png'
     
     return imageIn
@@ -69,7 +69,7 @@ def generate(voice):
                     currentNote = c_s.Data.motive[eachIndex]
                     currentDuration = c_s.Data.motiveRhythm[eachIndex]
                     imageIn = select_image(currentDuration)
-                    music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice1, \
+                    music = gni.Note(sound = gni.Note.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice1, \
                         letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                         xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
                     c_s.Data.current_section.append(music)
@@ -88,7 +88,7 @@ def generate(voice):
                 currentNote = rando
                 currentDuration = random.choice(c_s.Data.beats)
                 imageIn = select_image(currentDuration)
-                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice1, \
+                music = gni.Note(sound = gni.Note.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice1, \
                     letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                     xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
                 c_s.Data.current_section.append(music)
@@ -110,7 +110,7 @@ def generate(voice):
                     currentNote = c_s.Data.cadenzaOver
                     currentDuration = c_s.Data.cadenzaDurationOver
                 imageIn = select_image(currentDuration)
-                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice1, \
+                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice1, \
                     letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                     xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
                 c_s.Data.current_section.append(music)
@@ -128,7 +128,7 @@ def generate(voice):
                 randoRhythm = random.choice(c_s.Data.beats)
                 currentDuration = randoRhythm
                 imageIn = select_image(currentDuration)
-                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice1, \
+                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice1, \
                     letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                     xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
                 c_s.Data.current_section.append(music)
@@ -146,7 +146,7 @@ def generate(voice):
                 rando = random.choice(c_s.Data.beats)   
                 currentDuration = rando    
                 imageIn = select_image(currentDuration)       
-                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice1, \
+                music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice1, \
                     letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                     xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
                 c_s.Data.current_section.append(music)
@@ -166,7 +166,7 @@ def generate(voice):
             rando = random.choice(c_s.Data.beats)
             currentDuration = rando
             imageIn = select_image(currentDuration)
-            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice2, \
+            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice2, \
                 letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                 xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
             c_s.Data.current_section.append(music)
@@ -186,7 +186,7 @@ def generate(voice):
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
             imageIn = select_image(currentDuration)
-            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice3, \
+            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice3, \
                 letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                 xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
             c_s.Data.current_section.append(music)
@@ -206,7 +206,7 @@ def generate(voice):
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
             imageIn = select_image(currentDuration)
-            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice4, \
+            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice4, \
                 letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                 xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
             c_s.Data.current_section.append(music)
@@ -226,7 +226,7 @@ def generate(voice):
             rando = random.choice(c_s.Data.beats)
             currentDuration = random.choice(c_s.Data.beats)
             imageIn = select_image(currentDuration)
-            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = sett.Data.voice5, \
+            music = gni.Note(sound = t.Tone.returnSound(currentNote), duration = currentDuration, polyOrder = s.Data.voice5, \
                 letterName = t.Tone.returnLetterName(currentNote), octave = t.Tone.returnOctave(currentNote),\
                 xPos = m_s.Data.meter, yPos = t.Tone.returnClefHeight, imageOut = imageIn)
             c_s.Data.current_section.append(music)

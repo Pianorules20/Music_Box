@@ -7,28 +7,28 @@ class Data():
 def credits_screen():
 
     #db.Data.debug_log.append('credits_screen') artifact me it floods the debug log
-    d.Data.frame.fill(ss.Data.rbg,(0,0, lm.Data.width, lm.Data.height))
+    d.Data.window.fill(ss.Data.rbg,(0,0, lm.Data.width, lm.Data.height))
 
     Data.credits_A = 'Credits'
     Data.credits_B = f.Data.title
     Data.credits_C = Data.credits_B.render(Data.credits_A, True, ss.Data.text, ss.Data.rbg)
     Data.credits_D = Data.credits_C.get_rect()
     Data.credits_D.center = lm.Data.header
-    d.Data.frame.blit(Data.credits_C, Data.credits_D)
+    d.Data.window.blit(Data.credits_C, Data.credits_D)
 
     Data.msg1_A = '2023-2024 by Bryan Castellucci'
     Data.msg1_B = f.Data.title
     Data.msg1_C = Data.msg1_B.render(Data.msg1_A, True, ss.Data.text, ss.Data.rbg)
     Data.msg1_D = Data.msg1_C.get_rect()
     Data.msg1_D.center = lm.Data.header_2
-    d.Data.frame.blit(Data.msg1_C, Data.msg1_D)
+    d.Data.window.blit(Data.msg1_C, Data.msg1_D)
 
     '''Data.transcript_copy_A = 'Transcript Copy'
     Data.transcript_copy_B = f.Data.scripted
     Data.transcript_copy_C = Data.transcript_copy_B.render(Data.transcript_copy_A, True, ss.Data.text, ss.Data.rbg)
     Data.transcript_copy_D = Data.transcript_copy_C.get_rect()
     Data.transcript_copy_D.bottomleft = (10, 700)
-    d.Data.frame.blit(Data.transcript_copy_C, Data.transcript_copy_D)'''
+    d.Data.window.blit(Data.transcript_copy_C, Data.transcript_copy_D)'''
     '''Data.transcript_copy_E = str(pni.Data.transcript_copy)
     Data.transcript_copy_F = f.Data.subtitle
     Data.transcript_copy_G = Data.transcript_copy_F.render(Data.transcript_copy_E, True, ss.Data.text, ss.Data.rbg)'''
@@ -37,7 +37,7 @@ def credits_screen():
     Data.thanks_C = Data.thanks_B.render(Data.thanks_A, True, ss.Data.text, ss.Data.rbg)
     Data.thanks_D = Data.thanks_C.get_rect()
     Data.thanks_D.center = (lm.Data.x1000, lm.Data.y500)
-    d.Data.frame.blit(Data.thanks_C, Data.thanks_D)
+    d.Data.window.blit(Data.thanks_C, Data.thanks_D)
     Data.special_thanks_A = "A   special   thanks   to   Joshua   Castellucci   for   always   believing  \
           in   me   and   for  \
           steering   me   in   the   direction   of   programming."
