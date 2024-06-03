@@ -1,11 +1,12 @@
 #gni means 'generate notes interface'
-import settings as s, my_song as m_s, current_section as c_s, tones as t, pygame.mixer, display as d, debug as db, structure
+import pygame, display as d
 
 class Note():
 
-    note = pygame.Surface((100,100))    #1st item to blit to screen
+    image = pygame.Surface((100,100))    #1st item to blit to screen
     rect = () #refers to __init__ item 10 
     position = () #2nd item to blit to screen
+    sound = ()
 
     def __init__(self, xPos, yPos, sound, duration, imageOut, letterName, octave, polyOrder) -> None:
         print('in_gni_class_Note')
@@ -24,10 +25,11 @@ class Note():
         self.polyOrder = polyOrder
         #Player.face_right = Player.hero
         Note.position = (self.xPos, self.yPos)
-        d.Data.position= Note.position
+        Note.sound = self.sound
+        #d.Data.position= Note.position
         #create.py should handle inputting a new surface into the Data.note position
         Note.rect = self.rect 
-   
+
     def returnLetterName(self):
         return self.letterName
     
@@ -44,7 +46,7 @@ class Note():
         return self.image
 
     def returnData():
-       return Note.note, Note.position
+        return Note.note, Note.position
     
     def returnXPos(self):
         return self.xPos 
@@ -53,7 +55,7 @@ class Note():
         return self.rect
     
     def _blit_():
-       d.Data.frame.blit(Note.note, Note.position)
+        d.Data.frame.blit(Note.note, Note.position)
     
     def play(sound):
         pygame.mixer.find_channel(True)

@@ -1,46 +1,46 @@
 #gatekeeper.py
-import pygame, branches as b, timer as t, debug as db
+import branches as b
 
 
 
 class Data():
 
-    current_gate = 'pause' #the game must initialize with this value because it is default 'paused'
-    info = str('info')
-    notes = str('notes')
+    pause: str = 'pause'
+    generate_notes: str = 'generate_notes'
+    plot_notes: str = 'plot_notes'
+    playback: str = 'playback'
+    post_production: str = 'post_production'
     
-    clock = pygame.time.Clock()
-    clock.tick(t.Data.current_timer)
+    current_gate: str = pause #the game must initialize with this value because it is default 'paused'
     
-    saved_place = 'generate_notes'
+    info: str = 'info'
+    notes: str = 'notes'
+    
+    saved_place:str = 'generate_notes'
 
     current_gate_function = b.pause()
 
-def testGate():
+def testGate(): 
     info = f' in gatekeeper...{Data.current_gate}'
     print(info)
     #db.Data.debug_log.append(info)
 
-def  passGate(gate):
+def passGate(gate):
+
+    match Data.current_gate:
+        case Data.generate_notes:
     
-    match gate:
-        case 'generate_notes':
-    
-            Data.current_gate = 'generate_notes'
+            print('in gatekeeper entering branch.generator_branches()')
             b.generator_branches()
             
-        case 'plot_notes':
-            Data.current_gate = 'plot_notes'
+        case Data.plot_notes:
             b.plot_notes()
         
-        case 'playback':
-            Data.current_gate = 'playback'
+        case Data.playback:
             b.playback()
-         
-        case 'post_production':
-            Data.current_gate = 'post_production'
+            
+        case Data.post_production:
             b.post_production()
         
-        case 'pause':
-            Data.current_gate = 'pause'
+        case Data.pause:
             b.pause()

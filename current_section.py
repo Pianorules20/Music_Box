@@ -1,5 +1,5 @@
 #instance.py
-import settings as s, my_song as m_s, current_section as c_s, debug as db
+import settings as s, my_song as m_s, tones as t
 class Data():
 
     current_section = []
@@ -15,8 +15,18 @@ class Data():
     volumeFor4thVoice = s.Data.volumeFor4thVoice
     tonesFor5thVoice = s.Data.tonesFor5thVoice
     volumeFor5thVoice = s.Data.volumeFor5thVoice
-    voices_list = [tonesFor1stVoice, tonesFor2ndVoice, tonesFor3rdVoice, \
-                tonesFor4thVoice, tonesFor5thVoice]
+    tonesFor6thVoice = s.Data.tonesFor6thVoice
+    volumeFor6thVoice = s.Data.volumeFor6thVoice
+    tonesFor7thVoice = s.Data.tonesFor7thVoice
+    volumeFor7thVoice = s.Data.volumeFor7thVoice
+    tonesFor8thVoice = s.Data.tonesFor8thVoice
+    volumeFor8thVoice = s.Data.volumeFor8thVoice
+    tonesFor9thVoice = s.Data.tonesFor9thVoice
+    volumeFor9thVoice = s.Data.volumeFor9thVoice
+    tonesFor10thVoice = s.Data.tonesFor10thVoice
+    volumeFor10thVoice = s.Data.volumeFor10thVoice
+    voices_list = [tonesFor1stVoice, tonesFor2ndVoice, tonesFor3rdVoice, tonesFor4thVoice, tonesFor5thVoice, \
+                   tonesFor6thVoice, tonesFor7thVoice, tonesFor8thVoice, tonesFor9thVoice, tonesFor10thVoice]
 
     #voices = int(0) #does not reset with instance reset
 
@@ -31,7 +41,7 @@ class Data():
 
     #metronome = int(1)
 
-    harmony1 = s.Data.harmony1
+    harmony1:t.Tone = s.Data.harmony1
     harmony2 = s.Data.harmony2
     harmony3 = s.Data.harmony3
     harmony4 = s.Data.harmony4
@@ -42,7 +52,7 @@ class Data():
     cadenzaDurationOver = s.Data.cadenzaDurationOver
     cadenzaDurationUnder = s.Data.cadenzaDurationUnder
 
-    notesRemaining = int(1)
+    notesRemaining:int = s.Data.notesRemaining
 
 def reset_instance():
     print('in current_section.reset_instance(),_called_by_post_production.py_')
@@ -60,9 +70,22 @@ def reset_instance():
     Data.volumeFor4thVoice = s.Data.volumeFor4thVoice
     Data.tonesFor5thVoice = s.Data.tonesFor5thVoice
     Data.volumeFor5thVoice = s.Data.volumeFor5thVoice
+    Data.tonesFor6thVoice = s.Data.tonesFor6thVoice
+    Data.volumeFor6thVoice = s.Data.volumeFor6thVoice
+    Data.tonesFor7thVoice = s.Data.tonesFor7thVoice
+    Data.volumeFor7thVoice = s.Data.volumeFor7thVoice
+    Data.tonesFor8thVoice = s.Data.tonesFor8thVoice
+    Data.volumeFor8thVoice = s.Data.volumeFor8thVoice
+    Data.tonesFor9thVoice = s.Data.tonesFor9thVoice
+    Data.volumeFor9thVoice = s.Data.volumeFor9thVoice
+    Data.tonesFor10thVoice = s.Data.tonesFor10thVoice
+    Data.volumeFor10thVoice = s.Data.volumeFor10thVoice
     Data.voices_list = [Data.tonesFor1stVoice, Data.tonesFor2ndVoice, Data.tonesFor3rdVoice, \
-                Data.tonesFor4thVoice, Data.tonesFor5thVoice]
-    Data.volumes_list = [Data.volumeFor1stVoice, Data.volumeFor2ndVoice, Data.volumeFor3rdVoice, Data.volumeFor4thVoice, Data.volumeFor5thVoice]
+                Data.tonesFor4thVoice, Data.tonesFor5thVoice, Data.tonesFor6thVoice, Data.tonesFor7thVoice,\
+                    Data.tonesFor8thVoice, Data.tonesFor9thVoice, Data.tonesFor10thVoice]
+    Data.volumes_list = [Data.volumeFor1stVoice, Data.volumeFor2ndVoice, Data.volumeFor3rdVoice, Data.volumeFor4thVoice, \
+                        Data.volumeFor5thVoice, Data.volumeFor6thVoice, Data.volumeFor7thVoice, Data.volumeFor8thVoice, \
+                        Data.volumeFor9thVoice, Data.volumeFor10thVoice]
     #Data.voices = int(0) #does not reset with instance reset
 
     Data.motive = s.Data.motiveTones
@@ -87,7 +110,7 @@ def reset_instance():
     Data.cadenzaDurationOver = s.Data.cadenzaDurationOver
     Data.cadenzaDurationUnder = s.Data.cadenzaDurationUnder
 
-    Data.notesRemaining = int(1)
+    Data.notesRemaining = s.Data.notesRemaining
     
 def transcribe_voice():
 
@@ -97,4 +120,4 @@ def transcribe_voice():
 
     for eachNote in Data.current_section:
         m_s.Data.current_section.append(eachNote)
-        Data.current_section = []
+    Data.current_section = []

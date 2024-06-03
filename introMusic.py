@@ -1,5 +1,5 @@
 #introSound.py
-import pygame, sys, tones, timer as t, debug as db, display as d, fonts as f, screen_saver as ss
+import pygame, sys, tones, timer as t, display as d, fonts as f, screen_saver as s_s
     
     #modify the script below to change volume of the intro harp
 
@@ -7,14 +7,13 @@ class Data():
 
     loading_A = "Playing Intro"
     loading_B = f.Data.large_script
-    loading_C = loading_B.render(loading_A, True, ss.Data.text, ss.Data.rbg)
+    loading_C = loading_B.render(loading_A, True, s_s.Data.text, s_s.Data.rbg)
     loading_D = loading_C.get_rect()
     loading_D.center = (1000, 1000)
 
 def play():
     
-  
-    d.Data.frame.blit(Data.loading_C, Data.loading_D)
+    d.Data.window.blit(Data.loading_C, Data.loading_D)
 
     t.Data.current_timer = t.Data.slow
 
@@ -54,4 +53,4 @@ def play():
     Data.splash_C = Data.splash_B.render(Data.splash_A, True, ss.Data.text, ss.Data.rbg)
     Data.splash_D = Data.splash_C.get_rect()
     Data.splash_D.center = (1000, 50)
-    d.Data.frame.blit(Data.splash_C, Data.splash_D)'''
+    d.Data.window.blit(Data.splash_C, Data.splash_D)'''

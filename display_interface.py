@@ -1,12 +1,18 @@
 #display_interface.py
-import settings_screen as scn, playback as pb, menu_screen as ms, playback_screen as ps
-import settings_screen as o, credits_screen as crs, debug as db, debug_log as dl
+import settings_screen as scn, playback as pb, menu_screen as ms, playback_screen as ps, credits_screen as crs, debug as db
 import post_production_screen as p_p_s
 
 class Data():
-    width = 2000
-    height = 1000
-    current_screen = 'menu'
+    width: int = 2000
+    height: int = 1000
+    menu: str = 'menu'
+    playback: str = 'playback'
+    credits: str = 'credits'
+    settings: str = 'settings'
+    debug: str = 'debug'
+    post_production: str = 'post_production'
+    
+    current_screen: str = 'menu'
     universal_override = False
     override_screen = 'menu'
     currentViewMin = pb.Data.meter
@@ -14,36 +20,32 @@ class Data():
 
 def current(screen):
     match Data.current_screen: 
-        case 'menu':
+        case Data.menu:
             ms.menu_screen()
-        case 'playback':
+        case Data.playback:
             ps.playback_screen()
-        case 'settings':
+        case Data.settings:
             scn.settings_screen()
-        case 'credits':
+        case Data.credits:
             crs.credits_screen()
-        case 'debug':
+        case Data.debug:
             db.debug_screen()
-        case 'debug log':
-            dl.debug_log_screen()
-        case 'post_production':
+        case Data.post_production:
             p_p_s.post_production_screen()
 
 def override(screen):
-    match Data.override_screen:
-        case 'menu':
+    match Data.current_screen:
+        case Data.menu:
             ms.menu_screen()
-        case 'playback':
+        case Data.playback:
             ps.playback_screen()
-        case 'options':
-            o.options_screen()
-        case 'credits':
+        case Data.settings:
+            scn.settings_screen()
+        case Data.credits:
             crs.credits_screen()
-        case 'debug':
+        case Data.debug:
             db.debug_screen()
-        case 'debug log':
-            dl.debug_log_screen()
-        case 'post_production':
+        case Data.post_production:
             p_p_s.post_production_screen()
 
 def screenGate(screen):

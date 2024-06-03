@@ -1,6 +1,5 @@
 #debug_log.py
-import screen_saver as ss, display_interface as di, fonts as f, display as d, debug as db
-import pygame, text_handler as th, layout_menu_style as lm
+import screen_saver as ss, display_interface as di, fonts as f, display as d
 
 class Data():
     initialize = 'initialize'

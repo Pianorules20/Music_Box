@@ -1,5 +1,4 @@
 #debug_page_2
-import mainLoop as m, pygame, display_interface as di
 
 '''
 class Data():

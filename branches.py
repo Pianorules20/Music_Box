@@ -7,6 +7,7 @@ class Branch():
 
 def generator_branches():
     if s.Data.structure == 'Random Short Form':
+        print('in branches entering structure.randomShortForm()')
         struc.randomShortForm()
     elif s.Data.structure == 'Long Form New':
         struc.longFormNew()
@@ -27,9 +28,7 @@ def post_production():
 
     pp.print_sheet()
     pp.record_audio()
-    if s.Data.repeat_composition == False:
-        pass
-    else:
-        pp.new_instance()
+    pp.next()
+
 def pause():
     pass
