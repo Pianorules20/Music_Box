@@ -1,5 +1,5 @@
 #player.py
-import playback as pb, screen_saver as ss, fonts as f, layout_playback_style as l_p, text_handler as th, display as d, pygame
+import screen_saver as s_s, fonts as f, layout_playback_style as l_p, display as d, pygame
 import display as d, gni # generate_notes_interface
 
 
@@ -28,11 +28,11 @@ class Note(pygame.sprite.Sprite):
     
 def playback_screen():
 
-    d.Data.window.fill(ss.Data.rbg,(0,0, l_p.Data.width, l_p.Data.height))
+    d.Data.window.fill(s_s.Data.rbg,(0,0, l_p.Data.width, l_p.Data.height))
 
     Data.splash_A = 'My Recording'
     Data.splash_B = f.Data.large_script
-    Data.splash_C = Data.splash_B.render(Data.splash_A, True, ss.Data.text, ss.Data.rbg)
+    Data.splash_C = Data.splash_B.render(Data.splash_A, True, s_s.Data.text, s_s.Data.rbg)
     Data.splash_D = Data.splash_C.get_rect()
     Data.splash_D.center = l_p.Data.x1000, l_p.Data.y100
     d.Data.window.blit(Data.splash_C, Data.splash_D)
@@ -41,8 +41,9 @@ def playback_screen():
 
         yPos = gni.Note.returnOctave(eachNote)
         xPos = gni.Note.returnXPos(eachNote)
-        final = gni.Note.returnRect(eachNote)
-        d.Data.window.blit(final, ( xPos * d.Data.view_multiplier, yPos))
+        #final = gni.Note.returnRect(eachNote)
+        image = gni.Note.returnImage(eachNote)
+        d.Data.window.blit(image, ( xPos * d.Data.view_multiplier, yPos))
     #snapshot = d.Data.blit(rectangle, (eachNote.x_pos,eachNote.y_pos))   # blits basic screen
     #snapshot = snapshot
     '''

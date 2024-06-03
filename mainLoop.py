@@ -2,19 +2,17 @@
 
 import pygame
 import sys
-import display as d, populate_settings as p_s, introMusic, gatekeeper as g, timer as t
-import display_interface as di, screen_saver as ss, layout_menu_style as lm, layout_playback_style as lp
-import text_handler as th, debug as db
-
+import display as d, populate_instance as p_i, introMusic, gatekeeper as g, timer as t, debug as db
+import display_interface as d_i, screen_saver as s_s, layout_menu_style as lm, layout_playback_style as lp
 # The term 'motive' is more/less equivalent to 'hook' in the melody of a song.  It is a small piece of pitch and rhythm.
 #clock = pygame.time.Clock()
 from pygame.locals import *
-pygame.init()
 pygame.mixer.init()
-pygame.mixer.set_num_channels(24)
+pygame.mixer.set_num_channels(1000)
+pygame.init()
 lm.Data()
 lp.Data()
-p_s.initialize()
+p_i.initialize()
 #objects.Buttons.populate() #this shows the opening screen
 #print(objects.Buttons.descriptions)
 d.Data.updateScreen()
@@ -22,7 +20,7 @@ pygame.display.update()
 introMusic.play()
 
 #introSound.Intro.loadSounds() #this plays the intro sounds
- #this is necessary so that the motive is populated for the objects in make.Note.play()
+#this is necessary so that the motive is populated for the objects in make.Note.play()
 class mainLoop():
 
     def __init__(self) -> None:
@@ -40,7 +38,7 @@ class mainLoop():
     
     while on:
 
-        clock.tick(t.Data.current_timer)
+        clock.tick(t.Data.current)
         '''clock_titleA = "clock speed"
         clock_titleB = f.Data.scripted
         clock_titleC = clock_titleB.render(clock_titleA, True, ss.Data.text, ss.Data.rbg)
@@ -68,7 +66,7 @@ class mainLoop():
             if  key_press[pygame.K_SPACE]:
                 info = str('Spacebar Pressed')
                 db.Data.debug_log = info
-                if g.Data.current_gate == 'pause':
+                if g.Data.current_gate == g.Data.pause:
                     g.Data.current_gate = g.Data.saved_place
                 else:
                     info = 'th.Data.scroll_pages = True'
@@ -80,11 +78,11 @@ class mainLoop():
                 info = "Pause program"
                 print(info)
                 #db.Data.debug_log.append(info)
-                if g.Data.current_gate == 'pause':
+                if g.Data.current_gate == g.Data.pause:
                     pass
                 else:
                     g.Data.saved_place = g.Data.current_gate
-                    g.Data.current_gate = 'pause'
+                    g.Data.current_gate = g.Data.pause
             elif key_press[pygame.K_RETURN]:
                 info = str("RETURN pressed")
                 print(info)
@@ -104,12 +102,12 @@ class mainLoop():
                     info = " Credits accessed "
                     print(info)
                     #db.Data.debug_log.append(info)
-                    if di.Data.universal_override == False:
-                        di.Data.universal_override = True
-                        di.Data.override_screen = 'credits'
+                    if d_i.Data.universal_override == False:
+                        d_i.Data.universal_override = True
+                        d_i.Data.override_screen = d_i.Data.credits
                     else:
-                        di.Data.universal_override = False
-                        di.Data.current_screen = 'menu'
+                        d_i.Data.universal_override = False
+                        d_i.Data.current_screen = d_i.Data.menu
                 else:
                     pass
             elif key_press[pygame.K_d]:
@@ -124,12 +122,12 @@ class mainLoop():
                         info = print("Debug accessed")
                         print(info)
                         #db.Data.debug_log.append(info)
-                        if di.Data.universal_override == False:
-                            di.Data.universal_override = True
-                            di.Data.override_screen = 'debug'
+                        if d_i.Data.universal_override == False:
+                            d_i.Data.universal_override = True
+                            d_i.Data.override_screen = d_i.Data.debug
                         else:
-                            di.Data.universal_override = False
-                            di.Data.current_screen = 'menu'
+                            d_i.Data.universal_override = False
+                            d_i.Data.current_screen = d_i.Data.debug
                     else:
                         pass
                 else:                        
@@ -143,12 +141,12 @@ class mainLoop():
                     info = 'debug log accessed'
                     print(info)
                     db.Data.debug_log.append(info)
-                    if di.Data.universal_override == False:
-                        di.Data.universal_override = True
-                        di.Data.override_screen = 'debug log'
+                    if d_i.Data.universal_override == False:
+                        d_i.Data.universal_override = True
+                        d_i.Data.override_screen = d_i.Data.debug_log
                     else:
-                        di.Data.universal_override = False
-                        di.Data.current_screen = 'debug'
+                        d_i.Data.universal_override = False
+                        d_i.Data.current_screen = d_i.Data.debug
                 else:
                     pass
             elif key_press[pygame.K_q]:
@@ -165,29 +163,35 @@ class mainLoop():
                 print(info)
                 #db.Data.debug_log.append(info)
                 #db.Data.debug_log.append("_settings_accessed_")
-                if di.Data.universal_override == False:
-                    di.Data.universal_override = True
-                    di.Data.override_screen = 'settings'
+                if d_i.Data.universal_override == False:
+                    d_i.Data.universal_override = True
+                    d_i.Data.override_screen = d_i.Data.settings
                 else:
-                    di.Data.universal_override = False
-                    di.Data.current_screen = 'menu'
+                    d_i.Data.universal_override = False
+                    d_i.Data.current_screen = d_i.Data.menu
             elif key_press[pygame.K_t]:
                 info = " 'T' pressed "
                 print(info)
                 #db.Data.debug_log.append(info)
-                if di.Data.universal_override == True:
+                if d_i.Data.universal_override == True:
                     if db.Data.debug_trace == False:
                         db.Data.debug_trace = True
                     else:
                         db.Data.debug_trace = False
                 else:
                     pass   
-        ss.advance()
+        s_s.advance()
         pygame.event.pump() 
         d.Data.updateScreen()
         print(f'current_gate = {g.Data.current_gate} ')
+        info = f'clock speed = {t.Data.current}'
+        print(info)
+        #info = f'settings.Data.structure = {s.Data.structure}'
+        #print(info)
         #debug_log_count = len(db.Data.debug_log)
         #print(debug_log_count)
+        #d_f.magnify('pni.Plot.sounds', pni.Plot.sounds)
         g.passGate(g.Data.current_gate)
+
 
 pygame.quit()

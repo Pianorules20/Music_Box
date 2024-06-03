@@ -4,7 +4,7 @@ import settings as s
 
 class Data():
 
-    fast = 300
-    slow = s.Data.metronome/s.Data.metronomeModifier/3
+    fast = 320
+    slow = float(s.Data.metronome * 0.1 / s.Data.metronomeModifier)
 
-    current_timer = fast
+    current = fast

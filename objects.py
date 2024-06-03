@@ -1,7 +1,5 @@
 #objects.py
-import pygame, sys
 from pygame.locals import *
-import display, debug as db
 '''
 
 class Button():

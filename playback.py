@@ -1,6 +1,6 @@
 #playback.py 
-import gatekeeper as g, timer as t, debug as db, state, gni #generate_notes_interface
-import pygame, sys, my_song as m_s, settings as s, display_interface as d_i, tones
+import gatekeeper as g, timer as t, debug as db, settings as s, pni 
+import display_interface as d_i, tones
 from pygame.locals import *
 
 #timer = pygame.time.get_ticks()
@@ -18,7 +18,7 @@ class Data():
     channel_counter = int(0)
     #active_notes = []
     note_count = int(0)
-    meter = int(0)
+    meter = int(0)  # Check me out!!!!!!!!!
     plot_meter_saved = int(0)
     ranger = int(0)
 
@@ -49,15 +49,13 @@ def play(): #i will play and pop each plot incrementally from the recording
     
     if Data.section_counter > 1:
         Data.current_section = Data.final_copy[Data.section_counter]
-        Data.current_plot = Data.current_section[Data.meter]
-    else:
         Data.current_plot = Data.final_copy[Data.meter]
+    else:
+        Data.current_plot = Data.final_copy[Data.meter]  #pay attention to my list index out of range error message!!!
 
     info = f'in playback, Data.current_plot = {Data.current_plot} '
     print(info)
-    db.Data.debug_log = info
-    
-    t.Data.current_timer = t.Data.slow
+    #db.Data.debug_log = info
     
     #info = f'playback_final_copy_{Data.final_copy}'
     #print(info)
@@ -65,9 +63,18 @@ def play(): #i will play and pop each plot incrementally from the recording
     
     if Data.meter < Data.plot_meter_saved:
 
-        Data.ranger = len(Data.current_plot)
-        for eachInteger in range(Data.ranger):
-            tones.Tone.play(Data.current_plot[eachInteger])
+        ranger =  len(Data.current_plot.sounds)
+        print(f'plot sound length {ranger}')
+        if ranger  > 0:
+            for eachInteger in range(ranger):
+                currentSound = Data.current_plot.sounds[0]
+                print(currentSound)
+                tones.Tone.play(currentSound)
+                info = f'current note {Data.current_plot.sounds[0]}'
+                print(info)
+                pni.Plot.remove_sound()
+        else:
+            pass
         #Sound = gni.Note.returnSound(eachNote) 
         #Data.letterName = gni.Note.returnLetterName(eachNote)
         #Data.octave = gni.Note.returnOctave(eachNote)
@@ -100,13 +107,18 @@ def play(): #i will play and pop each plot incrementally from the recording
                     crash_me_B = sys.exit()
                     crash_me_A
                     crash_me_B'''
-
+        #info = f'final copy {Data.final_copy}'
+        #print(info)
+        info = f'playback meter index {Data.meter}'
+        print(info)
+        info = f'plot meter saved {Data.plot_meter_saved}'
+        print(info)
         advance()
 
     else:
-        t.Data.current_timer = t.Data.fast
         reset_meter()  # is this correct?
-        g.Data.current_gate = 'post_production'
-        d_i.Data.current_screen = 'post_production_screen'
+        print('finishing playback.py, resetting playback meter')
+        g.Data.current_gate = g.Data.post_production
+        d_i.Data.current_screen = d_i.Data.post_production
 
         #TROUBLESHOOT NOTES I AM ONLY GETTING ONE NOTE AT A TIME WHY IS THAT?

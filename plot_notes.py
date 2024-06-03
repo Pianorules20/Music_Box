@@ -1,7 +1,6 @@
 #plot_notes.py
-import my_song as m_s, playback as pb, display_interface as d_i, settings as s
-import debug as db, gatekeeper as g, pni #plot_notes_interfaces
-
+import my_song as m_s, playback as pb, display_interface as d_i, settings as s, timer as t
+import debug as db, gatekeeper as g, pni
 class Data():
     #generic / pass once
     timer = s.Data.metronome
@@ -23,7 +22,7 @@ class Data():
 
 def advance_meter():
     Data.section_meter += Data.timer
-    Data.song_meter += Data.timer
+    Data.song_meter += 1
 
 def reset_data():
     print('resetting Data in plot_notes')
@@ -62,8 +61,10 @@ def reset_data():
                 pb.Data.final_copy.append(eachSection)
         else:
             pass
-        g.Data.current_gate = 'playback'
-        d_i.Data.current_screen =  'playback'
+        g.Data.current_gate = g.Data.playback
+        d_i.Data.current_screen =  d_i.Data.playback
+        t.Data.current = t.Data.slow
+        print('in plot_notes, reset_data(), changing tempo to timer.Data.slow')
     else:
         pass
                     
@@ -116,17 +117,19 @@ def plot_notes():
         
         for eachNote in Data.this_section_copy:
             if Data.section_meter >= eachNote.xPos:
-                pni.Data.current_plot.append(eachNote)
+                pni.Plot.notes.append(eachNote)
+                pni.Plot.sounds.append(eachNote.sound)
                 Data.this_section_copy.remove(eachNote)  
                 Data.total_length -= int(1)
                 Data.this_section_plot_counter -= int(1)
 
             else: 
                 pass
-                
-                    
-        pni.create_plot()
-        pni.Data.current_plot = [] #!!!
+        #d_f.magnify('pni.Plot.sounds', pni.Plot.sounds)
+        plot = pni.Plot(pni.Plot.notes, pni.Plot.sounds)
+        pb.Data.final_copy.append(plot)
+        pni.Plot.notes = [] #!!!
+        pni.Plot.sounds = []
         advance_meter()
 
     else:

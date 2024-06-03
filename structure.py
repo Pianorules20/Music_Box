@@ -1,7 +1,7 @@
 #structure.py
 
-import settings, random, my_song as m_s, playback, current_section as c_s, generate_notes as g_n, gni as gni, debug as db
-import gatekeeper as g, debug as db, plot_notes as p_n
+import settings, random, my_song as m_s, playback, current_section as c_s, generate_notes as g_n, gni as gni
+import gatekeeper as g
 
 class Data():
     
@@ -10,7 +10,14 @@ class Data():
     length_counter = len(c_s.Data.voices_list)
     current_voice = c_s.Data.voices_list[voice_counter]
 
-def flip_save_place():
+def reset_data():
+    print('in structure, reset_data()')
+    #Data.save_place = c_s.Data.notesRemaining
+    Data.voice_counter = int(0)
+    Data.length_counter = len(c_s.Data.voices_list)
+    Data.current_voice = c_s.Data.voices_list[Data.voice_counter]  # watch out it may need to be refreshed
+
+def reset_save_place():
     Data.save_place = c_s.Data.notesRemaining
 
 def advance_voice_short_form():
@@ -48,12 +55,13 @@ def advance_voice_short_form():
 
         m_s.Data.song_finished = not m_s.Data.song_finished
         m_s.append_section()
-        g.Data.current_gate = 'plot_notes'
+        g.Data.current_gate = g.Data.plot_notes
         print('entering plot_notes')
+        reset_data()
 
 def randomShortForm():
-    #info = 'in_structure...random_short_form'
-    #print(info)
+    info = 'in_structure...random_short_form'
+    print(info)
     #db.Data.debug_log.append(info)  #breadcrumb
     #for eachVoice in cs.Data.instruments: #debug log 
     #    info = f'checking_length_of_each_voice...{len(eachVoice)}'
@@ -64,7 +72,7 @@ def randomShortForm():
     
     if m_s.Data.song_finished == True:
 
-        g.Data.current_gate = 'plot_notes'  #!!!!!!
+        g.Data.current_gate = g.Data.plot_notes  #!!!!!!
     
     else:
     
@@ -99,7 +107,6 @@ def randomShortForm():
             
             advance_voice_short_form()
 
-       
 
             '''the line below i think was an inadvertent duplicate of the c_s.transcribe_voice()  was this causing problems???'''
         #m_s.Data.transcript.append(c_s.Data.current_section) #pay careful attention as this is now a list \

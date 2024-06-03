@@ -1,5 +1,5 @@
 #mySong.py
-import settings as s, random, debug as db
+import settings as s, random
 
 class Data(): #'Trn' stands for 'Transcription'
     song_finished = False
@@ -25,7 +25,7 @@ def append_section():
 
 def flip_finished():
     Data.song_finished = not Data.song_finished
-    info = f'Data.song_finished = {Data.song_finished}'
+    info = f'in mysong...flip_finished song_finished? = {Data.song_finished}'
     print(info)
     #db.Data.debug_log.append(info)
 
@@ -36,10 +36,10 @@ def nextInstrument():
     s.Data.createRemainingNotes()
     '''dev warning!!! watch out for me!'''
 
-#def advance_meter():
-#    Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)
+# def advance_meter():
+# def   Data.meter -= (s.Data.metronome/s.Data.metronomeModifier)
     
-#def reset_meter():
+#defreset_meter():
 #    Data.meter = int(0)
 
 def reset_transcript(): # watch out for me!  Trn.finished...

@@ -68,13 +68,12 @@ def handle_strings(myText, xAxis, yAxis, leftEdge, rightEdge, bottomEdge, font, 
             pass
         textD = textC.get_rect()    
         textD.bottomleft = (Data.xAxis, Data.yAxis)
-        d.Data.frame.blit(textC, textD)
+        d.Data.window.blit(textC, textD)
 
 '''
-     d.Window.spacebar1 = 'Press Spacebar to Create and Record'
+    d.Window.spacebar1 = 'Press Spacebar to Create and Record'
     d.Window.spacebar2 = f.Data.scripted
     d.Window.spacebar3 = d.Window.spacebar2.render(d.Window.spacebar1, True, ss.Data.text, ss.Data.rbg)
     d.Window.spacebar4 = d.Window.spacebar3.get_rect()
     d.Window.spacebar4.bottomleft = di.Data.left_col_2
     d.Window.frame.blit(d.Window.spacebar3, d.Window.spacebar4)'''
-                 

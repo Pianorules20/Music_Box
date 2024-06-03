@@ -1,11 +1,37 @@
 # pni = 'plot_notes_interface.py'
+#pni.py
 import pygame
-import playback as pb, gni as gni, my_song as m_s, tones as t, debug as db, layout_playback_style as l_p
+import  gni as gni, layout_playback_style as l_p
 
-class Data():
+class Plot():
+
+    notes = []
+    sounds = []    
     
-    current_plot = []
-    transfer_notes = True
+    def __init__(self, notes, sounds):
+
+        self.notes = notes
+        self.sounds = sounds
+        
+        #if len(Plot.notes) == 0:
+    
+        #   pass
+
+        #else:
+        
+        for eachNote in Plot.notes:
+            Plot.sounds.append(eachNote.sound) 
+            l_p.Data.objects.append(eachNote)
+
+    def remove_sound():
+        
+        if len(Plot.notes) == 0:
+            
+            pass
+        
+        else:
+
+            Plot.sounds.remove(Plot.sounds[0])
 
 
     '''def __init__(self, Note, sound, image, rectangle):
@@ -14,21 +40,6 @@ class Data():
         self.sound = sound
         self.image = image
         self.rectangle = rectangle'''
-
-def create_plot():
-    info = 'in pni create_plot() '
-    print(info)
-    db.Data.debug_log = info
-    if len(Data.current_plot) == 0:
-        pb.Data.final_copy.append([])
-    else:
-        sounds = []
-        for eachNote in Data.current_plot:
-            sound = t.Tone.returnSound(eachNote)
-            sounds.append(sound)
-            pb.Data.final_copy.append(sounds)
-            l_p.Data.objects.append(eachNote)
-
 
 '''def create_plot():
 

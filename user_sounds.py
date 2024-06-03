@@ -1,1 +1,4 @@
 #sounds.py
+
+
+mySounds = []
